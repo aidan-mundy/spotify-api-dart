@@ -3,16 +3,16 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/track_object_album.dart';
-import 'package:spotify_api/src/model/episode_base_external_urls.dart';
-import 'package:spotify_api/src/model/artist_object.dart';
-import 'package:spotify_api/src/model/episode_base_restrictions.dart';
-import 'package:spotify_api/src/model/track_object_external_ids.dart';
-import 'package:spotify_api/src/model/track_object.dart';
-import 'package:spotify_api/src/model/episode_object.dart';
-import 'package:spotify_api/src/model/image_object.dart';
-import 'package:spotify_api/src/model/simplified_show_object.dart';
-import 'package:spotify_api/src/model/episode_base_resume_point.dart';
+import 'package:spotify_openapi/src/model/episode_base_resume_point.dart';
+import 'package:spotify_openapi/src/model/episode_object.dart';
+import 'package:spotify_openapi/src/model/episode_base_external_urls.dart';
+import 'package:spotify_openapi/src/model/track_object.dart';
+import 'package:spotify_openapi/src/model/episode_base_restrictions.dart';
+import 'package:spotify_openapi/src/model/image_object.dart';
+import 'package:spotify_openapi/src/model/track_object_album.dart';
+import 'package:spotify_openapi/src/model/artist_object.dart';
+import 'package:spotify_openapi/src/model/simplified_show_object.dart';
+import 'package:spotify_openapi/src/model/track_object_external_ids.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'queue_object_queue_inner.g.dart';

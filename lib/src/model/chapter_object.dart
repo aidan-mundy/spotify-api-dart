@@ -3,11 +3,11 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/episode_base_external_urls.dart';
-import 'package:spotify_api/src/model/chapter_base_restrictions.dart';
-import 'package:spotify_api/src/model/image_object.dart';
-import 'package:spotify_api/src/model/simplified_audiobook_object.dart';
-import 'package:spotify_api/src/model/episode_base_resume_point.dart';
+import 'package:spotify_openapi/src/model/episode_base_resume_point.dart';
+import 'package:spotify_openapi/src/model/episode_base_external_urls.dart';
+import 'package:spotify_openapi/src/model/image_object.dart';
+import 'package:spotify_openapi/src/model/chapter_base_restrictions.dart';
+import 'package:spotify_openapi/src/model/simplified_audiobook_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'chapter_object.g.dart';

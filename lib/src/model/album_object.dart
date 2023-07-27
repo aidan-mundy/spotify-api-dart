@@ -3,13 +3,13 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/paging_simplified_track_object.dart';
-import 'package:spotify_api/src/model/album_base_restrictions.dart';
-import 'package:spotify_api/src/model/artist_object.dart';
-import 'package:spotify_api/src/model/copyright_object.dart';
-import 'package:spotify_api/src/model/image_object.dart';
-import 'package:spotify_api/src/model/album_base_external_urls.dart';
-import 'package:spotify_api/src/model/album_base_external_ids.dart';
+import 'package:spotify_openapi/src/model/copyright_object.dart';
+import 'package:spotify_openapi/src/model/image_object.dart';
+import 'package:spotify_openapi/src/model/paging_simplified_track_object.dart';
+import 'package:spotify_openapi/src/model/album_base_restrictions.dart';
+import 'package:spotify_openapi/src/model/artist_object.dart';
+import 'package:spotify_openapi/src/model/album_base_external_urls.dart';
+import 'package:spotify_openapi/src/model/album_base_external_ids.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'album_object.g.dart';

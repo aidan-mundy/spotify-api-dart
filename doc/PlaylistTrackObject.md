@@ -1,8 +1,8 @@
-# spotify_api.model.PlaylistTrackObject
+# spotify_openapi.model.PlaylistTrackObject
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

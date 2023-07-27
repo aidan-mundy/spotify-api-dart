@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:spotify_api/spotify_api.dart';
+import 'package:spotify_openapi/spotify_openapi.dart';
 
 
 /// tests for PlaylistsApi
 void main() {
-  final instance = SpotifyApi().getPlaylistsApi();
+  final instance = SpotifyOpenapi().getPlaylistsApi();
 
   group(PlaylistsApi, () {
     // Add Items to Playlist 

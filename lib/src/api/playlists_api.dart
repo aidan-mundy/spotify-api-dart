@@ -6,22 +6,22 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:spotify_api/src/deserialize.dart';
+import 'package:spotify_openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_api/src/model/add_tracks_to_playlist_request.dart';
-import 'package:spotify_api/src/model/change_playlist_details_request.dart';
-import 'package:spotify_api/src/model/create_playlist_request.dart';
-import 'package:spotify_api/src/model/follow_playlist_request.dart';
-import 'package:spotify_api/src/model/get_an_album401_response.dart';
-import 'package:spotify_api/src/model/image_object.dart';
-import 'package:spotify_api/src/model/paging_featured_playlist_object.dart';
-import 'package:spotify_api/src/model/paging_playlist_object.dart';
-import 'package:spotify_api/src/model/paging_playlist_track_object.dart';
-import 'package:spotify_api/src/model/playlist_object.dart';
-import 'package:spotify_api/src/model/remove_tracks_playlist_request.dart';
-import 'package:spotify_api/src/model/reorder_or_replace_playlists_tracks200_response.dart';
-import 'package:spotify_api/src/model/reorder_or_replace_playlists_tracks_request.dart';
+import 'package:spotify_openapi/src/model/add_tracks_to_playlist_request.dart';
+import 'package:spotify_openapi/src/model/change_playlist_details_request.dart';
+import 'package:spotify_openapi/src/model/create_playlist_request.dart';
+import 'package:spotify_openapi/src/model/follow_playlist_request.dart';
+import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:spotify_openapi/src/model/image_object.dart';
+import 'package:spotify_openapi/src/model/paging_featured_playlist_object.dart';
+import 'package:spotify_openapi/src/model/paging_playlist_object.dart';
+import 'package:spotify_openapi/src/model/paging_playlist_track_object.dart';
+import 'package:spotify_openapi/src/model/playlist_object.dart';
+import 'package:spotify_openapi/src/model/remove_tracks_playlist_request.dart';
+import 'package:spotify_openapi/src/model/reorder_or_replace_playlists_tracks200_response.dart';
+import 'package:spotify_openapi/src/model/reorder_or_replace_playlists_tracks_request.dart';
 
 class PlaylistsApi {
 

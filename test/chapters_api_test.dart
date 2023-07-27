@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:spotify_api/spotify_api.dart';
+import 'package:spotify_openapi/spotify_openapi.dart';
 
 
 /// tests for ChaptersApi
 void main() {
-  final instance = SpotifyApi().getChaptersApi();
+  final instance = SpotifyOpenapi().getChaptersApi();
 
   group(ChaptersApi, () {
     // Get a Chapter 

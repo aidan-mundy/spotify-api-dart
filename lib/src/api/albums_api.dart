@@ -6,17 +6,17 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:spotify_api/src/deserialize.dart';
+import 'package:spotify_openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_api/src/model/album_object.dart';
-import 'package:spotify_api/src/model/get_an_album401_response.dart';
-import 'package:spotify_api/src/model/get_multiple_albums200_response.dart';
-import 'package:spotify_api/src/model/get_new_releases200_response.dart';
-import 'package:spotify_api/src/model/paging_saved_album_object.dart';
-import 'package:spotify_api/src/model/paging_simplified_album_object.dart';
-import 'package:spotify_api/src/model/paging_simplified_track_object.dart';
-import 'package:spotify_api/src/model/save_albums_user_request.dart';
+import 'package:spotify_openapi/src/model/album_object.dart';
+import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:spotify_openapi/src/model/get_multiple_albums200_response.dart';
+import 'package:spotify_openapi/src/model/get_new_releases200_response.dart';
+import 'package:spotify_openapi/src/model/paging_saved_album_object.dart';
+import 'package:spotify_openapi/src/model/paging_simplified_album_object.dart';
+import 'package:spotify_openapi/src/model/paging_simplified_track_object.dart';
+import 'package:spotify_openapi/src/model/save_albums_user_request.dart';
 
 class AlbumsApi {
 

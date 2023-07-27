@@ -1,8 +1,8 @@
-# spotify_api.model.SaveEpisodesUserRequest
+# spotify_openapi.model.SaveEpisodesUserRequest
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:spotify_api/spotify_api.dart';
+import 'package:spotify_openapi/spotify_openapi.dart';
 
 
 /// tests for AlbumsApi
 void main() {
-  final instance = SpotifyApi().getAlbumsApi();
+  final instance = SpotifyOpenapi().getAlbumsApi();
 
   group(AlbumsApi, () {
     // Check User's Saved Albums 

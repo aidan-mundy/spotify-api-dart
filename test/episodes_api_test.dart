@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:spotify_api/spotify_api.dart';
+import 'package:spotify_openapi/spotify_openapi.dart';
 
 
 /// tests for EpisodesApi
 void main() {
-  final instance = SpotifyApi().getEpisodesApi();
+  final instance = SpotifyOpenapi().getEpisodesApi();
 
   group(EpisodesApi, () {
     // Check User's Saved Episodes 

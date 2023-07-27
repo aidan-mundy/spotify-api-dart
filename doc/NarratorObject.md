@@ -1,8 +1,8 @@
-# spotify_api.model.NarratorObject
+# spotify_openapi.model.NarratorObject
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

@@ -6,26 +6,26 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:spotify_api/src/deserialize.dart';
+import 'package:spotify_openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_api/src/model/add_tracks_to_playlist_request.dart';
-import 'package:spotify_api/src/model/audio_analysis_object.dart';
-import 'package:spotify_api/src/model/audio_features_object.dart';
-import 'package:spotify_api/src/model/get_an_album401_response.dart';
-import 'package:spotify_api/src/model/get_an_artists_top_tracks200_response.dart';
-import 'package:spotify_api/src/model/get_several_audio_features200_response.dart';
-import 'package:spotify_api/src/model/get_users_top_artists_and_tracks200_response.dart';
-import 'package:spotify_api/src/model/paging_playlist_track_object.dart';
-import 'package:spotify_api/src/model/paging_saved_track_object.dart';
-import 'package:spotify_api/src/model/paging_simplified_track_object.dart';
-import 'package:spotify_api/src/model/recommendations_object.dart';
-import 'package:spotify_api/src/model/remove_tracks_playlist_request.dart';
-import 'package:spotify_api/src/model/reorder_or_replace_playlists_tracks200_response.dart';
-import 'package:spotify_api/src/model/reorder_or_replace_playlists_tracks_request.dart';
-import 'package:spotify_api/src/model/save_albums_user_request.dart';
-import 'package:spotify_api/src/model/save_tracks_user_request.dart';
-import 'package:spotify_api/src/model/track_object.dart';
+import 'package:spotify_openapi/src/model/add_tracks_to_playlist_request.dart';
+import 'package:spotify_openapi/src/model/audio_analysis_object.dart';
+import 'package:spotify_openapi/src/model/audio_features_object.dart';
+import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:spotify_openapi/src/model/get_an_artists_top_tracks200_response.dart';
+import 'package:spotify_openapi/src/model/get_several_audio_features200_response.dart';
+import 'package:spotify_openapi/src/model/get_users_top_artists_and_tracks200_response.dart';
+import 'package:spotify_openapi/src/model/paging_playlist_track_object.dart';
+import 'package:spotify_openapi/src/model/paging_saved_track_object.dart';
+import 'package:spotify_openapi/src/model/paging_simplified_track_object.dart';
+import 'package:spotify_openapi/src/model/recommendations_object.dart';
+import 'package:spotify_openapi/src/model/remove_tracks_playlist_request.dart';
+import 'package:spotify_openapi/src/model/reorder_or_replace_playlists_tracks200_response.dart';
+import 'package:spotify_openapi/src/model/reorder_or_replace_playlists_tracks_request.dart';
+import 'package:spotify_openapi/src/model/save_albums_user_request.dart';
+import 'package:spotify_openapi/src/model/save_tracks_user_request.dart';
+import 'package:spotify_openapi/src/model/track_object.dart';
 
 class TracksApi {
 

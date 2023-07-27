@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/linked_track_object_external_urls.dart';
+import 'package:spotify_openapi/src/model/linked_track_object_external_urls.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'linked_track_object.g.dart';

@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:spotify_api/spotify_api.dart';
+import 'package:spotify_openapi/spotify_openapi.dart';
 
 
 /// tests for CategoriesApi
 void main() {
-  final instance = SpotifyApi().getCategoriesApi();
+  final instance = SpotifyOpenapi().getCategoriesApi();
 
   group(CategoriesApi, () {
     // Get Category's Playlists 

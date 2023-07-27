@@ -3,8 +3,8 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/currently_playing_object_item.dart';
-import 'package:spotify_api/src/model/queue_object_queue_inner.dart';
+import 'package:spotify_openapi/src/model/queue_object_queue_inner.dart';
+import 'package:spotify_openapi/src/model/currently_playing_object_item.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'queue_object.g.dart';

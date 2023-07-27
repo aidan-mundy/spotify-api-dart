@@ -1,8 +1,8 @@
-# spotify_api.model.AudiobookObjectAllOfChapters
+# spotify_openapi.model.AudiobookObjectAllOfChapters
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:spotify_api/spotify_api.dart';
+import 'package:spotify_openapi/spotify_openapi.dart';
 
 
 /// tests for AudiobooksApi
 void main() {
-  final instance = SpotifyApi().getAudiobooksApi();
+  final instance = SpotifyOpenapi().getAudiobooksApi();
 
   group(AudiobooksApi, () {
     // Check User's Saved Audiobooks 

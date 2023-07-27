@@ -6,14 +6,14 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:spotify_api/src/deserialize.dart';
+import 'package:spotify_openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_api/src/model/get_an_album401_response.dart';
-import 'package:spotify_api/src/model/get_multiple_shows200_response.dart';
-import 'package:spotify_api/src/model/paging_saved_show_object.dart';
-import 'package:spotify_api/src/model/paging_simplified_episode_object.dart';
-import 'package:spotify_api/src/model/show_object.dart';
+import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:spotify_openapi/src/model/get_multiple_shows200_response.dart';
+import 'package:spotify_openapi/src/model/paging_saved_show_object.dart';
+import 'package:spotify_openapi/src/model/paging_simplified_episode_object.dart';
+import 'package:spotify_openapi/src/model/show_object.dart';
 
 class ShowsApi {
 

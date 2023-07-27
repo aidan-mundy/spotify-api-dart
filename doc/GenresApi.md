@@ -1,8 +1,8 @@
-# spotify_api.api.GenresApi
+# spotify_openapi.api.GenresApi
 
 ## Load the API package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 All URIs are relative to *https://api.spotify.com/v1*
@@ -21,11 +21,11 @@ Retrieve a list of available genres seed parameter values for [recommendations](
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getGenresApi();
+final api = SpotifyOpenapi().getGenresApi();
 
 try {
     final response = api.getRecommendationGenres();

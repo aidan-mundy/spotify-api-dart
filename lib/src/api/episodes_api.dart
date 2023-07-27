@@ -6,16 +6,16 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:spotify_api/src/deserialize.dart';
+import 'package:spotify_openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_api/src/model/episode_object.dart';
-import 'package:spotify_api/src/model/get_an_album401_response.dart';
-import 'package:spotify_api/src/model/get_multiple_episodes200_response.dart';
-import 'package:spotify_api/src/model/paging_saved_episode_object.dart';
-import 'package:spotify_api/src/model/paging_simplified_episode_object.dart';
-import 'package:spotify_api/src/model/remove_episodes_user_request.dart';
-import 'package:spotify_api/src/model/save_episodes_user_request.dart';
+import 'package:spotify_openapi/src/model/episode_object.dart';
+import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:spotify_openapi/src/model/get_multiple_episodes200_response.dart';
+import 'package:spotify_openapi/src/model/paging_saved_episode_object.dart';
+import 'package:spotify_openapi/src/model/paging_simplified_episode_object.dart';
+import 'package:spotify_openapi/src/model/remove_episodes_user_request.dart';
+import 'package:spotify_openapi/src/model/save_episodes_user_request.dart';
 
 class EpisodesApi {
 

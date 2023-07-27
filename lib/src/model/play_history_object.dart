@@ -3,8 +3,8 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/play_history_object_track.dart';
-import 'package:spotify_api/src/model/play_history_object_context.dart';
+import 'package:spotify_openapi/src/model/play_history_object_context.dart';
+import 'package:spotify_openapi/src/model/play_history_object_track.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'play_history_object.g.dart';

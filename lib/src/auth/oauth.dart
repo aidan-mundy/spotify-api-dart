@@ -3,7 +3,7 @@
 //
 
 import 'package:dio/dio.dart';
-import 'package:spotify_api/src/auth/auth.dart';
+import 'package:spotify_openapi/src/auth/auth.dart';
 
 class OAuthInterceptor extends AuthInterceptor {
   final Map<String, String> tokens = {};

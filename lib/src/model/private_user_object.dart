@@ -3,10 +3,10 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/private_user_object_explicit_content.dart';
-import 'package:spotify_api/src/model/private_user_object_followers.dart';
-import 'package:spotify_api/src/model/image_object.dart';
-import 'package:spotify_api/src/model/private_user_object_external_urls.dart';
+import 'package:spotify_openapi/src/model/image_object.dart';
+import 'package:spotify_openapi/src/model/private_user_object_explicit_content.dart';
+import 'package:spotify_openapi/src/model/private_user_object_followers.dart';
+import 'package:spotify_openapi/src/model/private_user_object_external_urls.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'private_user_object.g.dart';

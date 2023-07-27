@@ -3,10 +3,10 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/show_object_all_of_episodes.dart';
-import 'package:spotify_api/src/model/copyright_object.dart';
-import 'package:spotify_api/src/model/image_object.dart';
-import 'package:spotify_api/src/model/show_base_external_urls.dart';
+import 'package:spotify_openapi/src/model/copyright_object.dart';
+import 'package:spotify_openapi/src/model/image_object.dart';
+import 'package:spotify_openapi/src/model/show_base_external_urls.dart';
+import 'package:spotify_openapi/src/model/show_object_all_of_episodes.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'show_object.g.dart';

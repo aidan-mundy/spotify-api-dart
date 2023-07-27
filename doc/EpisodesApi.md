@@ -1,8 +1,8 @@
-# spotify_api.api.EpisodesApi
+# spotify_openapi.api.EpisodesApi
 
 ## Load the API package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 All URIs are relative to *https://api.spotify.com/v1*
@@ -27,11 +27,11 @@ Check if one or more episodes is already saved in the current Spotify user's 'Yo
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getEpisodesApi();
+final api = SpotifyOpenapi().getEpisodesApi();
 final String ids = 77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf; // String | 
 
 try {
@@ -72,11 +72,11 @@ Get Spotify catalog information about an show’s episodes. Optional parameters 
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getEpisodesApi();
+final api = SpotifyOpenapi().getEpisodesApi();
 final String id = 38bS44xjbVVZ3No3ByF1dJ; // String | 
 final String market = ES; // String | 
 final int limit = 10; // int | 
@@ -123,11 +123,11 @@ Get Spotify catalog information for a single episode identified by its unique Sp
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getEpisodesApi();
+final api = SpotifyOpenapi().getEpisodesApi();
 final String id = 512ojhOuo1ktJprKbVcKyQ; // String | 
 final String market = ES; // String | 
 
@@ -170,11 +170,11 @@ Get Spotify catalog information for several episodes based on their Spotify IDs.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getEpisodesApi();
+final api = SpotifyOpenapi().getEpisodesApi();
 final String ids = 77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf; // String | 
 final String market = ES; // String | 
 
@@ -217,11 +217,11 @@ Get a list of the episodes saved in the current Spotify user's library.<br/> Thi
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getEpisodesApi();
+final api = SpotifyOpenapi().getEpisodesApi();
 final String market = ES; // String | 
 final int limit = 10; // int | 
 final int offset = 5; // int | 
@@ -266,11 +266,11 @@ Remove one or more episodes from the current user's library.<br/> This API endpo
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getEpisodesApi();
+final api = SpotifyOpenapi().getEpisodesApi();
 final String ids = 7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B; // String | 
 final Map<String, Object> requestBody = ; // Map<String, Object> | 
 
@@ -312,11 +312,11 @@ Save one or more episodes to the current user's library.<br/> This API endpoint 
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getEpisodesApi();
+final api = SpotifyOpenapi().getEpisodesApi();
 final String ids = 77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf; // String | 
 final Map<String, Object> requestBody = ; // Map<String, Object> | 
 

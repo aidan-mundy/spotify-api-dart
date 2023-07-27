@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:spotify_api/spotify_api.dart';
+import 'package:spotify_openapi/spotify_openapi.dart';
 
 
 /// tests for PlayerApi
 void main() {
-  final instance = SpotifyApi().getPlayerApi();
+  final instance = SpotifyOpenapi().getPlayerApi();
 
   group(PlayerApi, () {
     // Add Item to Playback Queue 

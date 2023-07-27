@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:spotify_api/spotify_api.dart';
+import 'package:spotify_openapi/spotify_openapi.dart';
 
 
 /// tests for GenresApi
 void main() {
-  final instance = SpotifyApi().getGenresApi();
+  final instance = SpotifyOpenapi().getGenresApi();
 
   group(GenresApi, () {
     // Get Available Genre Seeds 

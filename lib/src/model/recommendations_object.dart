@@ -3,8 +3,8 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/recommendation_seed_object.dart';
-import 'package:spotify_api/src/model/track_object.dart';
+import 'package:spotify_openapi/src/model/track_object.dart';
+import 'package:spotify_openapi/src/model/recommendation_seed_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'recommendations_object.g.dart';

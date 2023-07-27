@@ -183,7 +183,7 @@ doc/TransferAUsersPlaybackRequest.md
 doc/TuneableTrackObject.md
 doc/UnfollowArtistsUsersRequest.md
 doc/UsersApi.md
-lib/spotify_api.dart
+lib/spotify_openapi.dart
 lib/src/api.dart
 lib/src/api/albums_api.dart
 lib/src/api/artists_api.dart

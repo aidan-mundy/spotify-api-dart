@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/track_object.dart';
+import 'package:spotify_openapi/src/model/track_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'get_an_artists_top_tracks200_response.g.dart';

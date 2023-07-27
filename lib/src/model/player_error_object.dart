@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/player_error_reasons.dart';
+import 'package:spotify_openapi/src/model/player_error_reasons.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'player_error_object.g.dart';

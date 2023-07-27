@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/saved_album_object_album.dart';
+import 'package:spotify_openapi/src/model/saved_album_object_album.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'saved_album_object.g.dart';

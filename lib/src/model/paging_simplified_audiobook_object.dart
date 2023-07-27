@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/simplified_audiobook_object.dart';
+import 'package:spotify_openapi/src/model/simplified_audiobook_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'paging_simplified_audiobook_object.g.dart';

@@ -1,8 +1,8 @@
-# spotify_api.api.PlayerApi
+# spotify_openapi.api.PlayerApi
 
 ## Load the API package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 All URIs are relative to *https://api.spotify.com/v1*
@@ -35,11 +35,11 @@ Add an item to the end of the user's current playback queue.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final String uri = spotify:track:4iV5W9uYEdYUVa79Axb7Rh; // String | 
 final String deviceId = 0d1841b0976bae2a3a310dd74c0f3df354899bc8; // String | 
 
@@ -81,11 +81,11 @@ Get information about a user’s available devices.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 
 try {
     final response = api.getAUsersAvailableDevices();
@@ -122,11 +122,11 @@ Get information about the user’s current playback state, including track or ep
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final String market = ES; // String | 
 final String additionalTypes = additionalTypes_example; // String | 
 
@@ -169,11 +169,11 @@ Get the list of objects that make up the user's queue.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 
 try {
     final response = api.getQueue();
@@ -210,11 +210,11 @@ Get tracks from the current user's recently played tracks. _**Note**: Currently 
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final int limit = 10; // int | 
 final int after = 1484811043508; // int | 
 final int before = 56; // int | 
@@ -259,11 +259,11 @@ Get the object currently being played on the user's Spotify account.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final String market = ES; // String | 
 final String additionalTypes = additionalTypes_example; // String | 
 
@@ -306,11 +306,11 @@ Pause playback on the user's account.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final String deviceId = 0d1841b0976bae2a3a310dd74c0f3df354899bc8; // String | 
 
 try {
@@ -350,11 +350,11 @@ Seeks to the given position in the user’s currently playing track.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final int positionMs = 25000; // int | 
 final String deviceId = 0d1841b0976bae2a3a310dd74c0f3df354899bc8; // String | 
 
@@ -396,11 +396,11 @@ Set the repeat mode for the user's playback. Options are repeat-track, repeat-co
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final String state = context; // String | 
 final String deviceId = 0d1841b0976bae2a3a310dd74c0f3df354899bc8; // String | 
 
@@ -442,11 +442,11 @@ Set the volume for the user’s current playback device.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final int volumePercent = 50; // int | 
 final String deviceId = 0d1841b0976bae2a3a310dd74c0f3df354899bc8; // String | 
 
@@ -488,11 +488,11 @@ Skips to next track in the user’s queue.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final String deviceId = 0d1841b0976bae2a3a310dd74c0f3df354899bc8; // String | 
 
 try {
@@ -532,11 +532,11 @@ Skips to previous track in the user’s queue.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final String deviceId = 0d1841b0976bae2a3a310dd74c0f3df354899bc8; // String | 
 
 try {
@@ -576,11 +576,11 @@ Start a new context or resume current playback on the user's active device.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final String deviceId = 0d1841b0976bae2a3a310dd74c0f3df354899bc8; // String | 
 final Map<String, Object> requestBody = ; // Map<String, Object> | 
 
@@ -622,11 +622,11 @@ Toggle shuffle on or off for user’s playback.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final bool state = true; // bool | 
 final String deviceId = 0d1841b0976bae2a3a310dd74c0f3df354899bc8; // String | 
 
@@ -668,11 +668,11 @@ Transfer playback to a new device and determine if it should start playing.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getPlayerApi();
+final api = SpotifyOpenapi().getPlayerApi();
 final Map<String, Object> requestBody = ; // Map<String, Object> | 
 
 try {
