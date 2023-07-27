@@ -4,6 +4,7 @@ SPOTIFY_SCHEMA_URL:=https://developer.spotify.com/reference/web-api/open-api-sch
 SPOTIFY_SCHEMA_PATH:=spotify-schema.yaml
 
 OPENAPI_CONFIG_PATH:=config.yaml
+OPENAPI_TEMPLATE_PATH:=custom-templates
 
 DOCKER_MOUNT_PATH:=/src
 
@@ -16,6 +17,7 @@ generate:
 		generate --generator-name dart-dio \
 		--input-spec $(DOCKER_MOUNT_PATH)/$(SPOTIFY_SCHEMA_PATH) --skip-validate-spec \
 		--output $(DOCKER_MOUNT_PATH) \
+		--template-dir $(DOCKER_MOUNT_PATH)/$(OPENAPI_TEMPLATE_PATH) \
 		--git-host github.com --git-user-id aidan-mundy --git-repo-id spotify-api-dart \
 		--config $(DOCKER_MOUNT_PATH)/$(OPENAPI_CONFIG_PATH)
 	dart run build_runner build
