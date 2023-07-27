@@ -1,8 +1,8 @@
-# spotify_api.model.TrackObjectAlbum
+# spotify_openapi.model.TrackObjectAlbum
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

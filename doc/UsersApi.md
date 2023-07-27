@@ -1,8 +1,8 @@
-# spotify_api.api.UsersApi
+# spotify_openapi.api.UsersApi
 
 ## Load the API package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 All URIs are relative to *https://api.spotify.com/v1*
@@ -31,11 +31,11 @@ Check to see if the current user is following one or more artists or other Spoti
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getUsersApi();
+final api = SpotifyOpenapi().getUsersApi();
 final String type = artist; // String | 
 final String ids = 2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6; // String | 
 
@@ -78,11 +78,11 @@ Check to see if one or more Spotify users are following a specified playlist.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getUsersApi();
+final api = SpotifyOpenapi().getUsersApi();
 final String playlistId = 3cEYpjA9oz9GiPac4AsH4n; // String | 
 final String ids = jmperezperez,thelinmichael,wizzler; // String | 
 
@@ -125,11 +125,11 @@ Add the current user as a follower of one or more artists or other Spotify users
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getUsersApi();
+final api = SpotifyOpenapi().getUsersApi();
 final String type = artist; // String | 
 final String ids = 2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6; // String | 
 final Map<String, Object> requestBody = ; // Map<String, Object> | 
@@ -173,11 +173,11 @@ Add the current user as a follower of a playlist.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getUsersApi();
+final api = SpotifyOpenapi().getUsersApi();
 final String playlistId = 3cEYpjA9oz9GiPac4AsH4n; // String | 
 final Map<String, Object> requestBody = ; // Map<String, Object> | 
 
@@ -219,11 +219,11 @@ Get detailed profile information about the current user (including the current u
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getUsersApi();
+final api = SpotifyOpenapi().getUsersApi();
 
 try {
     final response = api.getCurrentUsersProfile();
@@ -260,11 +260,11 @@ Get the current user's followed artists.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getUsersApi();
+final api = SpotifyOpenapi().getUsersApi();
 final String type = artist; // String | 
 final String after = 0I2XqVXqHScXjHhk6AYYRe; // String | 
 final int limit = 10; // int | 
@@ -309,11 +309,11 @@ Get a list of the playlists owned or followed by a Spotify user.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getUsersApi();
+final api = SpotifyOpenapi().getUsersApi();
 final String userId = smedjan; // String | 
 final int limit = 10; // int | 
 final int offset = 5; // int | 
@@ -358,11 +358,11 @@ Get public profile information about a Spotify user.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getUsersApi();
+final api = SpotifyOpenapi().getUsersApi();
 final String userId = smedjan; // String | 
 
 try {
@@ -403,11 +403,11 @@ Get the current user's top artists or tracks based on calculated affinity.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getUsersApi();
+final api = SpotifyOpenapi().getUsersApi();
 final String type = type_example; // String | 
 final String timeRange = medium_term; // String | 
 final int limit = 10; // int | 
@@ -454,11 +454,11 @@ Remove the current user as a follower of one or more artists or other Spotify us
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getUsersApi();
+final api = SpotifyOpenapi().getUsersApi();
 final String type = artist; // String | 
 final String ids = 2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6; // String | 
 final Map<String, Object> requestBody = ; // Map<String, Object> | 
@@ -502,11 +502,11 @@ Remove the current user as a follower of a playlist.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getUsersApi();
+final api = SpotifyOpenapi().getUsersApi();
 final String playlistId = 3cEYpjA9oz9GiPac4AsH4n; // String | 
 
 try {

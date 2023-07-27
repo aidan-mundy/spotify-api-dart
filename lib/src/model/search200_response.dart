@@ -3,13 +3,13 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/paging_playlist_object.dart';
-import 'package:spotify_api/src/model/paging_simplified_show_object.dart';
-import 'package:spotify_api/src/model/paging_simplified_episode_object.dart';
-import 'package:spotify_api/src/model/paging_artist_object.dart';
-import 'package:spotify_api/src/model/paging_simplified_album_object.dart';
-import 'package:spotify_api/src/model/paging_track_object.dart';
-import 'package:spotify_api/src/model/paging_simplified_audiobook_object.dart';
+import 'package:spotify_openapi/src/model/paging_simplified_album_object.dart';
+import 'package:spotify_openapi/src/model/paging_track_object.dart';
+import 'package:spotify_openapi/src/model/paging_simplified_audiobook_object.dart';
+import 'package:spotify_openapi/src/model/paging_playlist_object.dart';
+import 'package:spotify_openapi/src/model/paging_simplified_episode_object.dart';
+import 'package:spotify_openapi/src/model/paging_artist_object.dart';
+import 'package:spotify_openapi/src/model/paging_simplified_show_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'search200_response.g.dart';

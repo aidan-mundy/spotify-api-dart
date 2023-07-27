@@ -1,8 +1,8 @@
-# spotify_api.model.SimplifiedAudiobookObject
+# spotify_openapi.model.SimplifiedAudiobookObject
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

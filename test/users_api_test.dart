@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:spotify_api/spotify_api.dart';
+import 'package:spotify_openapi/spotify_openapi.dart';
 
 
 /// tests for UsersApi
 void main() {
-  final instance = SpotifyApi().getUsersApi();
+  final instance = SpotifyOpenapi().getUsersApi();
 
   group(UsersApi, () {
     // Check If User Follows Artists or Users 

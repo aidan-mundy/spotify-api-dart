@@ -1,8 +1,8 @@
-# spotify_api.api.AudiobooksApi
+# spotify_openapi.api.AudiobooksApi
 
 ## Load the API package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 All URIs are relative to *https://api.spotify.com/v1*
@@ -27,11 +27,11 @@ Check if one or more audiobooks are already saved in the current Spotify user's 
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getAudiobooksApi();
+final api = SpotifyOpenapi().getAudiobooksApi();
 final String ids = 18yVqkdbdRvS24c0Ilj2ci,1HGw3J3NxZO1TP1BTtVhpZ,7iHfbu1YPACw6oZPAFJtqe; // String | 
 
 try {
@@ -72,11 +72,11 @@ Get Spotify catalog information for a single audiobook.<br /> **Note: Audiobooks
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getAudiobooksApi();
+final api = SpotifyOpenapi().getAudiobooksApi();
 final String id = 7iHfbu1YPACw6oZPAFJtqe; // String | 
 final String market = ES; // String | 
 
@@ -119,11 +119,11 @@ Get Spotify catalog information about an audiobook's chapters.<br /> **Note: Aud
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getAudiobooksApi();
+final api = SpotifyOpenapi().getAudiobooksApi();
 final String id = 7iHfbu1YPACw6oZPAFJtqe; // String | 
 final String market = ES; // String | 
 final int limit = 10; // int | 
@@ -170,11 +170,11 @@ Get Spotify catalog information for several audiobooks identified by their Spoti
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getAudiobooksApi();
+final api = SpotifyOpenapi().getAudiobooksApi();
 final String ids = 18yVqkdbdRvS24c0Ilj2ci,1HGw3J3NxZO1TP1BTtVhpZ,7iHfbu1YPACw6oZPAFJtqe; // String | 
 final String market = ES; // String | 
 
@@ -217,11 +217,11 @@ Get a list of the audiobooks saved in the current Spotify user's 'Your Music' li
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getAudiobooksApi();
+final api = SpotifyOpenapi().getAudiobooksApi();
 final int limit = 10; // int | 
 final int offset = 5; // int | 
 
@@ -264,11 +264,11 @@ Remove one or more audiobooks from the Spotify user's library.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getAudiobooksApi();
+final api = SpotifyOpenapi().getAudiobooksApi();
 final String ids = 18yVqkdbdRvS24c0Ilj2ci,1HGw3J3NxZO1TP1BTtVhpZ,7iHfbu1YPACw6oZPAFJtqe; // String | 
 
 try {
@@ -308,11 +308,11 @@ Save one or more audiobooks to the current Spotify user's library.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getAudiobooksApi();
+final api = SpotifyOpenapi().getAudiobooksApi();
 final String ids = 18yVqkdbdRvS24c0Ilj2ci,1HGw3J3NxZO1TP1BTtVhpZ,7iHfbu1YPACw6oZPAFJtqe; // String | 
 
 try {

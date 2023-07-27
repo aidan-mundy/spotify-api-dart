@@ -3,9 +3,9 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/image_object.dart';
-import 'package:spotify_api/src/model/public_user_object_followers.dart';
-import 'package:spotify_api/src/model/public_user_object_external_urls.dart';
+import 'package:spotify_openapi/src/model/image_object.dart';
+import 'package:spotify_openapi/src/model/public_user_object_external_urls.dart';
+import 'package:spotify_openapi/src/model/public_user_object_followers.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'public_user_object.g.dart';

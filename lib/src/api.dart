@@ -3,31 +3,31 @@
 //
 
 import 'package:dio/dio.dart';
-import 'package:spotify_api/src/auth/api_key_auth.dart';
-import 'package:spotify_api/src/auth/basic_auth.dart';
-import 'package:spotify_api/src/auth/bearer_auth.dart';
-import 'package:spotify_api/src/auth/oauth.dart';
-import 'package:spotify_api/src/api/albums_api.dart';
-import 'package:spotify_api/src/api/artists_api.dart';
-import 'package:spotify_api/src/api/audiobooks_api.dart';
-import 'package:spotify_api/src/api/categories_api.dart';
-import 'package:spotify_api/src/api/chapters_api.dart';
-import 'package:spotify_api/src/api/episodes_api.dart';
-import 'package:spotify_api/src/api/genres_api.dart';
-import 'package:spotify_api/src/api/library_api.dart';
-import 'package:spotify_api/src/api/markets_api.dart';
-import 'package:spotify_api/src/api/player_api.dart';
-import 'package:spotify_api/src/api/playlists_api.dart';
-import 'package:spotify_api/src/api/search_api.dart';
-import 'package:spotify_api/src/api/shows_api.dart';
-import 'package:spotify_api/src/api/tracks_api.dart';
-import 'package:spotify_api/src/api/users_api.dart';
+import 'package:spotify_openapi/src/auth/api_key_auth.dart';
+import 'package:spotify_openapi/src/auth/basic_auth.dart';
+import 'package:spotify_openapi/src/auth/bearer_auth.dart';
+import 'package:spotify_openapi/src/auth/oauth.dart';
+import 'package:spotify_openapi/src/api/albums_api.dart';
+import 'package:spotify_openapi/src/api/artists_api.dart';
+import 'package:spotify_openapi/src/api/audiobooks_api.dart';
+import 'package:spotify_openapi/src/api/categories_api.dart';
+import 'package:spotify_openapi/src/api/chapters_api.dart';
+import 'package:spotify_openapi/src/api/episodes_api.dart';
+import 'package:spotify_openapi/src/api/genres_api.dart';
+import 'package:spotify_openapi/src/api/library_api.dart';
+import 'package:spotify_openapi/src/api/markets_api.dart';
+import 'package:spotify_openapi/src/api/player_api.dart';
+import 'package:spotify_openapi/src/api/playlists_api.dart';
+import 'package:spotify_openapi/src/api/search_api.dart';
+import 'package:spotify_openapi/src/api/shows_api.dart';
+import 'package:spotify_openapi/src/api/tracks_api.dart';
+import 'package:spotify_openapi/src/api/users_api.dart';
 
-class SpotifyApi {
+class SpotifyOpenapi {
   static const String basePath = r'https://api.spotify.com/v1';
 
   final Dio dio;
-  SpotifyApi({
+  SpotifyOpenapi({
     Dio? dio,
     String? basePathOverride,
     List<Interceptor>? interceptors,

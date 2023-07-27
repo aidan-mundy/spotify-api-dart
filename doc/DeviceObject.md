@@ -1,8 +1,8 @@
-# spotify_api.model.DeviceObject
+# spotify_openapi.model.DeviceObject
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

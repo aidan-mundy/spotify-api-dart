@@ -1,8 +1,8 @@
-# spotify_api.model.GetAvailableMarkets200Response
+# spotify_openapi.model.GetAvailableMarkets200Response
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

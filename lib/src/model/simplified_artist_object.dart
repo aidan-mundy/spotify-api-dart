@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/artist_object_external_urls.dart';
+import 'package:spotify_openapi/src/model/artist_object_external_urls.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'simplified_artist_object.g.dart';

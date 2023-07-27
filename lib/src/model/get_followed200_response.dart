@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/cursor_paging_simplified_artist_object.dart';
+import 'package:spotify_openapi/src/model/cursor_paging_simplified_artist_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'get_followed200_response.g.dart';

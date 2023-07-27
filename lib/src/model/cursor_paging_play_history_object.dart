@@ -3,8 +3,8 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/cursor_paging_object_cursors.dart';
-import 'package:spotify_api/src/model/play_history_object.dart';
+import 'package:spotify_openapi/src/model/play_history_object.dart';
+import 'package:spotify_openapi/src/model/cursor_paging_object_cursors.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'cursor_paging_play_history_object.g.dart';

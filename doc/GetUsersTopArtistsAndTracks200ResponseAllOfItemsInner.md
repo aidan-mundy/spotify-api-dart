@@ -1,8 +1,8 @@
-# spotify_api.model.GetUsersTopArtistsAndTracks200ResponseAllOfItemsInner
+# spotify_openapi.model.GetUsersTopArtistsAndTracks200ResponseAllOfItemsInner
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

@@ -6,16 +6,16 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:spotify_api/src/deserialize.dart';
+import 'package:spotify_openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_api/src/model/currently_playing_context_object.dart';
-import 'package:spotify_api/src/model/cursor_paging_play_history_object.dart';
-import 'package:spotify_api/src/model/get_a_users_available_devices200_response.dart';
-import 'package:spotify_api/src/model/get_an_album401_response.dart';
-import 'package:spotify_api/src/model/queue_object.dart';
-import 'package:spotify_api/src/model/start_a_users_playback_request.dart';
-import 'package:spotify_api/src/model/transfer_a_users_playback_request.dart';
+import 'package:spotify_openapi/src/model/currently_playing_context_object.dart';
+import 'package:spotify_openapi/src/model/cursor_paging_play_history_object.dart';
+import 'package:spotify_openapi/src/model/get_a_users_available_devices200_response.dart';
+import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:spotify_openapi/src/model/queue_object.dart';
+import 'package:spotify_openapi/src/model/start_a_users_playback_request.dart';
+import 'package:spotify_openapi/src/model/transfer_a_users_playback_request.dart';
 
 class PlayerApi {
 

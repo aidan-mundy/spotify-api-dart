@@ -1,8 +1,8 @@
-# spotify_api.api.SearchApi
+# spotify_openapi.api.SearchApi
 
 ## Load the API package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 All URIs are relative to *https://api.spotify.com/v1*
@@ -21,11 +21,11 @@ Get Spotify catalog information about albums, artists, playlists, tracks, shows,
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getSearchApi();
+final api = SpotifyOpenapi().getSearchApi();
 final String q = remaster%20track:Doxy%20artist:Miles%20Davis; // String | 
 final List<String> type = ; // List<String> | 
 final String market = ES; // String | 

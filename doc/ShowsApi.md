@@ -1,8 +1,8 @@
-# spotify_api.api.ShowsApi
+# spotify_openapi.api.ShowsApi
 
 ## Load the API package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 All URIs are relative to *https://api.spotify.com/v1*
@@ -27,11 +27,11 @@ Check if one or more shows is already saved in the current Spotify user's librar
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getShowsApi();
+final api = SpotifyOpenapi().getShowsApi();
 final String ids = 5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ; // String | 
 
 try {
@@ -72,11 +72,11 @@ Get Spotify catalog information for a single show identified by its unique Spoti
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getShowsApi();
+final api = SpotifyOpenapi().getShowsApi();
 final String id = 38bS44xjbVVZ3No3ByF1dJ; // String | 
 final String market = ES; // String | 
 
@@ -119,11 +119,11 @@ Get Spotify catalog information about an show’s episodes. Optional parameters 
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getShowsApi();
+final api = SpotifyOpenapi().getShowsApi();
 final String id = 38bS44xjbVVZ3No3ByF1dJ; // String | 
 final String market = ES; // String | 
 final int limit = 10; // int | 
@@ -170,11 +170,11 @@ Get Spotify catalog information for several shows based on their Spotify IDs.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getShowsApi();
+final api = SpotifyOpenapi().getShowsApi();
 final String ids = 5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ; // String | 
 final String market = ES; // String | 
 
@@ -217,11 +217,11 @@ Get a list of shows saved in the current Spotify user's library. Optional parame
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getShowsApi();
+final api = SpotifyOpenapi().getShowsApi();
 final int limit = 10; // int | 
 final int offset = 5; // int | 
 
@@ -264,11 +264,11 @@ Delete one or more shows from current Spotify user's library.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getShowsApi();
+final api = SpotifyOpenapi().getShowsApi();
 final String ids = 5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ; // String | 
 final String market = ES; // String | 
 
@@ -310,11 +310,11 @@ Save one or more shows to current Spotify user's library.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getShowsApi();
+final api = SpotifyOpenapi().getShowsApi();
 final String ids = 5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ; // String | 
 
 try {

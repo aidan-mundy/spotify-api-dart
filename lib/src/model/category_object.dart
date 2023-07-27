@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/image_object.dart';
+import 'package:spotify_openapi/src/model/image_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'category_object.g.dart';

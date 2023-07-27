@@ -1,8 +1,8 @@
-# spotify_api.model.RemoveTracksPlaylistRequest
+# spotify_openapi.model.RemoveTracksPlaylistRequest
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

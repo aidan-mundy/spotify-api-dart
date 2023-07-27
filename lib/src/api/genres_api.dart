@@ -6,11 +6,11 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:spotify_api/src/deserialize.dart';
+import 'package:spotify_openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_api/src/model/get_an_album401_response.dart';
-import 'package:spotify_api/src/model/get_recommendation_genres200_response.dart';
+import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:spotify_openapi/src/model/get_recommendation_genres200_response.dart';
 
 class GenresApi {
 

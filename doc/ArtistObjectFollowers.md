@@ -1,8 +1,8 @@
-# spotify_api.model.ArtistObjectFollowers
+# spotify_openapi.model.ArtistObjectFollowers
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

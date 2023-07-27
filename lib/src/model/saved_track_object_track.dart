@@ -3,11 +3,11 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/linked_track_object_external_urls.dart';
-import 'package:spotify_api/src/model/track_object_album.dart';
-import 'package:spotify_api/src/model/artist_object.dart';
-import 'package:spotify_api/src/model/track_object_external_ids.dart';
-import 'package:spotify_api/src/model/simplified_track_object_restrictions.dart';
+import 'package:spotify_openapi/src/model/track_object_album.dart';
+import 'package:spotify_openapi/src/model/linked_track_object_external_urls.dart';
+import 'package:spotify_openapi/src/model/artist_object.dart';
+import 'package:spotify_openapi/src/model/track_object_external_ids.dart';
+import 'package:spotify_openapi/src/model/simplified_track_object_restrictions.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'saved_track_object_track.g.dart';

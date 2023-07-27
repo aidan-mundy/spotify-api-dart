@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/chapter_object.dart';
+import 'package:spotify_openapi/src/model/chapter_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'get_several_chapters200_response.g.dart';

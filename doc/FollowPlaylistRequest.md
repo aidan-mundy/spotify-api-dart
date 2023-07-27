@@ -1,8 +1,8 @@
-# spotify_api.model.FollowPlaylistRequest
+# spotify_openapi.model.FollowPlaylistRequest
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

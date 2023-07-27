@@ -1,8 +1,8 @@
-# spotify_api.api.ChaptersApi
+# spotify_openapi.api.ChaptersApi
 
 ## Load the API package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 All URIs are relative to *https://api.spotify.com/v1*
@@ -23,11 +23,11 @@ Get Spotify catalog information for a single chapter.<br /> **Note: Chapters are
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getChaptersApi();
+final api = SpotifyOpenapi().getChaptersApi();
 final String id = 0D5wENdkdwbqlrHoaJ9g29; // String | 
 final String market = ES; // String | 
 
@@ -70,11 +70,11 @@ Get Spotify catalog information about an audiobook's chapters.<br /> **Note: Aud
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getChaptersApi();
+final api = SpotifyOpenapi().getChaptersApi();
 final String id = 7iHfbu1YPACw6oZPAFJtqe; // String | 
 final String market = ES; // String | 
 final int limit = 10; // int | 
@@ -121,11 +121,11 @@ Get Spotify catalog information for several chapters identified by their Spotify
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getChaptersApi();
+final api = SpotifyOpenapi().getChaptersApi();
 final String ids = 0IsXVP0JmcB2adSE338GkK,3ZXb8FKZGU0EHALYX6uCzU,0D5wENdkdwbqlrHoaJ9g29; // String | 
 final String market = ES; // String | 
 

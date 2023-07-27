@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:spotify_api/spotify_api.dart';
+import 'package:spotify_openapi/spotify_openapi.dart';
 
 
 /// tests for SearchApi
 void main() {
-  final instance = SpotifyApi().getSearchApi();
+  final instance = SpotifyOpenapi().getSearchApi();
 
   group(SearchApi, () {
     // Search for Item 

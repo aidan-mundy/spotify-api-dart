@@ -6,18 +6,18 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:spotify_api/src/deserialize.dart';
+import 'package:spotify_openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_api/src/model/follow_artists_users_request.dart';
-import 'package:spotify_api/src/model/follow_playlist_request.dart';
-import 'package:spotify_api/src/model/get_an_album401_response.dart';
-import 'package:spotify_api/src/model/get_followed200_response.dart';
-import 'package:spotify_api/src/model/get_users_top_artists_and_tracks200_response.dart';
-import 'package:spotify_api/src/model/paging_playlist_object.dart';
-import 'package:spotify_api/src/model/private_user_object.dart';
-import 'package:spotify_api/src/model/public_user_object.dart';
-import 'package:spotify_api/src/model/unfollow_artists_users_request.dart';
+import 'package:spotify_openapi/src/model/follow_artists_users_request.dart';
+import 'package:spotify_openapi/src/model/follow_playlist_request.dart';
+import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:spotify_openapi/src/model/get_followed200_response.dart';
+import 'package:spotify_openapi/src/model/get_users_top_artists_and_tracks200_response.dart';
+import 'package:spotify_openapi/src/model/paging_playlist_object.dart';
+import 'package:spotify_openapi/src/model/private_user_object.dart';
+import 'package:spotify_openapi/src/model/public_user_object.dart';
+import 'package:spotify_openapi/src/model/unfollow_artists_users_request.dart';
 
 class UsersApi {
 

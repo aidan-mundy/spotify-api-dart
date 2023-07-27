@@ -3,14 +3,14 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/linked_track_object_external_urls.dart';
-import 'package:spotify_api/src/model/track_object_album.dart';
-import 'package:spotify_api/src/model/artist_object_followers.dart';
-import 'package:spotify_api/src/model/artist_object.dart';
-import 'package:spotify_api/src/model/track_object_external_ids.dart';
-import 'package:spotify_api/src/model/track_object.dart';
-import 'package:spotify_api/src/model/image_object.dart';
-import 'package:spotify_api/src/model/simplified_track_object_restrictions.dart';
+import 'package:spotify_openapi/src/model/track_object.dart';
+import 'package:spotify_openapi/src/model/image_object.dart';
+import 'package:spotify_openapi/src/model/track_object_album.dart';
+import 'package:spotify_openapi/src/model/artist_object_followers.dart';
+import 'package:spotify_openapi/src/model/linked_track_object_external_urls.dart';
+import 'package:spotify_openapi/src/model/artist_object.dart';
+import 'package:spotify_openapi/src/model/track_object_external_ids.dart';
+import 'package:spotify_openapi/src/model/simplified_track_object_restrictions.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'get_users_top_artists_and_tracks200_response_all_of_items_inner.g.dart';

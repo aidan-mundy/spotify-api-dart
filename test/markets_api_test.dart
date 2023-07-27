@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:spotify_api/spotify_api.dart';
+import 'package:spotify_openapi/spotify_openapi.dart';
 
 
 /// tests for MarketsApi
 void main() {
-  final instance = SpotifyApi().getMarketsApi();
+  final instance = SpotifyOpenapi().getMarketsApi();
 
   group(MarketsApi, () {
     // Get Available Markets 

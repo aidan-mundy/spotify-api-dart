@@ -1,8 +1,8 @@
-# spotify_api.model.PagingSavedAlbumObject
+# spotify_openapi.model.PagingSavedAlbumObject
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

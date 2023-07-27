@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/playlist_track_object.dart';
+import 'package:spotify_openapi/src/model/playlist_track_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'playlist_object_tracks.g.dart';

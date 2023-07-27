@@ -3,10 +3,10 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/simplified_playlist_object_tracks.dart';
-import 'package:spotify_api/src/model/playlist_object_external_urls.dart';
-import 'package:spotify_api/src/model/playlist_object_owner.dart';
-import 'package:spotify_api/src/model/image_object.dart';
+import 'package:spotify_openapi/src/model/simplified_playlist_object_tracks.dart';
+import 'package:spotify_openapi/src/model/playlist_object_owner.dart';
+import 'package:spotify_openapi/src/model/image_object.dart';
+import 'package:spotify_openapi/src/model/playlist_object_external_urls.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'simplified_playlist_object.g.dart';

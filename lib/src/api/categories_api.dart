@@ -6,13 +6,13 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:spotify_api/src/deserialize.dart';
+import 'package:spotify_openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_api/src/model/category_object.dart';
-import 'package:spotify_api/src/model/get_an_album401_response.dart';
-import 'package:spotify_api/src/model/get_categories200_response.dart';
-import 'package:spotify_api/src/model/paging_featured_playlist_object.dart';
+import 'package:spotify_openapi/src/model/category_object.dart';
+import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:spotify_openapi/src/model/get_categories200_response.dart';
+import 'package:spotify_openapi/src/model/paging_featured_playlist_object.dart';
 
 class CategoriesApi {
 

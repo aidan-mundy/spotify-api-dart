@@ -1,8 +1,8 @@
-# spotify_api.model.PlayHistoryObjectTrack
+# spotify_openapi.model.PlayHistoryObjectTrack
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

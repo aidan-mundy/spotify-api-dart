@@ -3,11 +3,11 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:spotify_api/src/model/audio_analysis_object_meta.dart';
-import 'package:spotify_api/src/model/audio_analysis_object_track.dart';
-import 'package:spotify_api/src/model/time_interval_object.dart';
-import 'package:spotify_api/src/model/segment_object.dart';
-import 'package:spotify_api/src/model/section_object.dart';
+import 'package:spotify_openapi/src/model/time_interval_object.dart';
+import 'package:spotify_openapi/src/model/audio_analysis_object_track.dart';
+import 'package:spotify_openapi/src/model/section_object.dart';
+import 'package:spotify_openapi/src/model/audio_analysis_object_meta.dart';
+import 'package:spotify_openapi/src/model/segment_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'audio_analysis_object.g.dart';

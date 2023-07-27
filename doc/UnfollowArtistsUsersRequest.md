@@ -1,8 +1,8 @@
-# spotify_api.model.UnfollowArtistsUsersRequest
+# spotify_openapi.model.UnfollowArtistsUsersRequest
 
 ## Load the model package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 ## Properties

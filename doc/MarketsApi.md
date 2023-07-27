@@ -1,8 +1,8 @@
-# spotify_api.api.MarketsApi
+# spotify_openapi.api.MarketsApi
 
 ## Load the API package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 All URIs are relative to *https://api.spotify.com/v1*
@@ -21,11 +21,11 @@ Get the list of markets where Spotify is available.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getMarketsApi();
+final api = SpotifyOpenapi().getMarketsApi();
 
 try {
     final response = api.getAvailableMarkets();

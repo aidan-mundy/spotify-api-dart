@@ -1,8 +1,8 @@
-# spotify_api.api.CategoriesApi
+# spotify_openapi.api.CategoriesApi
 
 ## Load the API package
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 ```
 
 All URIs are relative to *https://api.spotify.com/v1*
@@ -23,11 +23,11 @@ Get a list of Spotify playlists tagged with a particular category.
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getCategoriesApi();
+final api = SpotifyOpenapi().getCategoriesApi();
 final String categoryId = dinner; // String | 
 final String country = SE; // String | 
 final int limit = 10; // int | 
@@ -74,11 +74,11 @@ Get a single category used to tag items in Spotify (on, for example, the Spotify
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getCategoriesApi();
+final api = SpotifyOpenapi().getCategoriesApi();
 final String categoryId = dinner; // String | 
 final String country = SE; // String | 
 final String locale = sv_SE; // String | 
@@ -123,11 +123,11 @@ Get a list of categories used to tag items in Spotify (on, for example, the Spot
 
 ### Example
 ```dart
-import 'package:spotify_api/api.dart';
+import 'package:spotify_openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: oauth_2_0
 //defaultApiClient.getAuthentication<OAuth>('oauth_2_0').accessToken = 'YOUR_ACCESS_TOKEN';
 
-final api = SpotifyApi().getCategoriesApi();
+final api = SpotifyOpenapi().getCategoriesApi();
 final String country = SE; // String | 
 final String locale = sv_SE; // String | 
 final int limit = 10; // int | 
