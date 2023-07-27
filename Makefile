@@ -3,7 +3,7 @@ OPENAPI_GENERATOR_VERSION:=v7.0.0-beta
 SPOTIFY_SCHEMA_URL:=https://developer.spotify.com/reference/web-api/open-api-schema.yaml
 SPOTIFY_SCHEMA_PATH:=spotify-schema.yaml
 
-OPENAPI_CONFIG_PATH:=config.yaml
+OPENAPI_CONFIG_PATH:=openapi-config.yaml
 OPENAPI_TEMPLATE_PATH:=custom-templates
 
 DOCKER_MOUNT_PATH:=/src
