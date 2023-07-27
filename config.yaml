@@ -7,7 +7,10 @@ pubVersion: 0.0.0
 
 pubAuthor: Aidan Mundy
 pubHomepage: null
-pubRepository: https://github.com/aidan-mundy/spotify-api-dart
+
+gitHost: github.com
+gitUserId: aidan-mundy
+gitRepoId: spotify-api-dart
 
 # General Configuration
 allowUnicodeIdentifiers: false

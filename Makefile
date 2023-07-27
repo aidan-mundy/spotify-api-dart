@@ -18,6 +18,6 @@ generate:
 		--input-spec $(DOCKER_MOUNT_PATH)/$(SPOTIFY_SCHEMA_PATH) --skip-validate-spec \
 		--output $(DOCKER_MOUNT_PATH) \
 		--template-dir $(DOCKER_MOUNT_PATH)/$(OPENAPI_TEMPLATE_PATH) \
-		--git-host github.com --git-user-id aidan-mundy --git-repo-id spotify-api-dart \
-		--config $(DOCKER_MOUNT_PATH)/$(OPENAPI_CONFIG_PATH)
-	dart run build_runner build
+		--config $(DOCKER_MOUNT_PATH)/$(OPENAPI_CONFIG_PATH) && sleep 2
+	flutter pub get && sleep 2
+	dart run build_runner build --delete-conflicting-outputs
