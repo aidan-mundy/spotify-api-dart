@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for AudiobookBaseExternalUrls
 void main() {
-  final AudiobookBaseExternalUrls? instance = /* AudiobookBaseExternalUrls(...) */ null;
-  // TODO add properties to the entity
+  final instance = AudiobookBaseExternalUrlsBuilder();
+  // TODO add properties to the builder and call build()
 
   group(AudiobookBaseExternalUrls, () {
     // The [Spotify URL](/documentation/web-api/concepts/spotify-uris-ids) for the object. 

@@ -3,138 +3,185 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:spotify_openapi/src/model/cursor_paging_object.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:spotify_openapi/src/model/play_history_object.dart';
 import 'package:spotify_openapi/src/model/cursor_paging_object_cursors.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'cursor_paging_play_history_object.g.dart';
 
+/// CursorPagingPlayHistoryObject
+///
+/// Properties:
+/// * [href] - A link to the Web API endpoint returning the full result of the request.
+/// * [limit] - The maximum number of items in the response (as set in the query or by default).
+/// * [next] - URL to the next page of items. ( `null` if none)
+/// * [cursors] 
+/// * [total] - The total number of items available to return.
+/// * [items] 
+@BuiltValue()
+abstract class CursorPagingPlayHistoryObject implements CursorPagingObject, Built<CursorPagingPlayHistoryObject, CursorPagingPlayHistoryObjectBuilder> {
+  @BuiltValueField(wireName: r'items')
+  BuiltList<PlayHistoryObject>? get items;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class CursorPagingPlayHistoryObject {
-  /// Returns a new [CursorPagingPlayHistoryObject] instance.
-  CursorPagingPlayHistoryObject({
+  CursorPagingPlayHistoryObject._();
 
-     this.href,
+  factory CursorPagingPlayHistoryObject([void updates(CursorPagingPlayHistoryObjectBuilder b)]) = _$CursorPagingPlayHistoryObject;
 
-     this.limit,
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(CursorPagingPlayHistoryObjectBuilder b) => b;
 
-     this.next,
+  @BuiltValueSerializer(custom: true)
+  static Serializer<CursorPagingPlayHistoryObject> get serializer => _$CursorPagingPlayHistoryObjectSerializer();
+}
 
-     this.cursors,
-
-     this.total,
-
-     this.items,
-  });
-
-      /// A link to the Web API endpoint returning the full result of the request.
-  @JsonKey(
-    
-    name: r'href',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? href;
-
-
-
-      /// The maximum number of items in the response (as set in the query or by default).
-  @JsonKey(
-    
-    name: r'limit',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final int? limit;
-
-
-
-      /// URL to the next page of items. ( `null` if none)
-  @JsonKey(
-    
-    name: r'next',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? next;
-
-
-
-  @JsonKey(
-    
-    name: r'cursors',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final CursorPagingObjectCursors? cursors;
-
-
-
-      /// The total number of items available to return.
-  @JsonKey(
-    
-    name: r'total',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final int? total;
-
-
-
-  @JsonKey(
-    
-    name: r'items',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final List<PlayHistoryObject>? items;
-
-
+class _$CursorPagingPlayHistoryObjectSerializer implements PrimitiveSerializer<CursorPagingPlayHistoryObject> {
+  @override
+  final Iterable<Type> types = const [CursorPagingPlayHistoryObject, _$CursorPagingPlayHistoryObject];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is CursorPagingPlayHistoryObject &&
-     other.href == href &&
-     other.limit == limit &&
-     other.next == next &&
-     other.cursors == cursors &&
-     other.total == total &&
-     other.items == items;
+  final String wireName = r'CursorPagingPlayHistoryObject';
 
-  @override
-  int get hashCode =>
-    href.hashCode +
-    limit.hashCode +
-    next.hashCode +
-    cursors.hashCode +
-    total.hashCode +
-    items.hashCode;
-
-  factory CursorPagingPlayHistoryObject.fromJson(Map<String, dynamic> json) => _$CursorPagingPlayHistoryObjectFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CursorPagingPlayHistoryObjectToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    CursorPagingPlayHistoryObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.next != null) {
+      yield r'next';
+      yield serializers.serialize(
+        object.next,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.limit != null) {
+      yield r'limit';
+      yield serializers.serialize(
+        object.limit,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.cursors != null) {
+      yield r'cursors';
+      yield serializers.serialize(
+        object.cursors,
+        specifiedType: const FullType(CursorPagingObjectCursors),
+      );
+    }
+    if (object.total != null) {
+      yield r'total';
+      yield serializers.serialize(
+        object.total,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.href != null) {
+      yield r'href';
+      yield serializers.serialize(
+        object.href,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.items != null) {
+      yield r'items';
+      yield serializers.serialize(
+        object.items,
+        specifiedType: const FullType(BuiltList, [FullType(PlayHistoryObject)]),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    CursorPagingPlayHistoryObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required CursorPagingPlayHistoryObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'next':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.next = valueDes;
+          break;
+        case r'limit':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.limit = valueDes;
+          break;
+        case r'cursors':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CursorPagingObjectCursors),
+          ) as CursorPagingObjectCursors;
+          result.cursors.replace(valueDes);
+          break;
+        case r'total':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.total = valueDes;
+          break;
+        case r'href':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.href = valueDes;
+          break;
+        case r'items':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(PlayHistoryObject)]),
+          ) as BuiltList<PlayHistoryObject>;
+          result.items.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  CursorPagingPlayHistoryObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = CursorPagingPlayHistoryObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

@@ -3,11 +3,11 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for GetAnArtistsTopTracks200Response
 void main() {
-  final GetAnArtistsTopTracks200Response? instance = /* GetAnArtistsTopTracks200Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = GetAnArtistsTopTracks200ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(GetAnArtistsTopTracks200Response, () {
-    // List<TrackObject> tracks
+    // BuiltList<TrackObject> tracks
     test('to test the property `tracks`', () async {
       // TODO
     });

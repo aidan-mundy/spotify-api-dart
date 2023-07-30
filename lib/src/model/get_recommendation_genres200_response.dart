@@ -3,52 +3,105 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'get_recommendation_genres200_response.g.dart';
 
+/// GetRecommendationGenres200Response
+///
+/// Properties:
+/// * [genres] 
+@BuiltValue()
+abstract class GetRecommendationGenres200Response implements Built<GetRecommendationGenres200Response, GetRecommendationGenres200ResponseBuilder> {
+  @BuiltValueField(wireName: r'genres')
+  BuiltList<String> get genres;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class GetRecommendationGenres200Response {
-  /// Returns a new [GetRecommendationGenres200Response] instance.
-  GetRecommendationGenres200Response({
+  GetRecommendationGenres200Response._();
 
-    required  this.genres,
-  });
+  factory GetRecommendationGenres200Response([void updates(GetRecommendationGenres200ResponseBuilder b)]) = _$GetRecommendationGenres200Response;
 
-  @JsonKey(
-    
-    name: r'genres',
-    required: true,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(GetRecommendationGenres200ResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<GetRecommendationGenres200Response> get serializer => _$GetRecommendationGenres200ResponseSerializer();
+}
 
-  final List<String> genres;
-
-
+class _$GetRecommendationGenres200ResponseSerializer implements PrimitiveSerializer<GetRecommendationGenres200Response> {
+  @override
+  final Iterable<Type> types = const [GetRecommendationGenres200Response, _$GetRecommendationGenres200Response];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is GetRecommendationGenres200Response &&
-     other.genres == genres;
+  final String wireName = r'GetRecommendationGenres200Response';
 
-  @override
-  int get hashCode =>
-    genres.hashCode;
-
-  factory GetRecommendationGenres200Response.fromJson(Map<String, dynamic> json) => _$GetRecommendationGenres200ResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$GetRecommendationGenres200ResponseToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    GetRecommendationGenres200Response object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'genres';
+    yield serializers.serialize(
+      object.genres,
+      specifiedType: const FullType(BuiltList, [FullType(String)]),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    GetRecommendationGenres200Response object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required GetRecommendationGenres200ResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'genres':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.genres.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  GetRecommendationGenres200Response deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GetRecommendationGenres200ResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

@@ -3,11 +3,11 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for GetAvailableMarkets200Response
 void main() {
-  final GetAvailableMarkets200Response? instance = /* GetAvailableMarkets200Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = GetAvailableMarkets200ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(GetAvailableMarkets200Response, () {
-    // List<String> markets
+    // BuiltList<String> markets
     test('to test the property `markets`', () async {
       // TODO
     });

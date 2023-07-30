@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for ImageObject
 void main() {
-  final ImageObject? instance = /* ImageObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = ImageObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ImageObject, () {
     // The source URL of the image. 

@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PublicUserObjectFollowers
 void main() {
-  final PublicUserObjectFollowers? instance = /* PublicUserObjectFollowers(...) */ null;
-  // TODO add properties to the entity
+  final instance = PublicUserObjectFollowersBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PublicUserObjectFollowers, () {
     // This will always be set to null, as the Web API does not support it at the moment. 

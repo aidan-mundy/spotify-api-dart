@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for ErrorObject
 void main() {
-  final ErrorObject? instance = /* ErrorObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = ErrorObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ErrorObject, () {
     // The HTTP status code (also returned in the response header; see [Response Status Codes](/documentation/web-api/concepts/api-calls#response-status-codes) for more information). 

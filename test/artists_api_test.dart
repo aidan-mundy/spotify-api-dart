@@ -11,7 +11,7 @@ void main() {
     //
     // Check to see if the current user is following one or more artists or other Spotify users. 
     //
-    //Future<List<bool>> checkCurrentUserFollows(String type, String ids) async
+    //Future<BuiltList<bool>> checkCurrentUserFollows(String type, String ids) async
     test('test checkCurrentUserFollows', () async {
       // TODO
     });
@@ -20,7 +20,7 @@ void main() {
     //
     // Add the current user as a follower of one or more artists or other Spotify users. 
     //
-    //Future followArtistsUsers(String type, String ids, { Map<String, Object> requestBody }) async
+    //Future followArtistsUsers(String type, String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test followArtistsUsers', () async {
       // TODO
     });
@@ -83,7 +83,7 @@ void main() {
     //
     // Remove the current user as a follower of one or more artists or other Spotify users. 
     //
-    //Future unfollowArtistsUsers(String type, String ids, { Map<String, Object> requestBody }) async
+    //Future unfollowArtistsUsers(String type, String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test unfollowArtistsUsers', () async {
       // TODO
     });

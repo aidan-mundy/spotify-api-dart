@@ -3,53 +3,104 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:spotify_openapi/src/model/external_url_object.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'public_user_object_external_urls.g.dart';
 
+/// Known public external URLs for this user. 
+///
+/// Properties:
+/// * [spotify] - The [Spotify URL](/documentation/web-api/concepts/spotify-uris-ids) for the object. 
+@BuiltValue()
+abstract class PublicUserObjectExternalUrls implements ExternalUrlObject, Built<PublicUserObjectExternalUrls, PublicUserObjectExternalUrlsBuilder> {
+  PublicUserObjectExternalUrls._();
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class PublicUserObjectExternalUrls {
-  /// Returns a new [PublicUserObjectExternalUrls] instance.
-  PublicUserObjectExternalUrls({
+  factory PublicUserObjectExternalUrls([void updates(PublicUserObjectExternalUrlsBuilder b)]) = _$PublicUserObjectExternalUrls;
 
-     this.spotify,
-  });
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(PublicUserObjectExternalUrlsBuilder b) => b;
 
-      /// The [Spotify URL](/documentation/web-api/concepts/spotify-uris-ids) for the object. 
-  @JsonKey(
-    
-    name: r'spotify',
-    required: false,
-    includeIfNull: false
-  )
+  @BuiltValueSerializer(custom: true)
+  static Serializer<PublicUserObjectExternalUrls> get serializer => _$PublicUserObjectExternalUrlsSerializer();
+}
 
-
-  final String? spotify;
-
-
+class _$PublicUserObjectExternalUrlsSerializer implements PrimitiveSerializer<PublicUserObjectExternalUrls> {
+  @override
+  final Iterable<Type> types = const [PublicUserObjectExternalUrls, _$PublicUserObjectExternalUrls];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is PublicUserObjectExternalUrls &&
-     other.spotify == spotify;
+  final String wireName = r'PublicUserObjectExternalUrls';
 
-  @override
-  int get hashCode =>
-    spotify.hashCode;
-
-  factory PublicUserObjectExternalUrls.fromJson(Map<String, dynamic> json) => _$PublicUserObjectExternalUrlsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PublicUserObjectExternalUrlsToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    PublicUserObjectExternalUrls object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.spotify != null) {
+      yield r'spotify';
+      yield serializers.serialize(
+        object.spotify,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    PublicUserObjectExternalUrls object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required PublicUserObjectExternalUrlsBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'spotify':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.spotify = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  PublicUserObjectExternalUrls deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = PublicUserObjectExternalUrlsBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

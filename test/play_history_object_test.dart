@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PlayHistoryObject
 void main() {
-  final PlayHistoryObject? instance = /* PlayHistoryObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = PlayHistoryObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PlayHistoryObject, () {
     // PlayHistoryObjectTrack track

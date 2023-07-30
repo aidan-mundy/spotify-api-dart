@@ -5,136 +5,200 @@
 // ignore_for_file: unused_element
 import 'package:spotify_openapi/src/model/currently_playing_object_context.dart';
 import 'package:spotify_openapi/src/model/currently_playing_object_item.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'currently_playing_object.g.dart';
 
+/// CurrentlyPlayingObject
+///
+/// Properties:
+/// * [context] 
+/// * [timestamp] - Unix Millisecond Timestamp when data was fetched
+/// * [progressMs] - Progress into the currently playing track or episode. Can be `null`.
+/// * [isPlaying] - If something is currently playing, return `true`.
+/// * [item] 
+/// * [currentlyPlayingType] - The object type of the currently playing item. Can be one of `track`, `episode`, `ad` or `unknown`. 
+@BuiltValue()
+abstract class CurrentlyPlayingObject implements Built<CurrentlyPlayingObject, CurrentlyPlayingObjectBuilder> {
+  @BuiltValueField(wireName: r'context')
+  CurrentlyPlayingObjectContext? get context;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class CurrentlyPlayingObject {
-  /// Returns a new [CurrentlyPlayingObject] instance.
-  CurrentlyPlayingObject({
+  /// Unix Millisecond Timestamp when data was fetched
+  @BuiltValueField(wireName: r'timestamp')
+  int? get timestamp;
 
-     this.context,
+  /// Progress into the currently playing track or episode. Can be `null`.
+  @BuiltValueField(wireName: r'progress_ms')
+  int? get progressMs;
 
-     this.timestamp,
+  /// If something is currently playing, return `true`.
+  @BuiltValueField(wireName: r'is_playing')
+  bool? get isPlaying;
 
-     this.progressMs,
+  @BuiltValueField(wireName: r'item')
+  CurrentlyPlayingObjectItem? get item;
 
-     this.isPlaying,
+  /// The object type of the currently playing item. Can be one of `track`, `episode`, `ad` or `unknown`. 
+  @BuiltValueField(wireName: r'currently_playing_type')
+  String? get currentlyPlayingType;
 
-     this.item,
+  CurrentlyPlayingObject._();
 
-     this.currentlyPlayingType,
-  });
+  factory CurrentlyPlayingObject([void updates(CurrentlyPlayingObjectBuilder b)]) = _$CurrentlyPlayingObject;
 
-  @JsonKey(
-    
-    name: r'context',
-    required: false,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(CurrentlyPlayingObjectBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<CurrentlyPlayingObject> get serializer => _$CurrentlyPlayingObjectSerializer();
+}
 
-  final CurrentlyPlayingObjectContext? context;
-
-
-
-      /// Unix Millisecond Timestamp when data was fetched
-  @JsonKey(
-    
-    name: r'timestamp',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final int? timestamp;
-
-
-
-      /// Progress into the currently playing track or episode. Can be `null`.
-  @JsonKey(
-    
-    name: r'progress_ms',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final int? progressMs;
-
-
-
-      /// If something is currently playing, return `true`.
-  @JsonKey(
-    
-    name: r'is_playing',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final bool? isPlaying;
-
-
-
-  @JsonKey(
-    
-    name: r'item',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final CurrentlyPlayingObjectItem? item;
-
-
-
-      /// The object type of the currently playing item. Can be one of `track`, `episode`, `ad` or `unknown`. 
-  @JsonKey(
-    
-    name: r'currently_playing_type',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? currentlyPlayingType;
-
-
+class _$CurrentlyPlayingObjectSerializer implements PrimitiveSerializer<CurrentlyPlayingObject> {
+  @override
+  final Iterable<Type> types = const [CurrentlyPlayingObject, _$CurrentlyPlayingObject];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is CurrentlyPlayingObject &&
-     other.context == context &&
-     other.timestamp == timestamp &&
-     other.progressMs == progressMs &&
-     other.isPlaying == isPlaying &&
-     other.item == item &&
-     other.currentlyPlayingType == currentlyPlayingType;
+  final String wireName = r'CurrentlyPlayingObject';
 
-  @override
-  int get hashCode =>
-    context.hashCode +
-    timestamp.hashCode +
-    progressMs.hashCode +
-    isPlaying.hashCode +
-    item.hashCode +
-    currentlyPlayingType.hashCode;
-
-  factory CurrentlyPlayingObject.fromJson(Map<String, dynamic> json) => _$CurrentlyPlayingObjectFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CurrentlyPlayingObjectToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    CurrentlyPlayingObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.context != null) {
+      yield r'context';
+      yield serializers.serialize(
+        object.context,
+        specifiedType: const FullType(CurrentlyPlayingObjectContext),
+      );
+    }
+    if (object.timestamp != null) {
+      yield r'timestamp';
+      yield serializers.serialize(
+        object.timestamp,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.progressMs != null) {
+      yield r'progress_ms';
+      yield serializers.serialize(
+        object.progressMs,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.isPlaying != null) {
+      yield r'is_playing';
+      yield serializers.serialize(
+        object.isPlaying,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.item != null) {
+      yield r'item';
+      yield serializers.serialize(
+        object.item,
+        specifiedType: const FullType(CurrentlyPlayingObjectItem),
+      );
+    }
+    if (object.currentlyPlayingType != null) {
+      yield r'currently_playing_type';
+      yield serializers.serialize(
+        object.currentlyPlayingType,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    CurrentlyPlayingObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required CurrentlyPlayingObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'context':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CurrentlyPlayingObjectContext),
+          ) as CurrentlyPlayingObjectContext;
+          result.context.replace(valueDes);
+          break;
+        case r'timestamp':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.timestamp = valueDes;
+          break;
+        case r'progress_ms':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.progressMs = valueDes;
+          break;
+        case r'is_playing':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.isPlaying = valueDes;
+          break;
+        case r'item':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CurrentlyPlayingObjectItem),
+          ) as CurrentlyPlayingObjectItem;
+          result.item.replace(valueDes);
+          break;
+        case r'currently_playing_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.currentlyPlayingType = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  CurrentlyPlayingObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = CurrentlyPlayingObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

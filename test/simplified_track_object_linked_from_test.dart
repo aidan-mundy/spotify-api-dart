@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for SimplifiedTrackObjectLinkedFrom
 void main() {
-  final SimplifiedTrackObjectLinkedFrom? instance = /* SimplifiedTrackObjectLinkedFrom(...) */ null;
-  // TODO add properties to the entity
+  final instance = SimplifiedTrackObjectLinkedFromBuilder();
+  // TODO add properties to the builder and call build()
 
   group(SimplifiedTrackObjectLinkedFrom, () {
     // LinkedTrackObjectExternalUrls externalUrls

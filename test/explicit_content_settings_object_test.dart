@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for ExplicitContentSettingsObject
 void main() {
-  final ExplicitContentSettingsObject? instance = /* ExplicitContentSettingsObject(...) */ null;
-  // TODO add properties to the entity
+  //final instance = ExplicitContentSettingsObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ExplicitContentSettingsObject, () {
     // When `true`, indicates that explicit content should not be played. 

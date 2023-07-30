@@ -4,15 +4,12 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:spotify_openapi/src/deserialize.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_openapi/src/model/change_playlist_details_request.dart';
-import 'package:spotify_openapi/src/model/create_playlist_request.dart';
-import 'package:spotify_openapi/src/model/follow_artists_users_request.dart';
-import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
+import 'package:spotify_openapi/src/api_util.dart';
 import 'package:spotify_openapi/src/model/get_followed200_response.dart';
 import 'package:spotify_openapi/src/model/get_users_top_artists_and_tracks200_response.dart';
 import 'package:spotify_openapi/src/model/paging_playlist_object.dart';
@@ -22,17 +19,14 @@ import 'package:spotify_openapi/src/model/paging_saved_show_object.dart';
 import 'package:spotify_openapi/src/model/paging_saved_track_object.dart';
 import 'package:spotify_openapi/src/model/paging_simplified_audiobook_object.dart';
 import 'package:spotify_openapi/src/model/playlist_object.dart';
-import 'package:spotify_openapi/src/model/remove_episodes_user_request.dart';
-import 'package:spotify_openapi/src/model/save_albums_user_request.dart';
-import 'package:spotify_openapi/src/model/save_episodes_user_request.dart';
-import 'package:spotify_openapi/src/model/save_tracks_user_request.dart';
-import 'package:spotify_openapi/src/model/unfollow_artists_users_request.dart';
 
 class LibraryApi {
 
   final Dio _dio;
 
-  const LibraryApi(this._dio);
+  final Serializers _serializers;
+
+  const LibraryApi(this._dio, this._serializers);
 
   /// Change Playlist Details 
   /// Change a playlist&#39;s name and public/private state. (The user must, of course, own the playlist.) 
@@ -51,7 +45,7 @@ class LibraryApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> changePlaylistDetails({ 
     required String playlistId,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -59,7 +53,7 @@ class LibraryApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -81,7 +75,9 @@ class LibraryApi {
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -119,9 +115,9 @@ _bodyData=jsonEncode(requestBody);
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [List<bool>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<bool>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<List<bool>>> checkCurrentUserFollows({ 
+  Future<Response<BuiltList<bool>>> checkCurrentUserFollows({ 
     required String type,
     required String ids,
     CancelToken? cancelToken,
@@ -150,8 +146,8 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'type': type,
-      r'ids': ids,
+      r'type': encodeQueryParameter(_serializers, type, const FullType(String)),
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -163,11 +159,15 @@ _bodyData=jsonEncode(requestBody);
       onReceiveProgress: onReceiveProgress,
     );
 
-    List<bool>? _responseData;
+    BuiltList<bool>? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 'List<bool>', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(bool)]),
+      ) as BuiltList<bool>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -178,7 +178,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       );
     }
 
-    return Response<List<bool>>(
+    return Response<BuiltList<bool>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -202,9 +202,9 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [List<bool>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<bool>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<List<bool>>> checkUsersSavedAlbums({ 
+  Future<Response<BuiltList<bool>>> checkUsersSavedAlbums({ 
     required String ids,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -232,7 +232,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -244,11 +244,15 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       onReceiveProgress: onReceiveProgress,
     );
 
-    List<bool>? _responseData;
+    BuiltList<bool>? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 'List<bool>', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(bool)]),
+      ) as BuiltList<bool>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -259,7 +263,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       );
     }
 
-    return Response<List<bool>>(
+    return Response<BuiltList<bool>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -283,9 +287,9 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [List<bool>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<bool>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<List<bool>>> checkUsersSavedAudiobooks({ 
+  Future<Response<BuiltList<bool>>> checkUsersSavedAudiobooks({ 
     required String ids,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -313,7 +317,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -325,11 +329,15 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       onReceiveProgress: onReceiveProgress,
     );
 
-    List<bool>? _responseData;
+    BuiltList<bool>? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 'List<bool>', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(bool)]),
+      ) as BuiltList<bool>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -340,7 +348,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       );
     }
 
-    return Response<List<bool>>(
+    return Response<BuiltList<bool>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -364,9 +372,9 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [List<bool>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<bool>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<List<bool>>> checkUsersSavedEpisodes({ 
+  Future<Response<BuiltList<bool>>> checkUsersSavedEpisodes({ 
     required String ids,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -394,7 +402,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -406,11 +414,15 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       onReceiveProgress: onReceiveProgress,
     );
 
-    List<bool>? _responseData;
+    BuiltList<bool>? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 'List<bool>', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(bool)]),
+      ) as BuiltList<bool>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -421,7 +433,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       );
     }
 
-    return Response<List<bool>>(
+    return Response<BuiltList<bool>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -445,9 +457,9 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [List<bool>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<bool>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<List<bool>>> checkUsersSavedShows({ 
+  Future<Response<BuiltList<bool>>> checkUsersSavedShows({ 
     required String ids,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -475,7 +487,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -487,11 +499,15 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       onReceiveProgress: onReceiveProgress,
     );
 
-    List<bool>? _responseData;
+    BuiltList<bool>? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 'List<bool>', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(bool)]),
+      ) as BuiltList<bool>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -502,7 +518,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       );
     }
 
-    return Response<List<bool>>(
+    return Response<BuiltList<bool>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -526,9 +542,9 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [List<bool>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<bool>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<List<bool>>> checkUsersSavedTracks({ 
+  Future<Response<BuiltList<bool>>> checkUsersSavedTracks({ 
     required String ids,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -556,7 +572,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -568,11 +584,15 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       onReceiveProgress: onReceiveProgress,
     );
 
-    List<bool>? _responseData;
+    BuiltList<bool>? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 'List<bool>', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(bool)]),
+      ) as BuiltList<bool>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -583,7 +603,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       );
     }
 
-    return Response<List<bool>>(
+    return Response<BuiltList<bool>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -612,7 +632,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
   /// Throws [DioException] if API call or serialization fails
   Future<Response<PlaylistObject>> createPlaylist({ 
     required String userId,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -620,7 +640,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/users/{user_id}/playlists'.replaceAll('{' r'user_id' '}', userId.toString());
+    final _path = r'/users/{user_id}/playlists'.replaceAll('{' r'user_id' '}', encodeQueryParameter(_serializers, userId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -642,7 +662,9 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -667,8 +689,12 @@ _bodyData=jsonEncode(requestBody);
     PlaylistObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PlaylistObject, PlaylistObject>(rawData, 'PlaylistObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PlaylistObject),
+      ) as PlaylistObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -710,7 +736,7 @@ _responseData = rawData == null ? null : deserialize<PlaylistObject, PlaylistObj
   Future<Response<void>> followArtistsUsers({ 
     required String type,
     required String ids,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -738,14 +764,16 @@ _responseData = rawData == null ? null : deserialize<PlaylistObject, PlaylistObj
     );
 
     final _queryParameters = <String, dynamic>{
-      r'type': type,
-      r'ids': ids,
+      r'type': encodeQueryParameter(_serializers, type, const FullType(String)),
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -816,8 +844,8 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -832,8 +860,12 @@ _bodyData=jsonEncode(requestBody);
     PagingPlaylistObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingPlaylistObject, PagingPlaylistObject>(rawData, 'PagingPlaylistObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingPlaylistObject),
+      ) as PagingPlaylistObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -902,9 +934,9 @@ _responseData = rawData == null ? null : deserialize<PagingPlaylistObject, Pagin
     );
 
     final _queryParameters = <String, dynamic>{
-      r'type': type,
-      if (after != null) r'after': after,
-      if (limit != null) r'limit': limit,
+      r'type': encodeQueryParameter(_serializers, type, const FullType(String)),
+      if (after != null) r'after': encodeQueryParameter(_serializers, after, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -919,8 +951,12 @@ _responseData = rawData == null ? null : deserialize<PagingPlaylistObject, Pagin
     GetFollowed200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetFollowed200Response, GetFollowed200Response>(rawData, 'GetFollowed200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetFollowed200Response),
+      ) as GetFollowed200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -989,9 +1025,9 @@ _responseData = rawData == null ? null : deserialize<GetFollowed200Response, Get
     );
 
     final _queryParameters = <String, dynamic>{
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
-      if (market != null) r'market': market,
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1006,8 +1042,12 @@ _responseData = rawData == null ? null : deserialize<GetFollowed200Response, Get
     PagingSavedAlbumObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingSavedAlbumObject, PagingSavedAlbumObject>(rawData, 'PagingSavedAlbumObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingSavedAlbumObject),
+      ) as PagingSavedAlbumObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1074,8 +1114,8 @@ _responseData = rawData == null ? null : deserialize<PagingSavedAlbumObject, Pag
     );
 
     final _queryParameters = <String, dynamic>{
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1090,8 +1130,12 @@ _responseData = rawData == null ? null : deserialize<PagingSavedAlbumObject, Pag
     PagingSimplifiedAudiobookObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingSimplifiedAudiobookObject, PagingSimplifiedAudiobookObject>(rawData, 'PagingSimplifiedAudiobookObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingSimplifiedAudiobookObject),
+      ) as PagingSimplifiedAudiobookObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1160,9 +1204,9 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedAudiobookOb
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1177,8 +1221,12 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedAudiobookOb
     PagingSavedEpisodeObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingSavedEpisodeObject, PagingSavedEpisodeObject>(rawData, 'PagingSavedEpisodeObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingSavedEpisodeObject),
+      ) as PagingSavedEpisodeObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1245,8 +1293,8 @@ _responseData = rawData == null ? null : deserialize<PagingSavedEpisodeObject, P
     );
 
     final _queryParameters = <String, dynamic>{
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1261,8 +1309,12 @@ _responseData = rawData == null ? null : deserialize<PagingSavedEpisodeObject, P
     PagingSavedShowObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingSavedShowObject, PagingSavedShowObject>(rawData, 'PagingSavedShowObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingSavedShowObject),
+      ) as PagingSavedShowObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1331,9 +1383,9 @@ _responseData = rawData == null ? null : deserialize<PagingSavedShowObject, Pagi
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1348,8 +1400,12 @@ _responseData = rawData == null ? null : deserialize<PagingSavedShowObject, Pagi
     PagingSavedTrackObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingSavedTrackObject, PagingSavedTrackObject>(rawData, 'PagingSavedTrackObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingSavedTrackObject),
+      ) as PagingSavedTrackObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1401,7 +1457,7 @@ _responseData = rawData == null ? null : deserialize<PagingSavedTrackObject, Pag
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/me/top/{type}'.replaceAll('{' r'type' '}', type.toString());
+    final _path = r'/me/top/{type}'.replaceAll('{' r'type' '}', encodeQueryParameter(_serializers, type, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -1420,9 +1476,9 @@ _responseData = rawData == null ? null : deserialize<PagingSavedTrackObject, Pag
     );
 
     final _queryParameters = <String, dynamic>{
-      if (timeRange != null) r'time_range': timeRange,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (timeRange != null) r'time_range': encodeQueryParameter(_serializers, timeRange, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1437,8 +1493,12 @@ _responseData = rawData == null ? null : deserialize<PagingSavedTrackObject, Pag
     GetUsersTopArtistsAndTracks200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetUsersTopArtistsAndTracks200Response, GetUsersTopArtistsAndTracks200Response>(rawData, 'GetUsersTopArtistsAndTracks200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetUsersTopArtistsAndTracks200Response),
+      ) as GetUsersTopArtistsAndTracks200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1478,7 +1538,7 @@ _responseData = rawData == null ? null : deserialize<GetUsersTopArtistsAndTracks
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> removeAlbumsUser({ 
     required String ids,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1506,13 +1566,15 @@ _responseData = rawData == null ? null : deserialize<GetUsersTopArtistsAndTracks
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1581,7 +1643,7 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1613,7 +1675,7 @@ _bodyData=jsonEncode(requestBody);
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> removeEpisodesUser({ 
     required String ids,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1641,13 +1703,15 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1718,8 +1782,8 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
-      if (market != null) r'market': market,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1751,7 +1815,7 @@ _bodyData=jsonEncode(requestBody);
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> removeTracksUser({ 
     required String ids,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1779,13 +1843,15 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1829,7 +1895,7 @@ _bodyData=jsonEncode(requestBody);
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> saveAlbumsUser({ 
     required String ids,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1857,13 +1923,15 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1932,7 +2000,7 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1964,7 +2032,7 @@ _bodyData=jsonEncode(requestBody);
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> saveEpisodesUser({ 
     required String ids,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1992,13 +2060,15 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -2067,7 +2137,7 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -2099,7 +2169,7 @@ _bodyData=jsonEncode(requestBody);
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> saveTracksUser({ 
     required String ids,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -2127,13 +2197,15 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -2179,7 +2251,7 @@ _bodyData=jsonEncode(requestBody);
   Future<Response<void>> unfollowArtistsUsers({ 
     required String type,
     required String ids,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -2207,14 +2279,16 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'type': type,
-      r'ids': ids,
+      r'type': encodeQueryParameter(_serializers, type, const FullType(String)),
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(

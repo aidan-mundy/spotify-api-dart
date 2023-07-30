@@ -4,19 +4,18 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:spotify_openapi/src/deserialize.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
 import 'package:spotify_openapi/src/model/get_available_markets200_response.dart';
 
 class MarketsApi {
 
   final Dio _dio;
 
-  const MarketsApi(this._dio);
+  final Serializers _serializers;
+
+  const MarketsApi(this._dio, this._serializers);
 
   /// Get Available Markets 
   /// Get the list of markets where Spotify is available. 
@@ -68,8 +67,12 @@ class MarketsApi {
     GetAvailableMarkets200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetAvailableMarkets200Response, GetAvailableMarkets200Response>(rawData, 'GetAvailableMarkets200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetAvailableMarkets200Response),
+      ) as GetAvailableMarkets200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,

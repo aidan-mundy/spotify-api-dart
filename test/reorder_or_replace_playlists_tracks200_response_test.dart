@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for ReorderOrReplacePlaylistsTracks200Response
 void main() {
-  final ReorderOrReplacePlaylistsTracks200Response? instance = /* ReorderOrReplacePlaylistsTracks200Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = ReorderOrReplacePlaylistsTracks200ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ReorderOrReplacePlaylistsTracks200Response, () {
     // String snapshotId

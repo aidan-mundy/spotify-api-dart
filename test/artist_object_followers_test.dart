@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for ArtistObjectFollowers
 void main() {
-  final ArtistObjectFollowers? instance = /* ArtistObjectFollowers(...) */ null;
-  // TODO add properties to the entity
+  final instance = ArtistObjectFollowersBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ArtistObjectFollowers, () {
     // This will always be set to null, as the Web API does not support it at the moment. 

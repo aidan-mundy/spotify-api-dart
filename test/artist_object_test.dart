@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for ArtistObject
 void main() {
-  final ArtistObject? instance = /* ArtistObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = ArtistObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ArtistObject, () {
     // ArtistObjectExternalUrls externalUrls
@@ -18,7 +18,7 @@ void main() {
     });
 
     // A list of the genres the artist is associated with. If not yet classified, the array is empty. 
-    // List<String> genres
+    // BuiltList<String> genres
     test('to test the property `genres`', () async {
       // TODO
     });
@@ -36,7 +36,7 @@ void main() {
     });
 
     // Images of the artist in various sizes, widest first. 
-    // List<ImageObject> images
+    // BuiltList<ImageObject> images
     test('to test the property `images`', () async {
       // TODO
     });

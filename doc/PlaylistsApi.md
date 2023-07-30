@@ -44,7 +44,7 @@ final api = SpotifyOpenapi().getPlaylistsApi();
 final String playlistId = 3cEYpjA9oz9GiPac4AsH4n; // String | 
 final int position = 0; // int | 
 final String uris = spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     final response = api.addTracksToPlaylist(playlistId, position, uris, requestBody);
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
  **playlistId** | **String**|  | 
  **position** | **int**|  | [optional] 
  **uris** | **String**|  | [optional] 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 
@@ -93,7 +93,7 @@ import 'package:spotify_openapi/api.dart';
 
 final api = SpotifyOpenapi().getPlaylistsApi();
 final String playlistId = 3cEYpjA9oz9GiPac4AsH4n; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     api.changePlaylistDetails(playlistId, requestBody);
@@ -107,7 +107,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **playlistId** | **String**|  | 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 
@@ -125,7 +125,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **checkIfUserFollowsPlaylist**
-> List<bool> checkIfUserFollowsPlaylist(playlistId, ids)
+> BuiltList<bool> checkIfUserFollowsPlaylist(playlistId, ids)
 
 Check if Users Follow Playlist 
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**List&lt;bool&gt;**
+**BuiltList&lt;bool&gt;**
 
 ### Authorization
 
@@ -186,7 +186,7 @@ import 'package:spotify_openapi/api.dart';
 
 final api = SpotifyOpenapi().getPlaylistsApi();
 final String userId = smedjan; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     final response = api.createPlaylist(userId, requestBody);
@@ -201,7 +201,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **String**|  | 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 
@@ -233,7 +233,7 @@ import 'package:spotify_openapi/api.dart';
 
 final api = SpotifyOpenapi().getPlaylistsApi();
 final String playlistId = 3cEYpjA9oz9GiPac4AsH4n; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     api.followPlaylist(playlistId, requestBody);
@@ -247,7 +247,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **playlistId** | **String**|  | 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 
@@ -516,7 +516,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getPlaylistCover**
-> List<ImageObject> getPlaylistCover(playlistId)
+> BuiltList<ImageObject> getPlaylistCover(playlistId)
 
 Get Playlist Cover Image 
 
@@ -547,7 +547,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;ImageObject&gt;**](ImageObject.md)
+[**BuiltList&lt;ImageObject&gt;**](ImageObject.md)
 
 ### Authorization
 
@@ -678,7 +678,7 @@ import 'package:spotify_openapi/api.dart';
 final api = SpotifyOpenapi().getPlaylistsApi();
 final String playlistId = 3cEYpjA9oz9GiPac4AsH4n; // String | 
 final String uris = uris_example; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     final response = api.reorderOrReplacePlaylistsTracks(playlistId, uris, requestBody);
@@ -694,7 +694,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **playlistId** | **String**|  | 
  **uris** | **String**|  | [optional] 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 

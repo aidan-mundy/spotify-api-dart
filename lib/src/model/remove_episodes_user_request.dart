@@ -3,53 +3,108 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'remove_episodes_user_request.g.dart';
 
+/// RemoveEpisodesUserRequest
+///
+/// Properties:
+/// * [ids] - A JSON array of the [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). <br/>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._ 
+@BuiltValue()
+abstract class RemoveEpisodesUserRequest implements Built<RemoveEpisodesUserRequest, RemoveEpisodesUserRequestBuilder> {
+  /// A JSON array of the [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). <br/>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._ 
+  @BuiltValueField(wireName: r'ids')
+  BuiltList<String>? get ids;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class RemoveEpisodesUserRequest {
-  /// Returns a new [RemoveEpisodesUserRequest] instance.
-  RemoveEpisodesUserRequest({
+  RemoveEpisodesUserRequest._();
 
-     this.ids,
-  });
+  factory RemoveEpisodesUserRequest([void updates(RemoveEpisodesUserRequestBuilder b)]) = _$RemoveEpisodesUserRequest;
 
-      /// A JSON array of the [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). <br/>A maximum of 50 items can be specified in one request. _**Note**: if the `ids` parameter is present in the query string, any IDs listed here in the body will be ignored._ 
-  @JsonKey(
-    
-    name: r'ids',
-    required: false,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(RemoveEpisodesUserRequestBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<RemoveEpisodesUserRequest> get serializer => _$RemoveEpisodesUserRequestSerializer();
+}
 
-  final List<String>? ids;
-
-
+class _$RemoveEpisodesUserRequestSerializer implements PrimitiveSerializer<RemoveEpisodesUserRequest> {
+  @override
+  final Iterable<Type> types = const [RemoveEpisodesUserRequest, _$RemoveEpisodesUserRequest];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is RemoveEpisodesUserRequest &&
-     other.ids == ids;
+  final String wireName = r'RemoveEpisodesUserRequest';
 
-  @override
-  int get hashCode =>
-    ids.hashCode;
-
-  factory RemoveEpisodesUserRequest.fromJson(Map<String, dynamic> json) => _$RemoveEpisodesUserRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$RemoveEpisodesUserRequestToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    RemoveEpisodesUserRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.ids != null) {
+      yield r'ids';
+      yield serializers.serialize(
+        object.ids,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    RemoveEpisodesUserRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required RemoveEpisodesUserRequestBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'ids':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.ids.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  RemoveEpisodesUserRequest deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = RemoveEpisodesUserRequestBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

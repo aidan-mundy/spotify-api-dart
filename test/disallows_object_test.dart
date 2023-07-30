@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for DisallowsObject
 void main() {
-  final DisallowsObject? instance = /* DisallowsObject(...) */ null;
-  // TODO add properties to the entity
+  //final instance = DisallowsObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(DisallowsObject, () {
     // Interrupting playback. Optional field.

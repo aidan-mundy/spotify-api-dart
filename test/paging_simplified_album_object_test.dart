@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PagingSimplifiedAlbumObject
 void main() {
-  final PagingSimplifiedAlbumObject? instance = /* PagingSimplifiedAlbumObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = PagingSimplifiedAlbumObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PagingSimplifiedAlbumObject, () {
     // A link to the Web API endpoint returning the full result of the request 
@@ -43,7 +43,7 @@ void main() {
       // TODO
     });
 
-    // List<SimplifiedAlbumObject> items
+    // BuiltList<SimplifiedAlbumObject> items
     test('to test the property `items`', () async {
       // TODO
     });

@@ -4,215 +4,297 @@
 
 // ignore_for_file: unused_element
 import 'package:spotify_openapi/src/model/image_object.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:spotify_openapi/src/model/artist_object_followers.dart';
 import 'package:spotify_openapi/src/model/artist_object_external_urls.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'artist_object.g.dart';
 
+/// ArtistObject
+///
+/// Properties:
+/// * [externalUrls] 
+/// * [followers] 
+/// * [genres] - A list of the genres the artist is associated with. If not yet classified, the array is empty. 
+/// * [href] - A link to the Web API endpoint providing full details of the artist. 
+/// * [id] - The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the artist. 
+/// * [images] - Images of the artist in various sizes, widest first. 
+/// * [name] - The name of the artist. 
+/// * [popularity] - The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist's popularity is calculated from the popularity of all the artist's tracks. 
+/// * [type] - The object type. 
+/// * [uri] - The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the artist. 
+@BuiltValue()
+abstract class ArtistObject implements Built<ArtistObject, ArtistObjectBuilder> {
+  @BuiltValueField(wireName: r'external_urls')
+  ArtistObjectExternalUrls? get externalUrls;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class ArtistObject {
-  /// Returns a new [ArtistObject] instance.
-  ArtistObject({
+  @BuiltValueField(wireName: r'followers')
+  ArtistObjectFollowers? get followers;
 
-     this.externalUrls,
+  /// A list of the genres the artist is associated with. If not yet classified, the array is empty. 
+  @BuiltValueField(wireName: r'genres')
+  BuiltList<String>? get genres;
 
-     this.followers,
+  /// A link to the Web API endpoint providing full details of the artist. 
+  @BuiltValueField(wireName: r'href')
+  String? get href;
 
-     this.genres,
+  /// The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the artist. 
+  @BuiltValueField(wireName: r'id')
+  String? get id;
 
-     this.href,
+  /// Images of the artist in various sizes, widest first. 
+  @BuiltValueField(wireName: r'images')
+  BuiltList<ImageObject>? get images;
 
-     this.id,
+  /// The name of the artist. 
+  @BuiltValueField(wireName: r'name')
+  String? get name;
 
-     this.images,
+  /// The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist's popularity is calculated from the popularity of all the artist's tracks. 
+  @BuiltValueField(wireName: r'popularity')
+  int? get popularity;
 
-     this.name,
+  /// The object type. 
+  @BuiltValueField(wireName: r'type')
+  ArtistObjectTypeEnum? get type;
+  // enum typeEnum {  artist,  track,  };
 
-     this.popularity,
+  /// The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the artist. 
+  @BuiltValueField(wireName: r'uri')
+  String? get uri;
 
-     this.type,
+  ArtistObject._();
 
-     this.uri,
-  });
+  factory ArtistObject([void updates(ArtistObjectBuilder b)]) = _$ArtistObject;
 
-  @JsonKey(
-    
-    name: r'external_urls',
-    required: false,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(ArtistObjectBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<ArtistObject> get serializer => _$ArtistObjectSerializer();
+}
 
-  final ArtistObjectExternalUrls? externalUrls;
-
-
-
-  @JsonKey(
-    
-    name: r'followers',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final ArtistObjectFollowers? followers;
-
-
-
-      /// A list of the genres the artist is associated with. If not yet classified, the array is empty. 
-  @JsonKey(
-    
-    name: r'genres',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final List<String>? genres;
-
-
-
-      /// A link to the Web API endpoint providing full details of the artist. 
-  @JsonKey(
-    
-    name: r'href',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? href;
-
-
-
-      /// The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the artist. 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? id;
-
-
-
-      /// Images of the artist in various sizes, widest first. 
-  @JsonKey(
-    
-    name: r'images',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final List<ImageObject>? images;
-
-
-
-      /// The name of the artist. 
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? name;
-
-
-
-      /// The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist's popularity is calculated from the popularity of all the artist's tracks. 
-  @JsonKey(
-    
-    name: r'popularity',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final int? popularity;
-
-
-
-      /// The object type. 
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final ArtistObjectTypeEnum? type;
-
-
-
-      /// The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the artist. 
-  @JsonKey(
-    
-    name: r'uri',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? uri;
-
-
+class _$ArtistObjectSerializer implements PrimitiveSerializer<ArtistObject> {
+  @override
+  final Iterable<Type> types = const [ArtistObject, _$ArtistObject];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ArtistObject &&
-     other.externalUrls == externalUrls &&
-     other.followers == followers &&
-     other.genres == genres &&
-     other.href == href &&
-     other.id == id &&
-     other.images == images &&
-     other.name == name &&
-     other.popularity == popularity &&
-     other.type == type &&
-     other.uri == uri;
+  final String wireName = r'ArtistObject';
 
-  @override
-  int get hashCode =>
-    externalUrls.hashCode +
-    followers.hashCode +
-    genres.hashCode +
-    href.hashCode +
-    id.hashCode +
-    images.hashCode +
-    name.hashCode +
-    popularity.hashCode +
-    type.hashCode +
-    uri.hashCode;
-
-  factory ArtistObject.fromJson(Map<String, dynamic> json) => _$ArtistObjectFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ArtistObjectToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    ArtistObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.externalUrls != null) {
+      yield r'external_urls';
+      yield serializers.serialize(
+        object.externalUrls,
+        specifiedType: const FullType(ArtistObjectExternalUrls),
+      );
+    }
+    if (object.followers != null) {
+      yield r'followers';
+      yield serializers.serialize(
+        object.followers,
+        specifiedType: const FullType(ArtistObjectFollowers),
+      );
+    }
+    if (object.genres != null) {
+      yield r'genres';
+      yield serializers.serialize(
+        object.genres,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.href != null) {
+      yield r'href';
+      yield serializers.serialize(
+        object.href,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.images != null) {
+      yield r'images';
+      yield serializers.serialize(
+        object.images,
+        specifiedType: const FullType(BuiltList, [FullType(ImageObject)]),
+      );
+    }
+    if (object.name != null) {
+      yield r'name';
+      yield serializers.serialize(
+        object.name,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.popularity != null) {
+      yield r'popularity';
+      yield serializers.serialize(
+        object.popularity,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(ArtistObjectTypeEnum),
+      );
+    }
+    if (object.uri != null) {
+      yield r'uri';
+      yield serializers.serialize(
+        object.uri,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    ArtistObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required ArtistObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'external_urls':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ArtistObjectExternalUrls),
+          ) as ArtistObjectExternalUrls;
+          result.externalUrls.replace(valueDes);
+          break;
+        case r'followers':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ArtistObjectFollowers),
+          ) as ArtistObjectFollowers;
+          result.followers.replace(valueDes);
+          break;
+        case r'genres':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.genres.replace(valueDes);
+          break;
+        case r'href':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.href = valueDes;
+          break;
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'images':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ImageObject)]),
+          ) as BuiltList<ImageObject>;
+          result.images.replace(valueDes);
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        case r'popularity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.popularity = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ArtistObjectTypeEnum),
+          ) as ArtistObjectTypeEnum;
+          result.type = valueDes;
+          break;
+        case r'uri':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.uri = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  ArtistObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = ArtistObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 
-/// The object type. 
-enum ArtistObjectTypeEnum {
-  @JsonValue(r'artist')
-  artist,
-  @JsonValue(r'unknown_default_open_api')
-  unknownDefaultOpenApi,
-}
+class ArtistObjectTypeEnum extends EnumClass {
 
+  /// The object type. 
+  @BuiltValueEnumConst(wireName: r'artist')
+  static const ArtistObjectTypeEnum artist = _$artistObjectTypeEnum_artist;
+  /// The object type. 
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
+  static const ArtistObjectTypeEnum unknownDefaultOpenApi = _$artistObjectTypeEnum_unknownDefaultOpenApi;
+
+  static Serializer<ArtistObjectTypeEnum> get serializer => _$artistObjectTypeEnumSerializer;
+
+  const ArtistObjectTypeEnum._(String name): super(name);
+
+  static BuiltSet<ArtistObjectTypeEnum> get values => _$artistObjectTypeEnumValues;
+  static ArtistObjectTypeEnum valueOf(String name) => _$artistObjectTypeEnumValueOf(name);
+}
 

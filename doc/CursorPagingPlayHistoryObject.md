@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **next** | **String** | URL to the next page of items. ( `null` if none) | [optional] 
 **cursors** | [**CursorPagingObjectCursors**](CursorPagingObjectCursors.md) |  | [optional] 
 **total** | **int** | The total number of items available to return. | [optional] 
-**items** | [**List&lt;PlayHistoryObject&gt;**](PlayHistoryObject.md) |  | [optional] 
+**items** | [**BuiltList&lt;PlayHistoryObject&gt;**](PlayHistoryObject.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

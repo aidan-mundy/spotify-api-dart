@@ -3,6 +3,8 @@
 //
 
 import 'package:dio/dio.dart';
+import 'package:built_value/serializer.dart';
+import 'package:spotify_openapi/src/serializers.dart';
 import 'package:spotify_openapi/src/auth/api_key_auth.dart';
 import 'package:spotify_openapi/src/auth/basic_auth.dart';
 import 'package:spotify_openapi/src/auth/bearer_auth.dart';
@@ -27,11 +29,14 @@ class SpotifyOpenapi {
   static const String basePath = r'https://api.spotify.com/v1';
 
   final Dio dio;
+  final Serializers serializers;
+
   SpotifyOpenapi({
     Dio? dio,
+    Serializers? serializers,
     String? basePathOverride,
     List<Interceptor>? interceptors,
-  })  : 
+  })  : this.serializers = serializers ?? standardSerializers,
         this.dio = dio ??
             Dio(BaseOptions(
               baseUrl: basePathOverride ?? basePath,
@@ -77,90 +82,90 @@ class SpotifyOpenapi {
   /// Get AlbumsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   AlbumsApi getAlbumsApi() {
-    return AlbumsApi(dio);
+    return AlbumsApi(dio, serializers);
   }
 
   /// Get ArtistsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   ArtistsApi getArtistsApi() {
-    return ArtistsApi(dio);
+    return ArtistsApi(dio, serializers);
   }
 
   /// Get AudiobooksApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   AudiobooksApi getAudiobooksApi() {
-    return AudiobooksApi(dio);
+    return AudiobooksApi(dio, serializers);
   }
 
   /// Get CategoriesApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   CategoriesApi getCategoriesApi() {
-    return CategoriesApi(dio);
+    return CategoriesApi(dio, serializers);
   }
 
   /// Get ChaptersApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   ChaptersApi getChaptersApi() {
-    return ChaptersApi(dio);
+    return ChaptersApi(dio, serializers);
   }
 
   /// Get EpisodesApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   EpisodesApi getEpisodesApi() {
-    return EpisodesApi(dio);
+    return EpisodesApi(dio, serializers);
   }
 
   /// Get GenresApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   GenresApi getGenresApi() {
-    return GenresApi(dio);
+    return GenresApi(dio, serializers);
   }
 
   /// Get LibraryApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   LibraryApi getLibraryApi() {
-    return LibraryApi(dio);
+    return LibraryApi(dio, serializers);
   }
 
   /// Get MarketsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   MarketsApi getMarketsApi() {
-    return MarketsApi(dio);
+    return MarketsApi(dio, serializers);
   }
 
   /// Get PlayerApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   PlayerApi getPlayerApi() {
-    return PlayerApi(dio);
+    return PlayerApi(dio, serializers);
   }
 
   /// Get PlaylistsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   PlaylistsApi getPlaylistsApi() {
-    return PlaylistsApi(dio);
+    return PlaylistsApi(dio, serializers);
   }
 
   /// Get SearchApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   SearchApi getSearchApi() {
-    return SearchApi(dio);
+    return SearchApi(dio, serializers);
   }
 
   /// Get ShowsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   ShowsApi getShowsApi() {
-    return ShowsApi(dio);
+    return ShowsApi(dio, serializers);
   }
 
   /// Get TracksApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   TracksApi getTracksApi() {
-    return TracksApi(dio);
+    return TracksApi(dio, serializers);
   }
 
   /// Get UsersApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   UsersApi getUsersApi() {
-    return UsersApi(dio);
+    return UsersApi(dio, serializers);
   }
 }

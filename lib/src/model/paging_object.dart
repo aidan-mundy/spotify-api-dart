@@ -3,138 +3,225 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'paging_object.g.dart';
 
+/// PagingObject
+///
+/// Properties:
+/// * [href] - A link to the Web API endpoint returning the full result of the request 
+/// * [limit] - The maximum number of items in the response (as set in the query or by default). 
+/// * [next] - URL to the next page of items. ( `null` if none) 
+/// * [offset] - The offset of the items returned (as set in the query or by default) 
+/// * [previous] - URL to the previous page of items. ( `null` if none) 
+/// * [total] - The total number of items available to return. 
+@BuiltValue(instantiable: false)
+abstract class PagingObject  {
+  /// A link to the Web API endpoint returning the full result of the request 
+  @BuiltValueField(wireName: r'href')
+  String get href;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class PagingObject {
-  /// Returns a new [PagingObject] instance.
-  PagingObject({
+  /// The maximum number of items in the response (as set in the query or by default). 
+  @BuiltValueField(wireName: r'limit')
+  int get limit;
 
-    required  this.href,
+  /// URL to the next page of items. ( `null` if none) 
+  @BuiltValueField(wireName: r'next')
+  String? get next;
 
-    required  this.limit,
+  /// The offset of the items returned (as set in the query or by default) 
+  @BuiltValueField(wireName: r'offset')
+  int get offset;
 
-    required  this.next,
+  /// URL to the previous page of items. ( `null` if none) 
+  @BuiltValueField(wireName: r'previous')
+  String? get previous;
 
-    required  this.offset,
+  /// The total number of items available to return. 
+  @BuiltValueField(wireName: r'total')
+  int get total;
 
-    required  this.previous,
+  @BuiltValueSerializer(custom: true)
+  static Serializer<PagingObject> get serializer => _$PagingObjectSerializer();
+}
 
-    required  this.total,
-  });
-
-      /// A link to the Web API endpoint returning the full result of the request 
-  @JsonKey(
-    
-    name: r'href',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String href;
-
-
-
-      /// The maximum number of items in the response (as set in the query or by default). 
-  @JsonKey(
-    
-    name: r'limit',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final int limit;
-
-
-
-      /// URL to the next page of items. ( `null` if none) 
-  @JsonKey(
-    
-    name: r'next',
-    required: true,
-    includeIfNull: truefalse
-  )
-
-
-  final String? next;
-
-
-
-      /// The offset of the items returned (as set in the query or by default) 
-  @JsonKey(
-    
-    name: r'offset',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final int offset;
-
-
-
-      /// URL to the previous page of items. ( `null` if none) 
-  @JsonKey(
-    
-    name: r'previous',
-    required: true,
-    includeIfNull: truefalse
-  )
-
-
-  final String? previous;
-
-
-
-      /// The total number of items available to return. 
-  @JsonKey(
-    
-    name: r'total',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final int total;
-
-
+class _$PagingObjectSerializer implements PrimitiveSerializer<PagingObject> {
+  @override
+  final Iterable<Type> types = const [PagingObject];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is PagingObject &&
-     other.href == href &&
-     other.limit == limit &&
-     other.next == next &&
-     other.offset == offset &&
-     other.previous == previous &&
-     other.total == total;
+  final String wireName = r'PagingObject';
 
-  @override
-  int get hashCode =>
-    href.hashCode +
-    limit.hashCode +
-    (next == null ? 0 : next.hashCode) +
-    offset.hashCode +
-    (previous == null ? 0 : previous.hashCode) +
-    total.hashCode;
-
-  factory PagingObject.fromJson(Map<String, dynamic> json) => _$PagingObjectFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PagingObjectToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    PagingObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'href';
+    yield serializers.serialize(
+      object.href,
+      specifiedType: const FullType(String),
+    );
+    yield r'limit';
+    yield serializers.serialize(
+      object.limit,
+      specifiedType: const FullType(int),
+    );
+    yield r'next';
+    yield object.next == null ? null : serializers.serialize(
+      object.next,
+      specifiedType: const FullType.nullable(String),
+    );
+    yield r'offset';
+    yield serializers.serialize(
+      object.offset,
+      specifiedType: const FullType(int),
+    );
+    yield r'previous';
+    yield object.previous == null ? null : serializers.serialize(
+      object.previous,
+      specifiedType: const FullType.nullable(String),
+    );
+    yield r'total';
+    yield serializers.serialize(
+      object.total,
+      specifiedType: const FullType(int),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    PagingObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  @override
+  PagingObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.deserialize(serialized, specifiedType: FullType($PagingObject)) as $PagingObject;
+  }
+}
+
+/// a concrete implementation of [PagingObject], since [PagingObject] is not instantiable
+@BuiltValue(instantiable: true)
+abstract class $PagingObject implements PagingObject, Built<$PagingObject, $PagingObjectBuilder> {
+  $PagingObject._();
+
+  factory $PagingObject([void Function($PagingObjectBuilder)? updates]) = _$$PagingObject;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults($PagingObjectBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<$PagingObject> get serializer => _$$PagingObjectSerializer();
+}
+
+class _$$PagingObjectSerializer implements PrimitiveSerializer<$PagingObject> {
+  @override
+  final Iterable<Type> types = const [$PagingObject, _$$PagingObject];
+
+  @override
+  final String wireName = r'$PagingObject';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    $PagingObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.serialize(object, specifiedType: FullType(PagingObject))!;
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required PagingObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'href':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.href = valueDes;
+          break;
+        case r'limit':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.limit = valueDes;
+          break;
+        case r'next':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.next = valueDes;
+          break;
+        case r'offset':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.offset = valueDes;
+          break;
+        case r'previous':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.previous = valueDes;
+          break;
+        case r'total':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.total = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  $PagingObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = $PagingObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **checkUsersSavedAudiobooks**
-> List<bool> checkUsersSavedAudiobooks(ids)
+> BuiltList<bool> checkUsersSavedAudiobooks(ids)
 
 Check User's Saved Audiobooks 
 
@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**List&lt;bool&gt;**
+**BuiltList&lt;bool&gt;**
 
 ### Authorization
 

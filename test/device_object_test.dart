@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for DeviceObject
 void main() {
-  final DeviceObject? instance = /* DeviceObject(...) */ null;
-  // TODO add properties to the entity
+  //final instance = DeviceObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(DeviceObject, () {
     // The device ID.

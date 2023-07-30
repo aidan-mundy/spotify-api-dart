@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 
 # **checkCurrentUserFollows**
-> List<bool> checkCurrentUserFollows(type, ids)
+> BuiltList<bool> checkCurrentUserFollows(type, ids)
 
 Check If User Follows Artists or Users 
 
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**List&lt;bool&gt;**
+**BuiltList&lt;bool&gt;**
 
 ### Authorization
 
@@ -83,7 +83,7 @@ import 'package:spotify_openapi/api.dart';
 final api = SpotifyOpenapi().getArtistsApi();
 final String type = artist; // String | 
 final String ids = 2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     api.followArtistsUsers(type, ids, requestBody);
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | **String**|  | 
  **ids** | **String**|  | 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 
@@ -415,7 +415,7 @@ import 'package:spotify_openapi/api.dart';
 final api = SpotifyOpenapi().getArtistsApi();
 final String type = artist; // String | 
 final String ids = 2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     api.unfollowArtistsUsers(type, ids, requestBody);
@@ -430,7 +430,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | **String**|  | 
  **ids** | **String**|  | 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 

@@ -3,66 +3,128 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:spotify_openapi/src/model/album_restriction_object.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'album_base_restrictions.g.dart';
 
+/// Included in the response when a content restriction is applied. 
+///
+/// Properties:
+/// * [reason] - The reason for the restriction. Albums may be restricted if the content is not available in a given market, to the user's subscription type, or when the user's account is set to not play explicit content. Additional reasons may be added in the future. 
+@BuiltValue()
+abstract class AlbumBaseRestrictions implements AlbumRestrictionObject, Built<AlbumBaseRestrictions, AlbumBaseRestrictionsBuilder> {
+  AlbumBaseRestrictions._();
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class AlbumBaseRestrictions {
-  /// Returns a new [AlbumBaseRestrictions] instance.
-  AlbumBaseRestrictions({
+  factory AlbumBaseRestrictions([void updates(AlbumBaseRestrictionsBuilder b)]) = _$AlbumBaseRestrictions;
 
-     this.reason,
-  });
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(AlbumBaseRestrictionsBuilder b) => b;
 
-      /// The reason for the restriction. Albums may be restricted if the content is not available in a given market, to the user's subscription type, or when the user's account is set to not play explicit content. Additional reasons may be added in the future. 
-  @JsonKey(
-    
-    name: r'reason',
-    required: false,
-    includeIfNull: false
-  )
+  @BuiltValueSerializer(custom: true)
+  static Serializer<AlbumBaseRestrictions> get serializer => _$AlbumBaseRestrictionsSerializer();
+}
 
-
-  final AlbumBaseRestrictionsReasonEnum? reason;
-
-
+class _$AlbumBaseRestrictionsSerializer implements PrimitiveSerializer<AlbumBaseRestrictions> {
+  @override
+  final Iterable<Type> types = const [AlbumBaseRestrictions, _$AlbumBaseRestrictions];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is AlbumBaseRestrictions &&
-     other.reason == reason;
+  final String wireName = r'AlbumBaseRestrictions';
 
-  @override
-  int get hashCode =>
-    reason.hashCode;
-
-  factory AlbumBaseRestrictions.fromJson(Map<String, dynamic> json) => _$AlbumBaseRestrictionsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$AlbumBaseRestrictionsToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    AlbumBaseRestrictions object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.reason != null) {
+      yield r'reason';
+      yield serializers.serialize(
+        object.reason,
+        specifiedType: const FullType(AlbumRestrictionObjectReasonEnum),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    AlbumBaseRestrictions object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required AlbumBaseRestrictionsBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'reason':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(AlbumRestrictionObjectReasonEnum),
+          ) as AlbumRestrictionObjectReasonEnum;
+          result.reason = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  AlbumBaseRestrictions deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = AlbumBaseRestrictionsBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 
-/// The reason for the restriction. Albums may be restricted if the content is not available in a given market, to the user's subscription type, or when the user's account is set to not play explicit content. Additional reasons may be added in the future. 
-enum AlbumBaseRestrictionsReasonEnum {
-  @JsonValue(r'market')
-  market,
-  @JsonValue(r'product')
-  product,
-  @JsonValue(r'explicit')
-  explicit,
-  @JsonValue(r'unknown_default_open_api')
-  unknownDefaultOpenApi,
-}
+class AlbumBaseRestrictionsReasonEnum extends EnumClass {
 
+  /// The reason for the restriction. Albums may be restricted if the content is not available in a given market, to the user's subscription type, or when the user's account is set to not play explicit content. Additional reasons may be added in the future. 
+  @BuiltValueEnumConst(wireName: r'market')
+  static const AlbumBaseRestrictionsReasonEnum market = _$albumBaseRestrictionsReasonEnum_market;
+  /// The reason for the restriction. Albums may be restricted if the content is not available in a given market, to the user's subscription type, or when the user's account is set to not play explicit content. Additional reasons may be added in the future. 
+  @BuiltValueEnumConst(wireName: r'product')
+  static const AlbumBaseRestrictionsReasonEnum product = _$albumBaseRestrictionsReasonEnum_product;
+  /// The reason for the restriction. Albums may be restricted if the content is not available in a given market, to the user's subscription type, or when the user's account is set to not play explicit content. Additional reasons may be added in the future. 
+  @BuiltValueEnumConst(wireName: r'explicit')
+  static const AlbumBaseRestrictionsReasonEnum explicit = _$albumBaseRestrictionsReasonEnum_explicit;
+  /// The reason for the restriction. Albums may be restricted if the content is not available in a given market, to the user's subscription type, or when the user's account is set to not play explicit content. Additional reasons may be added in the future. 
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
+  static const AlbumBaseRestrictionsReasonEnum unknownDefaultOpenApi = _$albumBaseRestrictionsReasonEnum_unknownDefaultOpenApi;
+
+  static Serializer<AlbumBaseRestrictionsReasonEnum> get serializer => _$albumBaseRestrictionsReasonEnumSerializer;
+
+  const AlbumBaseRestrictionsReasonEnum._(String name): super(name);
+
+  static BuiltSet<AlbumBaseRestrictionsReasonEnum> get values => _$albumBaseRestrictionsReasonEnumValues;
+  static AlbumBaseRestrictionsReasonEnum valueOf(String name) => _$albumBaseRestrictionsReasonEnumValueOf(name);
+}
 

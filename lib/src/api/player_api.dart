@@ -4,24 +4,24 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:spotify_openapi/src/deserialize.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
+import 'package:spotify_openapi/src/api_util.dart';
 import 'package:spotify_openapi/src/model/currently_playing_context_object.dart';
 import 'package:spotify_openapi/src/model/cursor_paging_play_history_object.dart';
 import 'package:spotify_openapi/src/model/get_a_users_available_devices200_response.dart';
-import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
 import 'package:spotify_openapi/src/model/queue_object.dart';
-import 'package:spotify_openapi/src/model/start_a_users_playback_request.dart';
-import 'package:spotify_openapi/src/model/transfer_a_users_playback_request.dart';
 
 class PlayerApi {
 
   final Dio _dio;
 
-  const PlayerApi(this._dio);
+  final Serializers _serializers;
+
+  const PlayerApi(this._dio, this._serializers);
 
   /// Add Item to Playback Queue 
   /// Add an item to the end of the user&#39;s current playback queue. 
@@ -67,8 +67,8 @@ class PlayerApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'uri': uri,
-      if (deviceId != null) r'device_id': deviceId,
+      r'uri': encodeQueryParameter(_serializers, uri, const FullType(String)),
+      if (deviceId != null) r'device_id': encodeQueryParameter(_serializers, deviceId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -133,8 +133,12 @@ class PlayerApi {
     GetAUsersAvailableDevices200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetAUsersAvailableDevices200Response, GetAUsersAvailableDevices200Response>(rawData, 'GetAUsersAvailableDevices200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetAUsersAvailableDevices200Response),
+      ) as GetAUsersAvailableDevices200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -201,8 +205,8 @@ _responseData = rawData == null ? null : deserialize<GetAUsersAvailableDevices20
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      if (additionalTypes != null) r'additional_types': additionalTypes,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (additionalTypes != null) r'additional_types': encodeQueryParameter(_serializers, additionalTypes, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -217,8 +221,12 @@ _responseData = rawData == null ? null : deserialize<GetAUsersAvailableDevices20
     CurrentlyPlayingContextObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<CurrentlyPlayingContextObject, CurrentlyPlayingContextObject>(rawData, 'CurrentlyPlayingContextObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CurrentlyPlayingContextObject),
+      ) as CurrentlyPlayingContextObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -291,8 +299,12 @@ _responseData = rawData == null ? null : deserialize<CurrentlyPlayingContextObje
     QueueObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<QueueObject, QueueObject>(rawData, 'QueueObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(QueueObject),
+      ) as QueueObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -361,9 +373,9 @@ _responseData = rawData == null ? null : deserialize<QueueObject, QueueObject>(r
     );
 
     final _queryParameters = <String, dynamic>{
-      if (limit != null) r'limit': limit,
-      if (after != null) r'after': after,
-      if (before != null) r'before': before,
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (after != null) r'after': encodeQueryParameter(_serializers, after, const FullType(int)),
+      if (before != null) r'before': encodeQueryParameter(_serializers, before, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -378,8 +390,12 @@ _responseData = rawData == null ? null : deserialize<QueueObject, QueueObject>(r
     CursorPagingPlayHistoryObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<CursorPagingPlayHistoryObject, CursorPagingPlayHistoryObject>(rawData, 'CursorPagingPlayHistoryObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CursorPagingPlayHistoryObject),
+      ) as CursorPagingPlayHistoryObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -446,8 +462,8 @@ _responseData = rawData == null ? null : deserialize<CursorPagingPlayHistoryObje
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      if (additionalTypes != null) r'additional_types': additionalTypes,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (additionalTypes != null) r'additional_types': encodeQueryParameter(_serializers, additionalTypes, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -462,8 +478,12 @@ _responseData = rawData == null ? null : deserialize<CursorPagingPlayHistoryObje
     CurrentlyPlayingContextObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<CurrentlyPlayingContextObject, CurrentlyPlayingContextObject>(rawData, 'CurrentlyPlayingContextObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CurrentlyPlayingContextObject),
+      ) as CurrentlyPlayingContextObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -528,7 +548,7 @@ _responseData = rawData == null ? null : deserialize<CurrentlyPlayingContextObje
     );
 
     final _queryParameters = <String, dynamic>{
-      if (deviceId != null) r'device_id': deviceId,
+      if (deviceId != null) r'device_id': encodeQueryParameter(_serializers, deviceId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -587,8 +607,8 @@ _responseData = rawData == null ? null : deserialize<CurrentlyPlayingContextObje
     );
 
     final _queryParameters = <String, dynamic>{
-      r'position_ms': positionMs,
-      if (deviceId != null) r'device_id': deviceId,
+      r'position_ms': encodeQueryParameter(_serializers, positionMs, const FullType(int)),
+      if (deviceId != null) r'device_id': encodeQueryParameter(_serializers, deviceId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -647,8 +667,8 @@ _responseData = rawData == null ? null : deserialize<CurrentlyPlayingContextObje
     );
 
     final _queryParameters = <String, dynamic>{
-      r'state': state,
-      if (deviceId != null) r'device_id': deviceId,
+      r'state': encodeQueryParameter(_serializers, state, const FullType(String)),
+      if (deviceId != null) r'device_id': encodeQueryParameter(_serializers, deviceId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -707,8 +727,8 @@ _responseData = rawData == null ? null : deserialize<CurrentlyPlayingContextObje
     );
 
     final _queryParameters = <String, dynamic>{
-      r'volume_percent': volumePercent,
-      if (deviceId != null) r'device_id': deviceId,
+      r'volume_percent': encodeQueryParameter(_serializers, volumePercent, const FullType(int)),
+      if (deviceId != null) r'device_id': encodeQueryParameter(_serializers, deviceId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -765,7 +785,7 @@ _responseData = rawData == null ? null : deserialize<CurrentlyPlayingContextObje
     );
 
     final _queryParameters = <String, dynamic>{
-      if (deviceId != null) r'device_id': deviceId,
+      if (deviceId != null) r'device_id': encodeQueryParameter(_serializers, deviceId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -822,7 +842,7 @@ _responseData = rawData == null ? null : deserialize<CurrentlyPlayingContextObje
     );
 
     final _queryParameters = <String, dynamic>{
-      if (deviceId != null) r'device_id': deviceId,
+      if (deviceId != null) r'device_id': encodeQueryParameter(_serializers, deviceId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -854,7 +874,7 @@ _responseData = rawData == null ? null : deserialize<CurrentlyPlayingContextObje
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> startAUsersPlayback({ 
     String? deviceId,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -882,13 +902,15 @@ _responseData = rawData == null ? null : deserialize<CurrentlyPlayingContextObje
     );
 
     final _queryParameters = <String, dynamic>{
-      if (deviceId != null) r'device_id': deviceId,
+      if (deviceId != null) r'device_id': encodeQueryParameter(_serializers, deviceId, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -959,8 +981,8 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'state': state,
-      if (deviceId != null) r'device_id': deviceId,
+      r'state': encodeQueryParameter(_serializers, state, const FullType(bool)),
+      if (deviceId != null) r'device_id': encodeQueryParameter(_serializers, deviceId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -990,7 +1012,7 @@ _bodyData=jsonEncode(requestBody);
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> transferAUsersPlayback({ 
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1020,7 +1042,9 @@ _bodyData=jsonEncode(requestBody);
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(

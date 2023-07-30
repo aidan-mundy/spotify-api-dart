@@ -119,7 +119,7 @@ void main() {
     //
     // Start a new context or resume current playback on the user's active device. 
     //
-    //Future startAUsersPlayback({ String deviceId, Map<String, Object> requestBody }) async
+    //Future startAUsersPlayback({ String deviceId, BuiltMap<String, JsonObject> requestBody }) async
     test('test startAUsersPlayback', () async {
       // TODO
     });
@@ -137,7 +137,7 @@ void main() {
     //
     // Transfer playback to a new device and determine if it should start playing. 
     //
-    //Future transferAUsersPlayback({ Map<String, Object> requestBody }) async
+    //Future transferAUsersPlayback({ BuiltMap<String, JsonObject> requestBody }) async
     test('test transferAUsersPlayback', () async {
       // TODO
     });

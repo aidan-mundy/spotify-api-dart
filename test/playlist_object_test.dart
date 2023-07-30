@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PlaylistObject
 void main() {
-  final PlaylistObject? instance = /* PlaylistObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = PlaylistObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PlaylistObject, () {
     // `true` if the owner allows other users to modify the playlist. 
@@ -42,7 +42,7 @@ void main() {
     });
 
     // Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/web-api/concepts/playlists). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._ 
-    // List<ImageObject> images
+    // BuiltList<ImageObject> images
     test('to test the property `images`', () async {
       // TODO
     });

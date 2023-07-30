@@ -11,7 +11,7 @@ void main() {
     //
     // Get Spotify catalog information about albums, artists, playlists, tracks, shows, episodes or audiobooks that match a keyword string.<br /> **Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.** 
     //
-    //Future<Search200Response> search(String q, List<String> type, { String market, int limit, int offset, String includeExternal }) async
+    //Future<Search200Response> search(String q, BuiltList<String> type, { String market, int limit, int offset, String includeExternal }) async
     test('test search', () async {
       // TODO
     });

@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for SavedEpisodeObject
 void main() {
-  final SavedEpisodeObject? instance = /* SavedEpisodeObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = SavedEpisodeObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(SavedEpisodeObject, () {
     // The date and time the episode was saved. Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ. 

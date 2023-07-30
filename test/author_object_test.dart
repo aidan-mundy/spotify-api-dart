@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for AuthorObject
 void main() {
-  final AuthorObject? instance = /* AuthorObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = AuthorObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(AuthorObject, () {
     // The name of the author. 

@@ -3,54 +3,109 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:spotify_openapi/src/model/device_object.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'devices_object.g.dart';
 
+/// DevicesObject
+///
+/// Properties:
+/// * [devices] - A list of 0..n Device objects
+@BuiltValue()
+abstract class DevicesObject implements Built<DevicesObject, DevicesObjectBuilder> {
+  /// A list of 0..n Device objects
+  @BuiltValueField(wireName: r'devices')
+  BuiltList<DeviceObject>? get devices;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class DevicesObject {
-  /// Returns a new [DevicesObject] instance.
-  DevicesObject({
+  DevicesObject._();
 
-     this.devices,
-  });
+  factory DevicesObject([void updates(DevicesObjectBuilder b)]) = _$DevicesObject;
 
-      /// A list of 0..n Device objects
-  @JsonKey(
-    
-    name: r'devices',
-    required: false,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(DevicesObjectBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<DevicesObject> get serializer => _$DevicesObjectSerializer();
+}
 
-  final List<DeviceObject>? devices;
-
-
+class _$DevicesObjectSerializer implements PrimitiveSerializer<DevicesObject> {
+  @override
+  final Iterable<Type> types = const [DevicesObject, _$DevicesObject];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is DevicesObject &&
-     other.devices == devices;
+  final String wireName = r'DevicesObject';
 
-  @override
-  int get hashCode =>
-    devices.hashCode;
-
-  factory DevicesObject.fromJson(Map<String, dynamic> json) => _$DevicesObjectFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DevicesObjectToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    DevicesObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.devices != null) {
+      yield r'devices';
+      yield serializers.serialize(
+        object.devices,
+        specifiedType: const FullType(BuiltList, [FullType(DeviceObject)]),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    DevicesObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required DevicesObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'devices':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(DeviceObject)]),
+          ) as BuiltList<DeviceObject>;
+          result.devices.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  DevicesObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = DevicesObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

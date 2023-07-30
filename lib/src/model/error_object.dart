@@ -3,72 +3,122 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'error_object.g.dart';
 
+/// ErrorObject
+///
+/// Properties:
+/// * [status] - The HTTP status code (also returned in the response header; see [Response Status Codes](/documentation/web-api/concepts/api-calls#response-status-codes) for more information). 
+/// * [message] - A short description of the cause of the error. 
+@BuiltValue()
+abstract class ErrorObject implements Built<ErrorObject, ErrorObjectBuilder> {
+  /// The HTTP status code (also returned in the response header; see [Response Status Codes](/documentation/web-api/concepts/api-calls#response-status-codes) for more information). 
+  @BuiltValueField(wireName: r'status')
+  int get status;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class ErrorObject {
-  /// Returns a new [ErrorObject] instance.
-  ErrorObject({
+  /// A short description of the cause of the error. 
+  @BuiltValueField(wireName: r'message')
+  String get message;
 
-    required  this.status,
+  ErrorObject._();
 
-    required  this.message,
-  });
+  factory ErrorObject([void updates(ErrorObjectBuilder b)]) = _$ErrorObject;
 
-      /// The HTTP status code (also returned in the response header; see [Response Status Codes](/documentation/web-api/concepts/api-calls#response-status-codes) for more information). 
-          // minimum: 400
-          // maximum: 599
-  @JsonKey(
-    
-    name: r'status',
-    required: true,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(ErrorObjectBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<ErrorObject> get serializer => _$ErrorObjectSerializer();
+}
 
-  final int status;
-
-
-
-      /// A short description of the cause of the error. 
-  @JsonKey(
-    
-    name: r'message',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String message;
-
-
+class _$ErrorObjectSerializer implements PrimitiveSerializer<ErrorObject> {
+  @override
+  final Iterable<Type> types = const [ErrorObject, _$ErrorObject];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ErrorObject &&
-     other.status == status &&
-     other.message == message;
+  final String wireName = r'ErrorObject';
 
-  @override
-  int get hashCode =>
-    status.hashCode +
-    message.hashCode;
-
-  factory ErrorObject.fromJson(Map<String, dynamic> json) => _$ErrorObjectFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ErrorObjectToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    ErrorObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'status';
+    yield serializers.serialize(
+      object.status,
+      specifiedType: const FullType(int),
+    );
+    yield r'message';
+    yield serializers.serialize(
+      object.message,
+      specifiedType: const FullType(String),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    ErrorObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required ErrorObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'status':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.status = valueDes;
+          break;
+        case r'message':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.message = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  ErrorObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = ErrorObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

@@ -5,370 +5,359 @@
 // ignore_for_file: unused_element
 import 'package:spotify_openapi/src/model/copyright_object.dart';
 import 'package:spotify_openapi/src/model/image_object.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:spotify_openapi/src/model/author_object.dart';
 import 'package:spotify_openapi/src/model/audiobook_base_external_urls.dart';
 import 'package:spotify_openapi/src/model/narrator_object.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:spotify_openapi/src/model/audiobook_base.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'simplified_audiobook_object.g.dart';
 
-
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class SimplifiedAudiobookObject {
-  /// Returns a new [SimplifiedAudiobookObject] instance.
-  SimplifiedAudiobookObject({
-
-    required  this.authors,
-
-    required  this.availableMarkets,
-
-    required  this.copyrights,
-
-    required  this.description,
-
-    required  this.htmlDescription,
-
-     this.edition,
-
-    required  this.explicit,
-
-    required  this.externalUrls,
-
-    required  this.href,
-
-    required  this.id,
-
-    required  this.images,
-
-    required  this.languages,
-
-    required  this.mediaType,
-
-    required  this.name,
-
-    required  this.narrators,
-
-    required  this.publisher,
-
-    required  this.type,
-
-    required  this.uri,
-
-    required  this.totalChapters,
-  });
-
-      /// The author(s) for the audiobook. 
-  @JsonKey(
-    
-    name: r'authors',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final List<AuthorObject> authors;
-
-
-
-      /// A list of the countries in which the audiobook can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code. 
-  @JsonKey(
-    
-    name: r'available_markets',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final List<String> availableMarkets;
-
-
-
-      /// The copyright statements of the audiobook. 
-  @JsonKey(
-    
-    name: r'copyrights',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final List<CopyrightObject> copyrights;
-
-
-
-      /// A description of the audiobook. HTML tags are stripped away from this field, use `html_description` field in case HTML tags are needed. 
-  @JsonKey(
-    
-    name: r'description',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String description;
-
-
-
-      /// A description of the audiobook. This field may contain HTML tags. 
-  @JsonKey(
-    
-    name: r'html_description',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String htmlDescription;
-
-
-
-      /// The edition of the audiobook. 
-  @JsonKey(
-    
-    name: r'edition',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? edition;
-
-
-
-      /// Whether or not the audiobook has explicit content (true = yes it does; false = no it does not OR unknown). 
-  @JsonKey(
-    
-    name: r'explicit',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final bool explicit;
-
-
-
-  @JsonKey(
-    
-    name: r'external_urls',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final AudiobookBaseExternalUrls externalUrls;
-
-
-
-      /// A link to the Web API endpoint providing full details of the audiobook. 
-  @JsonKey(
-    
-    name: r'href',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String href;
-
-
-
-      /// The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the audiobook. 
-  @JsonKey(
-    
-    name: r'id',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String id;
-
-
-
-      /// The cover art for the audiobook in various sizes, widest first. 
-  @JsonKey(
-    
-    name: r'images',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final List<ImageObject> images;
-
-
-
-      /// A list of the languages used in the audiobook, identified by their [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code. 
-  @JsonKey(
-    
-    name: r'languages',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final List<String> languages;
-
-
-
-      /// The media type of the audiobook. 
-  @JsonKey(
-    
-    name: r'media_type',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String mediaType;
-
-
-
-      /// The name of the audiobook. 
-  @JsonKey(
-    
-    name: r'name',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String name;
-
-
-
-      /// The narrator(s) for the audiobook. 
-  @JsonKey(
-    
-    name: r'narrators',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final List<NarratorObject> narrators;
-
-
-
-      /// The publisher of the audiobook. 
-  @JsonKey(
-    
-    name: r'publisher',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String publisher;
-
-
-
-      /// The object type. 
-  @JsonKey(
-    
-    name: r'type',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final SimplifiedAudiobookObjectTypeEnum type;
-
-
-
-      /// The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the audiobook. 
-  @JsonKey(
-    
-    name: r'uri',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String uri;
-
-
-
-      /// The number of chapters in this audiobook. 
-  @JsonKey(
-    
-    name: r'total_chapters',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final int totalChapters;
-
-
+/// SimplifiedAudiobookObject
+///
+/// Properties:
+/// * [authors] - The author(s) for the audiobook. 
+/// * [availableMarkets] - A list of the countries in which the audiobook can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code. 
+/// * [copyrights] - The copyright statements of the audiobook. 
+/// * [description] - A description of the audiobook. HTML tags are stripped away from this field, use `html_description` field in case HTML tags are needed. 
+/// * [htmlDescription] - A description of the audiobook. This field may contain HTML tags. 
+/// * [edition] - The edition of the audiobook. 
+/// * [explicit] - Whether or not the audiobook has explicit content (true = yes it does; false = no it does not OR unknown). 
+/// * [externalUrls] 
+/// * [href] - A link to the Web API endpoint providing full details of the audiobook. 
+/// * [id] - The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the audiobook. 
+/// * [images] - The cover art for the audiobook in various sizes, widest first. 
+/// * [languages] - A list of the languages used in the audiobook, identified by their [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code. 
+/// * [mediaType] - The media type of the audiobook. 
+/// * [name] - The name of the audiobook. 
+/// * [narrators] - The narrator(s) for the audiobook. 
+/// * [publisher] - The publisher of the audiobook. 
+/// * [type] - The object type. 
+/// * [uri] - The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the audiobook. 
+/// * [totalChapters] - The number of chapters in this audiobook. 
+@BuiltValue()
+abstract class SimplifiedAudiobookObject implements AudiobookBase, Built<SimplifiedAudiobookObject, SimplifiedAudiobookObjectBuilder> {
+  SimplifiedAudiobookObject._();
+
+  factory SimplifiedAudiobookObject([void updates(SimplifiedAudiobookObjectBuilder b)]) = _$SimplifiedAudiobookObject;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(SimplifiedAudiobookObjectBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<SimplifiedAudiobookObject> get serializer => _$SimplifiedAudiobookObjectSerializer();
+}
+
+class _$SimplifiedAudiobookObjectSerializer implements PrimitiveSerializer<SimplifiedAudiobookObject> {
+  @override
+  final Iterable<Type> types = const [SimplifiedAudiobookObject, _$SimplifiedAudiobookObject];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SimplifiedAudiobookObject &&
-     other.authors == authors &&
-     other.availableMarkets == availableMarkets &&
-     other.copyrights == copyrights &&
-     other.description == description &&
-     other.htmlDescription == htmlDescription &&
-     other.edition == edition &&
-     other.explicit == explicit &&
-     other.externalUrls == externalUrls &&
-     other.href == href &&
-     other.id == id &&
-     other.images == images &&
-     other.languages == languages &&
-     other.mediaType == mediaType &&
-     other.name == name &&
-     other.narrators == narrators &&
-     other.publisher == publisher &&
-     other.type == type &&
-     other.uri == uri &&
-     other.totalChapters == totalChapters;
+  final String wireName = r'SimplifiedAudiobookObject';
 
-  @override
-  int get hashCode =>
-    authors.hashCode +
-    availableMarkets.hashCode +
-    copyrights.hashCode +
-    description.hashCode +
-    htmlDescription.hashCode +
-    edition.hashCode +
-    explicit.hashCode +
-    externalUrls.hashCode +
-    href.hashCode +
-    id.hashCode +
-    images.hashCode +
-    languages.hashCode +
-    mediaType.hashCode +
-    name.hashCode +
-    narrators.hashCode +
-    publisher.hashCode +
-    type.hashCode +
-    uri.hashCode +
-    totalChapters.hashCode;
-
-  factory SimplifiedAudiobookObject.fromJson(Map<String, dynamic> json) => _$SimplifiedAudiobookObjectFromJson(json);
-
-  Map<String, dynamic> toJson() => _$SimplifiedAudiobookObjectToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    SimplifiedAudiobookObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'images';
+    yield serializers.serialize(
+      object.images,
+      specifiedType: const FullType(BuiltList, [FullType(ImageObject)]),
+    );
+    yield r'languages';
+    yield serializers.serialize(
+      object.languages,
+      specifiedType: const FullType(BuiltList, [FullType(String)]),
+    );
+    yield r'copyrights';
+    yield serializers.serialize(
+      object.copyrights,
+      specifiedType: const FullType(BuiltList, [FullType(CopyrightObject)]),
+    );
+    yield r'description';
+    yield serializers.serialize(
+      object.description,
+      specifiedType: const FullType(String),
+    );
+    if (object.edition != null) {
+      yield r'edition';
+      yield serializers.serialize(
+        object.edition,
+        specifiedType: const FullType(String),
+      );
+    }
+    yield r'media_type';
+    yield serializers.serialize(
+      object.mediaType,
+      specifiedType: const FullType(String),
+    );
+    yield r'external_urls';
+    yield serializers.serialize(
+      object.externalUrls,
+      specifiedType: const FullType(AudiobookBaseExternalUrls),
+    );
+    yield r'html_description';
+    yield serializers.serialize(
+      object.htmlDescription,
+      specifiedType: const FullType(String),
+    );
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(AudiobookBaseTypeEnum),
+    );
+    yield r'uri';
+    yield serializers.serialize(
+      object.uri,
+      specifiedType: const FullType(String),
+    );
+    yield r'explicit';
+    yield serializers.serialize(
+      object.explicit,
+      specifiedType: const FullType(bool),
+    );
+    yield r'available_markets';
+    yield serializers.serialize(
+      object.availableMarkets,
+      specifiedType: const FullType(BuiltList, [FullType(String)]),
+    );
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
+    yield r'publisher';
+    yield serializers.serialize(
+      object.publisher,
+      specifiedType: const FullType(String),
+    );
+    yield r'href';
+    yield serializers.serialize(
+      object.href,
+      specifiedType: const FullType(String),
+    );
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(String),
+    );
+    yield r'total_chapters';
+    yield serializers.serialize(
+      object.totalChapters,
+      specifiedType: const FullType(int),
+    );
+    yield r'authors';
+    yield serializers.serialize(
+      object.authors,
+      specifiedType: const FullType(BuiltList, [FullType(AuthorObject)]),
+    );
+    yield r'narrators';
+    yield serializers.serialize(
+      object.narrators,
+      specifiedType: const FullType(BuiltList, [FullType(NarratorObject)]),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    SimplifiedAudiobookObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required SimplifiedAudiobookObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'images':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ImageObject)]),
+          ) as BuiltList<ImageObject>;
+          result.images.replace(valueDes);
+          break;
+        case r'languages':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.languages.replace(valueDes);
+          break;
+        case r'copyrights':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(CopyrightObject)]),
+          ) as BuiltList<CopyrightObject>;
+          result.copyrights.replace(valueDes);
+          break;
+        case r'description':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.description = valueDes;
+          break;
+        case r'edition':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.edition = valueDes;
+          break;
+        case r'media_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.mediaType = valueDes;
+          break;
+        case r'external_urls':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(AudiobookBaseExternalUrls),
+          ) as AudiobookBaseExternalUrls;
+          result.externalUrls.replace(valueDes);
+          break;
+        case r'html_description':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.htmlDescription = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(AudiobookBaseTypeEnum),
+          ) as AudiobookBaseTypeEnum;
+          result.type = valueDes;
+          break;
+        case r'uri':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.uri = valueDes;
+          break;
+        case r'explicit':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.explicit = valueDes;
+          break;
+        case r'available_markets':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.availableMarkets.replace(valueDes);
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        case r'publisher':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.publisher = valueDes;
+          break;
+        case r'href':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.href = valueDes;
+          break;
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'total_chapters':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalChapters = valueDes;
+          break;
+        case r'authors':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(AuthorObject)]),
+          ) as BuiltList<AuthorObject>;
+          result.authors.replace(valueDes);
+          break;
+        case r'narrators':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(NarratorObject)]),
+          ) as BuiltList<NarratorObject>;
+          result.narrators.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  SimplifiedAudiobookObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = SimplifiedAudiobookObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 
-/// The object type. 
-enum SimplifiedAudiobookObjectTypeEnum {
-  @JsonValue(r'audiobook')
-  audiobook,
-  @JsonValue(r'unknown_default_open_api')
-  unknownDefaultOpenApi,
-}
+class SimplifiedAudiobookObjectTypeEnum extends EnumClass {
 
+  /// The object type. 
+  @BuiltValueEnumConst(wireName: r'audiobook')
+  static const SimplifiedAudiobookObjectTypeEnum audiobook = _$simplifiedAudiobookObjectTypeEnum_audiobook;
+  /// The object type. 
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
+  static const SimplifiedAudiobookObjectTypeEnum unknownDefaultOpenApi = _$simplifiedAudiobookObjectTypeEnum_unknownDefaultOpenApi;
+
+  static Serializer<SimplifiedAudiobookObjectTypeEnum> get serializer => _$simplifiedAudiobookObjectTypeEnumSerializer;
+
+  const SimplifiedAudiobookObjectTypeEnum._(String name): super(name);
+
+  static BuiltSet<SimplifiedAudiobookObjectTypeEnum> get values => _$simplifiedAudiobookObjectTypeEnumValues;
+  static SimplifiedAudiobookObjectTypeEnum valueOf(String name) => _$simplifiedAudiobookObjectTypeEnumValueOf(name);
+}
 

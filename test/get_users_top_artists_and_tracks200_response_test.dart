@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for GetUsersTopArtistsAndTracks200Response
 void main() {
-  final GetUsersTopArtistsAndTracks200Response? instance = /* GetUsersTopArtistsAndTracks200Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = GetUsersTopArtistsAndTracks200ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(GetUsersTopArtistsAndTracks200Response, () {
     // A link to the Web API endpoint returning the full result of the request 
@@ -43,7 +43,7 @@ void main() {
       // TODO
     });
 
-    // List<GetUsersTopArtistsAndTracks200ResponseAllOfItemsInner> items
+    // BuiltList<GetUsersTopArtistsAndTracks200ResponseAllOfItemsInner> items
     test('to test the property `items`', () async {
       // TODO
     });

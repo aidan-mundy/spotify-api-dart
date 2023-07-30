@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for ChangePlaylistDetailsRequest
 void main() {
-  final ChangePlaylistDetailsRequest? instance = /* ChangePlaylistDetailsRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = ChangePlaylistDetailsRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ChangePlaylistDetailsRequest, () {
     // The new name for the playlist, for example `\"My New Playlist Title\"` 

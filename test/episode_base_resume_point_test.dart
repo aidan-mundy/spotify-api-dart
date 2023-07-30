@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for EpisodeBaseResumePoint
 void main() {
-  final EpisodeBaseResumePoint? instance = /* EpisodeBaseResumePoint(...) */ null;
-  // TODO add properties to the entity
+  final instance = EpisodeBaseResumePointBuilder();
+  // TODO add properties to the builder and call build()
 
   group(EpisodeBaseResumePoint, () {
     // Whether or not the episode has been fully played by the user. 

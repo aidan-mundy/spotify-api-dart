@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for RecommendationSeedObject
 void main() {
-  final RecommendationSeedObject? instance = /* RecommendationSeedObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = RecommendationSeedObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(RecommendationSeedObject, () {
     // The number of tracks available after min\\_\\* and max\\_\\* filters have been applied. 

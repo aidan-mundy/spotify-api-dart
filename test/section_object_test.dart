@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for SectionObject
 void main() {
-  final SectionObject? instance = /* SectionObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = SectionObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(SectionObject, () {
     // The starting point (in seconds) of the section.

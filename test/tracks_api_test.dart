@@ -11,7 +11,7 @@ void main() {
     //
     // Add one or more items to a user's playlist. 
     //
-    //Future<ReorderOrReplacePlaylistsTracks200Response> addTracksToPlaylist(String playlistId, { int position, String uris, Map<String, Object> requestBody }) async
+    //Future<ReorderOrReplacePlaylistsTracks200Response> addTracksToPlaylist(String playlistId, { int position, String uris, BuiltMap<String, JsonObject> requestBody }) async
     test('test addTracksToPlaylist', () async {
       // TODO
     });
@@ -20,7 +20,7 @@ void main() {
     //
     // Check if one or more tracks is already saved in the current Spotify user's 'Your Music' library. 
     //
-    //Future<List<bool>> checkUsersSavedTracks(String ids) async
+    //Future<BuiltList<bool>> checkUsersSavedTracks(String ids) async
     test('test checkUsersSavedTracks', () async {
       // TODO
     });
@@ -137,7 +137,7 @@ void main() {
     //
     // Remove one or more tracks from the current user's 'Your Music' library. 
     //
-    //Future removeTracksUser(String ids, { Map<String, Object> requestBody }) async
+    //Future removeTracksUser(String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test removeTracksUser', () async {
       // TODO
     });
@@ -146,7 +146,7 @@ void main() {
     //
     // Either reorder or replace items in a playlist depending on the request's parameters. To reorder items, include `range_start`, `insert_before`, `range_length` and `snapshot_id` in the request's body. To replace items, include `uris` as either a query parameter or in the request's body. Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist. <br/> **Note**: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters. These operations can't be applied together in a single request. 
     //
-    //Future<ReorderOrReplacePlaylistsTracks200Response> reorderOrReplacePlaylistsTracks(String playlistId, { String uris, Map<String, Object> requestBody }) async
+    //Future<ReorderOrReplacePlaylistsTracks200Response> reorderOrReplacePlaylistsTracks(String playlistId, { String uris, BuiltMap<String, JsonObject> requestBody }) async
     test('test reorderOrReplacePlaylistsTracks', () async {
       // TODO
     });
@@ -155,7 +155,7 @@ void main() {
     //
     // Save one or more tracks to the current user's 'Your Music' library. 
     //
-    //Future saveTracksUser(String ids, { Map<String, Object> requestBody }) async
+    //Future saveTracksUser(String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test saveTracksUser', () async {
       // TODO
     });

@@ -3,70 +3,159 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'cursor_object.g.dart';
 
+/// CursorObject
+///
+/// Properties:
+/// * [after] - The cursor to use as key to find the next page of items.
+/// * [before] - The cursor to use as key to find the previous page of items.
+@BuiltValue(instantiable: false)
+abstract class CursorObject  {
+  /// The cursor to use as key to find the next page of items.
+  @BuiltValueField(wireName: r'after')
+  String? get after;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class CursorObject {
-  /// Returns a new [CursorObject] instance.
-  CursorObject({
+  /// The cursor to use as key to find the previous page of items.
+  @BuiltValueField(wireName: r'before')
+  String? get before;
 
-     this.after,
+  @BuiltValueSerializer(custom: true)
+  static Serializer<CursorObject> get serializer => _$CursorObjectSerializer();
+}
 
-     this.before,
-  });
-
-      /// The cursor to use as key to find the next page of items.
-  @JsonKey(
-    
-    name: r'after',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? after;
-
-
-
-      /// The cursor to use as key to find the previous page of items.
-  @JsonKey(
-    
-    name: r'before',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? before;
-
-
+class _$CursorObjectSerializer implements PrimitiveSerializer<CursorObject> {
+  @override
+  final Iterable<Type> types = const [CursorObject];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is CursorObject &&
-     other.after == after &&
-     other.before == before;
+  final String wireName = r'CursorObject';
 
-  @override
-  int get hashCode =>
-    after.hashCode +
-    before.hashCode;
-
-  factory CursorObject.fromJson(Map<String, dynamic> json) => _$CursorObjectFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CursorObjectToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    CursorObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.after != null) {
+      yield r'after';
+      yield serializers.serialize(
+        object.after,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.before != null) {
+      yield r'before';
+      yield serializers.serialize(
+        object.before,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    CursorObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  @override
+  CursorObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.deserialize(serialized, specifiedType: FullType($CursorObject)) as $CursorObject;
+  }
+}
+
+/// a concrete implementation of [CursorObject], since [CursorObject] is not instantiable
+@BuiltValue(instantiable: true)
+abstract class $CursorObject implements CursorObject, Built<$CursorObject, $CursorObjectBuilder> {
+  $CursorObject._();
+
+  factory $CursorObject([void Function($CursorObjectBuilder)? updates]) = _$$CursorObject;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults($CursorObjectBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<$CursorObject> get serializer => _$$CursorObjectSerializer();
+}
+
+class _$$CursorObjectSerializer implements PrimitiveSerializer<$CursorObject> {
+  @override
+  final Iterable<Type> types = const [$CursorObject, _$$CursorObject];
+
+  @override
+  final String wireName = r'$CursorObject';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    $CursorObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.serialize(object, specifiedType: FullType(CursorObject))!;
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required CursorObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'after':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.after = valueDes;
+          break;
+        case r'before':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.before = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  $CursorObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = $CursorObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for TrackObjectExternalIds
 void main() {
-  final TrackObjectExternalIds? instance = /* TrackObjectExternalIds(...) */ null;
-  // TODO add properties to the entity
+  final instance = TrackObjectExternalIdsBuilder();
+  // TODO add properties to the builder and call build()
 
   group(TrackObjectExternalIds, () {
     // [International Standard Recording Code](http://en.wikipedia.org/wiki/International_Standard_Recording_Code) 

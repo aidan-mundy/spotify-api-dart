@@ -4,28 +4,27 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:spotify_openapi/src/deserialize.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:spotify_openapi/src/api_util.dart';
 import 'package:spotify_openapi/src/model/chapter_object.dart';
-import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
 import 'package:spotify_openapi/src/model/get_several_chapters200_response.dart';
 import 'package:spotify_openapi/src/model/paging_simplified_chapter_object.dart';
 
 class ChaptersApi {
-
   final Dio _dio;
 
-  const ChaptersApi(this._dio);
+  final Serializers _serializers;
 
-  /// Get a Chapter 
-  /// Get Spotify catalog information for a single chapter.&lt;br /&gt; **Note: Chapters are only available for the US, UK, Ireland, New Zealand and Australia markets.** 
+  const ChaptersApi(this._dio, this._serializers);
+
+  /// Get a Chapter
+  /// Get Spotify catalog information for a single chapter.&lt;br /&gt; **Note: Chapters are only available for the US, UK, Ireland, New Zealand and Australia markets.**
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [market] 
+  /// * [id]
+  /// * [market]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -35,7 +34,7 @@ class ChaptersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [ChapterObject] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ChapterObject>> getAChapter({ 
+  Future<Response<ChapterObject>> getAChapter({
     required String id,
     String? market,
     CancelToken? cancelToken,
@@ -45,7 +44,8 @@ class ChaptersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/chapters/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/chapters/{id}'
+        .replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -64,7 +64,7 @@ class ChaptersApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -79,8 +79,13 @@ class ChaptersApi {
     ChapterObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ChapterObject, ChapterObject>(rawData, 'ChapterObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(ChapterObject),
+            ) as ChapterObject;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -103,14 +108,14 @@ _responseData = rawData == null ? null : deserialize<ChapterObject, ChapterObjec
     );
   }
 
-  /// Get Audiobook Chapters 
-  /// Get Spotify catalog information about an audiobook&#39;s chapters.&lt;br /&gt; **Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.** 
+  /// Get Audiobook Chapters
+  /// Get Spotify catalog information about an audiobook&#39;s chapters.&lt;br /&gt; **Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.**
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [market] 
-  /// * [limit] 
-  /// * [offset] 
+  /// * [id]
+  /// * [market]
+  /// * [limit]
+  /// * [offset]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -120,7 +125,7 @@ _responseData = rawData == null ? null : deserialize<ChapterObject, ChapterObjec
   ///
   /// Returns a [Future] containing a [Response] with a [PagingSimplifiedChapterObject] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PagingSimplifiedChapterObject>> getAudiobookChapters({ 
+  Future<Response<PagingSimplifiedChapterObject>> getAudiobookChapters({
     required String id,
     String? market,
     int? limit = 20,
@@ -132,7 +137,8 @@ _responseData = rawData == null ? null : deserialize<ChapterObject, ChapterObjec
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/audiobooks/{id}/chapters'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/audiobooks/{id}/chapters'
+        .replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -151,9 +157,9 @@ _responseData = rawData == null ? null : deserialize<ChapterObject, ChapterObjec
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -168,8 +174,13 @@ _responseData = rawData == null ? null : deserialize<ChapterObject, ChapterObjec
     PagingSimplifiedChapterObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingSimplifiedChapterObject, PagingSimplifiedChapterObject>(rawData, 'PagingSimplifiedChapterObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PagingSimplifiedChapterObject),
+            ) as PagingSimplifiedChapterObject;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -192,12 +203,12 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedChapterObje
     );
   }
 
-  /// Get Several Chapters 
-  /// Get Spotify catalog information for several chapters identified by their Spotify IDs.&lt;br /&gt; **Note: Chapters are only available for the US, UK, Ireland, New Zealand and Australia markets.** 
+  /// Get Several Chapters
+  /// Get Spotify catalog information for several chapters identified by their Spotify IDs.&lt;br /&gt; **Note: Chapters are only available for the US, UK, Ireland, New Zealand and Australia markets.**
   ///
   /// Parameters:
-  /// * [ids] 
-  /// * [market] 
+  /// * [ids]
+  /// * [market]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -207,7 +218,7 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedChapterObje
   ///
   /// Returns a [Future] containing a [Response] with a [GetSeveralChapters200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<GetSeveralChapters200Response>> getSeveralChapters({ 
+  Future<Response<GetSeveralChapters200Response>> getSeveralChapters({
     required String ids,
     String? market,
     CancelToken? cancelToken,
@@ -236,8 +247,8 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedChapterObje
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
-      if (market != null) r'market': market,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -252,8 +263,13 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedChapterObje
     GetSeveralChapters200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetSeveralChapters200Response, GetSeveralChapters200Response>(rawData, 'GetSeveralChapters200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(GetSeveralChapters200Response),
+            ) as GetSeveralChapters200Response;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -275,5 +291,4 @@ _responseData = rawData == null ? null : deserialize<GetSeveralChapters200Respon
       extra: _response.extra,
     );
   }
-
 }

@@ -4,12 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:spotify_openapi/src/deserialize.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:spotify_openapi/src/api_util.dart';
 import 'package:spotify_openapi/src/model/get_multiple_shows200_response.dart';
 import 'package:spotify_openapi/src/model/paging_saved_show_object.dart';
 import 'package:spotify_openapi/src/model/paging_simplified_episode_object.dart';
@@ -19,7 +18,9 @@ class ShowsApi {
 
   final Dio _dio;
 
-  const ShowsApi(this._dio);
+  final Serializers _serializers;
+
+  const ShowsApi(this._dio, this._serializers);
 
   /// Check User&#39;s Saved Shows 
   /// Check if one or more shows is already saved in the current Spotify user&#39;s library. 
@@ -33,9 +34,9 @@ class ShowsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [List<bool>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<bool>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<List<bool>>> checkUsersSavedShows({ 
+  Future<Response<BuiltList<bool>>> checkUsersSavedShows({ 
     required String ids,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -63,7 +64,7 @@ class ShowsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -75,11 +76,15 @@ class ShowsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    List<bool>? _responseData;
+    BuiltList<bool>? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 'List<bool>', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(bool)]),
+      ) as BuiltList<bool>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -90,7 +95,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       );
     }
 
-    return Response<List<bool>>(
+    return Response<BuiltList<bool>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -127,7 +132,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/shows/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/shows/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -146,7 +151,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -161,8 +166,12 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     ShowObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ShowObject, ShowObject>(rawData, 'ShowObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ShowObject),
+      ) as ShowObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -214,7 +223,7 @@ _responseData = rawData == null ? null : deserialize<ShowObject, ShowObject>(raw
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/shows/{id}/episodes'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/shows/{id}/episodes'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -233,9 +242,9 @@ _responseData = rawData == null ? null : deserialize<ShowObject, ShowObject>(raw
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -250,8 +259,12 @@ _responseData = rawData == null ? null : deserialize<ShowObject, ShowObject>(raw
     PagingSimplifiedEpisodeObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingSimplifiedEpisodeObject, PagingSimplifiedEpisodeObject>(rawData, 'PagingSimplifiedEpisodeObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingSimplifiedEpisodeObject),
+      ) as PagingSimplifiedEpisodeObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -318,8 +331,8 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedEpisodeObje
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      r'ids': ids,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -334,8 +347,12 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedEpisodeObje
     GetMultipleShows200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetMultipleShows200Response, GetMultipleShows200Response>(rawData, 'GetMultipleShows200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetMultipleShows200Response),
+      ) as GetMultipleShows200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -402,8 +419,8 @@ _responseData = rawData == null ? null : deserialize<GetMultipleShows200Response
     );
 
     final _queryParameters = <String, dynamic>{
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -418,8 +435,12 @@ _responseData = rawData == null ? null : deserialize<GetMultipleShows200Response
     PagingSavedShowObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingSavedShowObject, PagingSavedShowObject>(rawData, 'PagingSavedShowObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingSavedShowObject),
+      ) as PagingSavedShowObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -486,8 +507,8 @@ _responseData = rawData == null ? null : deserialize<PagingSavedShowObject, Pagi
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
-      if (market != null) r'market': market,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -544,7 +565,7 @@ _responseData = rawData == null ? null : deserialize<PagingSavedShowObject, Pagi
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

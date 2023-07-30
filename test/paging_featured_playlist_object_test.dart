@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PagingFeaturedPlaylistObject
 void main() {
-  final PagingFeaturedPlaylistObject? instance = /* PagingFeaturedPlaylistObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = PagingFeaturedPlaylistObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PagingFeaturedPlaylistObject, () {
     // String message

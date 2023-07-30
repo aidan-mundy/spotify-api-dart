@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for SimplifiedPlaylistObjectTracks
 void main() {
-  final SimplifiedPlaylistObjectTracks? instance = /* SimplifiedPlaylistObjectTracks(...) */ null;
-  // TODO add properties to the entity
+  final instance = SimplifiedPlaylistObjectTracksBuilder();
+  // TODO add properties to the builder and call build()
 
   group(SimplifiedPlaylistObjectTracks, () {
     // A link to the Web API endpoint where full details of the playlist's tracks can be retrieved. 

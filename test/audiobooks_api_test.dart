@@ -11,7 +11,7 @@ void main() {
     //
     // Check if one or more audiobooks are already saved in the current Spotify user's library. 
     //
-    //Future<List<bool>> checkUsersSavedAudiobooks(String ids) async
+    //Future<BuiltList<bool>> checkUsersSavedAudiobooks(String ids) async
     test('test checkUsersSavedAudiobooks', () async {
       // TODO
     });

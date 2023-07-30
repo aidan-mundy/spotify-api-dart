@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for AudioAnalysisObjectMeta
 void main() {
-  final AudioAnalysisObjectMeta? instance = /* AudioAnalysisObjectMeta(...) */ null;
-  // TODO add properties to the entity
+  final instance = AudioAnalysisObjectMetaBuilder();
+  // TODO add properties to the builder and call build()
 
   group(AudioAnalysisObjectMeta, () {
     // The version of the Analyzer used to analyze this track.

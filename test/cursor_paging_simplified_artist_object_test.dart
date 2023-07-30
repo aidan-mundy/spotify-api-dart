@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for CursorPagingSimplifiedArtistObject
 void main() {
-  final CursorPagingSimplifiedArtistObject? instance = /* CursorPagingSimplifiedArtistObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = CursorPagingSimplifiedArtistObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CursorPagingSimplifiedArtistObject, () {
     // A link to the Web API endpoint returning the full result of the request.
@@ -36,7 +36,7 @@ void main() {
       // TODO
     });
 
-    // List<ArtistObject> items
+    // BuiltList<ArtistObject> items
     test('to test the property `items`', () async {
       // TODO
     });

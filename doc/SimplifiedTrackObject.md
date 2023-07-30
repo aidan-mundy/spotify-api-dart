@@ -8,8 +8,8 @@ import 'package:spotify_openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**artists** | [**List&lt;SimplifiedArtistObject&gt;**](SimplifiedArtistObject.md) | The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist. | [optional] 
-**availableMarkets** | **List&lt;String&gt;** | A list of the countries in which the track can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.  | [optional] 
+**artists** | [**BuiltList&lt;SimplifiedArtistObject&gt;**](SimplifiedArtistObject.md) | The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist. | [optional] 
+**availableMarkets** | **BuiltList&lt;String&gt;** | A list of the countries in which the track can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.  | [optional] 
 **discNumber** | **int** | The disc number (usually `1` unless the album consists of more than one disc). | [optional] 
 **durationMs** | **int** | The track length in milliseconds. | [optional] 
 **explicit** | **bool** | Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown). | [optional] 

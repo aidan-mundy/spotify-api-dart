@@ -4,52 +4,104 @@
 
 // ignore_for_file: unused_element
 import 'package:spotify_openapi/src/model/paging_simplified_album_object.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'get_new_releases200_response.g.dart';
 
+/// GetNewReleases200Response
+///
+/// Properties:
+/// * [albums] 
+@BuiltValue()
+abstract class GetNewReleases200Response implements Built<GetNewReleases200Response, GetNewReleases200ResponseBuilder> {
+  @BuiltValueField(wireName: r'albums')
+  PagingSimplifiedAlbumObject get albums;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class GetNewReleases200Response {
-  /// Returns a new [GetNewReleases200Response] instance.
-  GetNewReleases200Response({
+  GetNewReleases200Response._();
 
-    required  this.albums,
-  });
+  factory GetNewReleases200Response([void updates(GetNewReleases200ResponseBuilder b)]) = _$GetNewReleases200Response;
 
-  @JsonKey(
-    
-    name: r'albums',
-    required: true,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(GetNewReleases200ResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<GetNewReleases200Response> get serializer => _$GetNewReleases200ResponseSerializer();
+}
 
-  final PagingSimplifiedAlbumObject albums;
-
-
+class _$GetNewReleases200ResponseSerializer implements PrimitiveSerializer<GetNewReleases200Response> {
+  @override
+  final Iterable<Type> types = const [GetNewReleases200Response, _$GetNewReleases200Response];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is GetNewReleases200Response &&
-     other.albums == albums;
+  final String wireName = r'GetNewReleases200Response';
 
-  @override
-  int get hashCode =>
-    albums.hashCode;
-
-  factory GetNewReleases200Response.fromJson(Map<String, dynamic> json) => _$GetNewReleases200ResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$GetNewReleases200ResponseToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    GetNewReleases200Response object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'albums';
+    yield serializers.serialize(
+      object.albums,
+      specifiedType: const FullType(PagingSimplifiedAlbumObject),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    GetNewReleases200Response object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required GetNewReleases200ResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'albums':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PagingSimplifiedAlbumObject),
+          ) as PagingSimplifiedAlbumObject;
+          result.albums.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  GetNewReleases200Response deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GetNewReleases200ResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PagingSavedTrackObject
 void main() {
-  final PagingSavedTrackObject? instance = /* PagingSavedTrackObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = PagingSavedTrackObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PagingSavedTrackObject, () {
     // A link to the Web API endpoint returning the full result of the request 
@@ -43,7 +43,7 @@ void main() {
       // TODO
     });
 
-    // List<SavedTrackObject> items
+    // BuiltList<SavedTrackObject> items
     test('to test the property `items`', () async {
       // TODO
     });

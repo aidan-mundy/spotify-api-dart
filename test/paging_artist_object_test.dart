@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PagingArtistObject
 void main() {
-  final PagingArtistObject? instance = /* PagingArtistObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = PagingArtistObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PagingArtistObject, () {
     // A link to the Web API endpoint returning the full result of the request 
@@ -43,7 +43,7 @@ void main() {
       // TODO
     });
 
-    // List<ArtistObject> items
+    // BuiltList<ArtistObject> items
     test('to test the property `items`', () async {
       // TODO
     });

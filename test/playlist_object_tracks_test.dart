@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PlaylistObjectTracks
 void main() {
-  final PlaylistObjectTracks? instance = /* PlaylistObjectTracks(...) */ null;
-  // TODO add properties to the entity
+  final instance = PlaylistObjectTracksBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PlaylistObjectTracks, () {
     // A link to the Web API endpoint returning the full result of the request 
@@ -43,7 +43,7 @@ void main() {
       // TODO
     });
 
-    // List<PlaylistTrackObject> items
+    // BuiltList<PlaylistTrackObject> items
     test('to test the property `items`', () async {
       // TODO
     });

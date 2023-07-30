@@ -3,18 +3,18 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for SimplifiedTrackObject
 void main() {
-  final SimplifiedTrackObject? instance = /* SimplifiedTrackObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = SimplifiedTrackObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(SimplifiedTrackObject, () {
     // The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist.
-    // List<SimplifiedArtistObject> artists
+    // BuiltList<SimplifiedArtistObject> artists
     test('to test the property `artists`', () async {
       // TODO
     });
 
     // A list of the countries in which the track can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code. 
-    // List<String> availableMarkets
+    // BuiltList<String> availableMarkets
     test('to test the property `availableMarkets`', () async {
       // TODO
     });

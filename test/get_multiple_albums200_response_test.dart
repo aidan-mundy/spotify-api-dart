@@ -3,11 +3,11 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for GetMultipleAlbums200Response
 void main() {
-  final GetMultipleAlbums200Response? instance = /* GetMultipleAlbums200Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = GetMultipleAlbums200ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(GetMultipleAlbums200Response, () {
-    // List<AlbumObject> albums
+    // BuiltList<AlbumObject> albums
     test('to test the property `albums`', () async {
       // TODO
     });

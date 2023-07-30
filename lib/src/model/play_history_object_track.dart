@@ -3,386 +3,413 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:spotify_openapi/src/model/track_object.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:spotify_openapi/src/model/track_object_album.dart';
 import 'package:spotify_openapi/src/model/linked_track_object_external_urls.dart';
 import 'package:spotify_openapi/src/model/artist_object.dart';
 import 'package:spotify_openapi/src/model/track_object_external_ids.dart';
+import 'package:built_value/json_object.dart';
 import 'package:spotify_openapi/src/model/simplified_track_object_restrictions.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'play_history_object_track.g.dart';
 
-
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class PlayHistoryObjectTrack {
-  /// Returns a new [PlayHistoryObjectTrack] instance.
-  PlayHistoryObjectTrack({
-
-     this.album,
-
-     this.artists,
-
-     this.availableMarkets,
-
-     this.discNumber,
-
-     this.durationMs,
-
-     this.explicit,
-
-     this.externalIds,
-
-     this.externalUrls,
-
-     this.href,
-
-     this.id,
-
-     this.isPlayable,
-
-     this.linkedFrom,
-
-     this.restrictions,
-
-     this.name,
-
-     this.popularity,
-
-     this.previewUrl,
-
-     this.trackNumber,
-
-     this.type,
-
-     this.uri,
-
-     this.isLocal,
-  });
-
-  @JsonKey(
-    
-    name: r'album',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final TrackObjectAlbum? album;
-
-
-
-      /// The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist. 
-  @JsonKey(
-    
-    name: r'artists',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final List<ArtistObject>? artists;
-
-
-
-      /// A list of the countries in which the track can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code. 
-  @JsonKey(
-    
-    name: r'available_markets',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final List<String>? availableMarkets;
-
-
-
-      /// The disc number (usually `1` unless the album consists of more than one disc). 
-  @JsonKey(
-    
-    name: r'disc_number',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final int? discNumber;
-
-
-
-      /// The track length in milliseconds. 
-  @JsonKey(
-    
-    name: r'duration_ms',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final int? durationMs;
-
-
-
-      /// Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown). 
-  @JsonKey(
-    
-    name: r'explicit',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final bool? explicit;
-
-
-
-  @JsonKey(
-    
-    name: r'external_ids',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final TrackObjectExternalIds? externalIds;
-
-
-
-  @JsonKey(
-    
-    name: r'external_urls',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final LinkedTrackObjectExternalUrls? externalUrls;
-
-
-
-      /// A link to the Web API endpoint providing full details of the track. 
-  @JsonKey(
-    
-    name: r'href',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? href;
-
-
-
-      /// The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the track. 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? id;
-
-
-
-      /// Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking) is applied. If `true`, the track is playable in the given market. Otherwise `false`. 
-  @JsonKey(
-    
-    name: r'is_playable',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final bool? isPlayable;
-
-
-
-      /// Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking) is applied, and the requested track has been replaced with different track. The track in the `linked_from` object contains information about the originally requested track. 
-  @JsonKey(
-    
-    name: r'linked_from',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final Object? linkedFrom;
-
-
-
-  @JsonKey(
-    
-    name: r'restrictions',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final SimplifiedTrackObjectRestrictions? restrictions;
-
-
-
-      /// The name of the track. 
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? name;
-
-
-
-      /// The popularity of the track. The value will be between 0 and 100, with 100 being the most popular.<br/>The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are.<br/>Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. _**Note**: the popularity value may lag actual popularity by a few days: the value is not updated in real time._ 
-  @JsonKey(
-    
-    name: r'popularity',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final int? popularity;
-
-
-
-      /// A link to a 30 second preview (MP3 format) of the track. Can be `null` 
-  @JsonKey(
-    
-    name: r'preview_url',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? previewUrl;
-
-
-
-      /// The number of the track. If an album has several discs, the track number is the number on the specified disc. 
-  @JsonKey(
-    
-    name: r'track_number',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final int? trackNumber;
-
-
-
-      /// The object type: \"track\". 
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final PlayHistoryObjectTrackTypeEnum? type;
-
-
-
-      /// The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the track. 
-  @JsonKey(
-    
-    name: r'uri',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? uri;
-
-
-
-      /// Whether or not the track is from a local file. 
-  @JsonKey(
-    
-    name: r'is_local',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final bool? isLocal;
-
-
+/// The track the user listened to.
+///
+/// Properties:
+/// * [album] 
+/// * [artists] - The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist. 
+/// * [availableMarkets] - A list of the countries in which the track can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code. 
+/// * [discNumber] - The disc number (usually `1` unless the album consists of more than one disc). 
+/// * [durationMs] - The track length in milliseconds. 
+/// * [explicit] - Whether or not the track has explicit lyrics ( `true` = yes it does; `false` = no it does not OR unknown). 
+/// * [externalIds] 
+/// * [externalUrls] 
+/// * [href] - A link to the Web API endpoint providing full details of the track. 
+/// * [id] - The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the track. 
+/// * [isPlayable] - Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking) is applied. If `true`, the track is playable in the given market. Otherwise `false`. 
+/// * [linkedFrom] - Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking) is applied, and the requested track has been replaced with different track. The track in the `linked_from` object contains information about the originally requested track. 
+/// * [restrictions] 
+/// * [name] - The name of the track. 
+/// * [popularity] - The popularity of the track. The value will be between 0 and 100, with 100 being the most popular.<br/>The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are.<br/>Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. _**Note**: the popularity value may lag actual popularity by a few days: the value is not updated in real time._ 
+/// * [previewUrl] - A link to a 30 second preview (MP3 format) of the track. Can be `null` 
+/// * [trackNumber] - The number of the track. If an album has several discs, the track number is the number on the specified disc. 
+/// * [type] - The object type: \"track\". 
+/// * [uri] - The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the track. 
+/// * [isLocal] - Whether or not the track is from a local file. 
+@BuiltValue()
+abstract class PlayHistoryObjectTrack implements TrackObject, Built<PlayHistoryObjectTrack, PlayHistoryObjectTrackBuilder> {
+  PlayHistoryObjectTrack._();
+
+  factory PlayHistoryObjectTrack([void updates(PlayHistoryObjectTrackBuilder b)]) = _$PlayHistoryObjectTrack;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(PlayHistoryObjectTrackBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<PlayHistoryObjectTrack> get serializer => _$PlayHistoryObjectTrackSerializer();
+}
+
+class _$PlayHistoryObjectTrackSerializer implements PrimitiveSerializer<PlayHistoryObjectTrack> {
+  @override
+  final Iterable<Type> types = const [PlayHistoryObjectTrack, _$PlayHistoryObjectTrack];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is PlayHistoryObjectTrack &&
-     other.album == album &&
-     other.artists == artists &&
-     other.availableMarkets == availableMarkets &&
-     other.discNumber == discNumber &&
-     other.durationMs == durationMs &&
-     other.explicit == explicit &&
-     other.externalIds == externalIds &&
-     other.externalUrls == externalUrls &&
-     other.href == href &&
-     other.id == id &&
-     other.isPlayable == isPlayable &&
-     other.linkedFrom == linkedFrom &&
-     other.restrictions == restrictions &&
-     other.name == name &&
-     other.popularity == popularity &&
-     other.previewUrl == previewUrl &&
-     other.trackNumber == trackNumber &&
-     other.type == type &&
-     other.uri == uri &&
-     other.isLocal == isLocal;
+  final String wireName = r'PlayHistoryObjectTrack';
 
-  @override
-  int get hashCode =>
-    album.hashCode +
-    artists.hashCode +
-    availableMarkets.hashCode +
-    discNumber.hashCode +
-    durationMs.hashCode +
-    explicit.hashCode +
-    externalIds.hashCode +
-    externalUrls.hashCode +
-    href.hashCode +
-    id.hashCode +
-    isPlayable.hashCode +
-    linkedFrom.hashCode +
-    restrictions.hashCode +
-    name.hashCode +
-    popularity.hashCode +
-    previewUrl.hashCode +
-    trackNumber.hashCode +
-    type.hashCode +
-    uri.hashCode +
-    isLocal.hashCode;
-
-  factory PlayHistoryObjectTrack.fromJson(Map<String, dynamic> json) => _$PlayHistoryObjectTrackFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PlayHistoryObjectTrackToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    PlayHistoryObjectTrack object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.isPlayable != null) {
+      yield r'is_playable';
+      yield serializers.serialize(
+        object.isPlayable,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.previewUrl != null) {
+      yield r'preview_url';
+      yield serializers.serialize(
+        object.previewUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.trackNumber != null) {
+      yield r'track_number';
+      yield serializers.serialize(
+        object.trackNumber,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.album != null) {
+      yield r'album';
+      yield serializers.serialize(
+        object.album,
+        specifiedType: const FullType(TrackObjectAlbum),
+      );
+    }
+    if (object.linkedFrom != null) {
+      yield r'linked_from';
+      yield serializers.serialize(
+        object.linkedFrom,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
+    if (object.externalIds != null) {
+      yield r'external_ids';
+      yield serializers.serialize(
+        object.externalIds,
+        specifiedType: const FullType(TrackObjectExternalIds),
+      );
+    }
+    if (object.restrictions != null) {
+      yield r'restrictions';
+      yield serializers.serialize(
+        object.restrictions,
+        specifiedType: const FullType(SimplifiedTrackObjectRestrictions),
+      );
+    }
+    if (object.externalUrls != null) {
+      yield r'external_urls';
+      yield serializers.serialize(
+        object.externalUrls,
+        specifiedType: const FullType(LinkedTrackObjectExternalUrls),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(TrackObjectTypeEnum),
+      );
+    }
+    if (object.uri != null) {
+      yield r'uri';
+      yield serializers.serialize(
+        object.uri,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.isLocal != null) {
+      yield r'is_local';
+      yield serializers.serialize(
+        object.isLocal,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.explicit != null) {
+      yield r'explicit';
+      yield serializers.serialize(
+        object.explicit,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.discNumber != null) {
+      yield r'disc_number';
+      yield serializers.serialize(
+        object.discNumber,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.artists != null) {
+      yield r'artists';
+      yield serializers.serialize(
+        object.artists,
+        specifiedType: const FullType(BuiltList, [FullType(ArtistObject)]),
+      );
+    }
+    if (object.availableMarkets != null) {
+      yield r'available_markets';
+      yield serializers.serialize(
+        object.availableMarkets,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.popularity != null) {
+      yield r'popularity';
+      yield serializers.serialize(
+        object.popularity,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.name != null) {
+      yield r'name';
+      yield serializers.serialize(
+        object.name,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.href != null) {
+      yield r'href';
+      yield serializers.serialize(
+        object.href,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.durationMs != null) {
+      yield r'duration_ms';
+      yield serializers.serialize(
+        object.durationMs,
+        specifiedType: const FullType(int),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    PlayHistoryObjectTrack object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required PlayHistoryObjectTrackBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'is_playable':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.isPlayable = valueDes;
+          break;
+        case r'preview_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.previewUrl = valueDes;
+          break;
+        case r'track_number':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.trackNumber = valueDes;
+          break;
+        case r'album':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(TrackObjectAlbum),
+          ) as TrackObjectAlbum;
+          result.album.replace(valueDes);
+          break;
+        case r'linked_from':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.linkedFrom = valueDes;
+          break;
+        case r'external_ids':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(TrackObjectExternalIds),
+          ) as TrackObjectExternalIds;
+          result.externalIds.replace(valueDes);
+          break;
+        case r'restrictions':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SimplifiedTrackObjectRestrictions),
+          ) as SimplifiedTrackObjectRestrictions;
+          result.restrictions.replace(valueDes);
+          break;
+        case r'external_urls':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(LinkedTrackObjectExternalUrls),
+          ) as LinkedTrackObjectExternalUrls;
+          result.externalUrls.replace(valueDes);
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(TrackObjectTypeEnum),
+          ) as TrackObjectTypeEnum;
+          result.type = valueDes;
+          break;
+        case r'uri':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.uri = valueDes;
+          break;
+        case r'is_local':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.isLocal = valueDes;
+          break;
+        case r'explicit':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.explicit = valueDes;
+          break;
+        case r'disc_number':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.discNumber = valueDes;
+          break;
+        case r'artists':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ArtistObject)]),
+          ) as BuiltList<ArtistObject>;
+          result.artists.replace(valueDes);
+          break;
+        case r'available_markets':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.availableMarkets.replace(valueDes);
+          break;
+        case r'popularity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.popularity = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        case r'href':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.href = valueDes;
+          break;
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'duration_ms':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.durationMs = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  PlayHistoryObjectTrack deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = PlayHistoryObjectTrackBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 
-/// The object type: \"track\". 
-enum PlayHistoryObjectTrackTypeEnum {
-  @JsonValue(r'track')
-  track,
-  @JsonValue(r'unknown_default_open_api')
-  unknownDefaultOpenApi,
-}
+class PlayHistoryObjectTrackTypeEnum extends EnumClass {
 
+  /// The object type: \"track\". 
+  @BuiltValueEnumConst(wireName: r'track')
+  static const PlayHistoryObjectTrackTypeEnum track = _$playHistoryObjectTrackTypeEnum_track;
+  /// The object type: \"track\". 
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
+  static const PlayHistoryObjectTrackTypeEnum unknownDefaultOpenApi = _$playHistoryObjectTrackTypeEnum_unknownDefaultOpenApi;
+
+  static Serializer<PlayHistoryObjectTrackTypeEnum> get serializer => _$playHistoryObjectTrackTypeEnumSerializer;
+
+  const PlayHistoryObjectTrackTypeEnum._(String name): super(name);
+
+  static BuiltSet<PlayHistoryObjectTrackTypeEnum> get values => _$playHistoryObjectTrackTypeEnumValues;
+  static PlayHistoryObjectTrackTypeEnum valueOf(String name) => _$playHistoryObjectTrackTypeEnumValueOf(name);
+}
 

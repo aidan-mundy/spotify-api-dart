@@ -11,7 +11,7 @@ void main() {
     //
     // Check if one or more albums is already saved in the current Spotify user's 'Your Music' library. 
     //
-    //Future<List<bool>> checkUsersSavedAlbums(String ids) async
+    //Future<BuiltList<bool>> checkUsersSavedAlbums(String ids) async
     test('test checkUsersSavedAlbums', () async {
       // TODO
     });
@@ -74,7 +74,7 @@ void main() {
     //
     // Remove one or more albums from the current user's 'Your Music' library. 
     //
-    //Future removeAlbumsUser(String ids, { Map<String, Object> requestBody }) async
+    //Future removeAlbumsUser(String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test removeAlbumsUser', () async {
       // TODO
     });
@@ -83,7 +83,7 @@ void main() {
     //
     // Save one or more albums to the current user's 'Your Music' library. 
     //
-    //Future saveAlbumsUser(String ids, { Map<String, Object> requestBody }) async
+    //Future saveAlbumsUser(String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test saveAlbumsUser', () async {
       // TODO
     });

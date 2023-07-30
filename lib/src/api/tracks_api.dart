@@ -4,15 +4,14 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:spotify_openapi/src/deserialize.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_openapi/src/model/add_tracks_to_playlist_request.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
+import 'package:spotify_openapi/src/api_util.dart';
 import 'package:spotify_openapi/src/model/audio_analysis_object.dart';
 import 'package:spotify_openapi/src/model/audio_features_object.dart';
-import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
 import 'package:spotify_openapi/src/model/get_an_artists_top_tracks200_response.dart';
 import 'package:spotify_openapi/src/model/get_several_audio_features200_response.dart';
 import 'package:spotify_openapi/src/model/get_users_top_artists_and_tracks200_response.dart';
@@ -22,16 +21,15 @@ import 'package:spotify_openapi/src/model/paging_simplified_track_object.dart';
 import 'package:spotify_openapi/src/model/recommendations_object.dart';
 import 'package:spotify_openapi/src/model/remove_tracks_playlist_request.dart';
 import 'package:spotify_openapi/src/model/reorder_or_replace_playlists_tracks200_response.dart';
-import 'package:spotify_openapi/src/model/reorder_or_replace_playlists_tracks_request.dart';
-import 'package:spotify_openapi/src/model/save_albums_user_request.dart';
-import 'package:spotify_openapi/src/model/save_tracks_user_request.dart';
 import 'package:spotify_openapi/src/model/track_object.dart';
 
 class TracksApi {
 
   final Dio _dio;
 
-  const TracksApi(this._dio);
+  final Serializers _serializers;
+
+  const TracksApi(this._dio, this._serializers);
 
   /// Add Items to Playlist 
   /// Add one or more items to a user&#39;s playlist. 
@@ -54,7 +52,7 @@ class TracksApi {
     required String playlistId,
     int? position,
     String? uris,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -62,7 +60,7 @@ class TracksApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -82,14 +80,16 @@ class TracksApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (position != null) r'position': position,
-      if (uris != null) r'uris': uris,
+      if (position != null) r'position': encodeQueryParameter(_serializers, position, const FullType(int)),
+      if (uris != null) r'uris': encodeQueryParameter(_serializers, uris, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -116,8 +116,12 @@ _bodyData=jsonEncode(requestBody);
     ReorderOrReplacePlaylistsTracks200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTracks200Response, ReorderOrReplacePlaylistsTracks200Response>(rawData, 'ReorderOrReplacePlaylistsTracks200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ReorderOrReplacePlaylistsTracks200Response),
+      ) as ReorderOrReplacePlaylistsTracks200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -152,9 +156,9 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [List<bool>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<bool>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<List<bool>>> checkUsersSavedTracks({ 
+  Future<Response<BuiltList<bool>>> checkUsersSavedTracks({ 
     required String ids,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -182,7 +186,7 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -194,11 +198,15 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
       onReceiveProgress: onReceiveProgress,
     );
 
-    List<bool>? _responseData;
+    BuiltList<bool>? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 'List<bool>', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(bool)]),
+      ) as BuiltList<bool>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -209,7 +217,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       );
     }
 
-    return Response<List<bool>>(
+    return Response<BuiltList<bool>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -250,7 +258,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/albums/{id}/tracks'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/albums/{id}/tracks'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -269,9 +277,9 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -286,8 +294,12 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     PagingSimplifiedTrackObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingSimplifiedTrackObject, PagingSimplifiedTrackObject>(rawData, 'PagingSimplifiedTrackObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingSimplifiedTrackObject),
+      ) as PagingSimplifiedTrackObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -335,7 +347,7 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedTrackObject
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/artists/{id}/top-tracks'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/artists/{id}/top-tracks'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -354,7 +366,7 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedTrackObject
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -369,8 +381,12 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedTrackObject
     GetAnArtistsTopTracks200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetAnArtistsTopTracks200Response, GetAnArtistsTopTracks200Response>(rawData, 'GetAnArtistsTopTracks200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetAnArtistsTopTracks200Response),
+      ) as GetAnArtistsTopTracks200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -416,7 +432,7 @@ _responseData = rawData == null ? null : deserialize<GetAnArtistsTopTracks200Res
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/audio-analysis/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/audio-analysis/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -445,8 +461,12 @@ _responseData = rawData == null ? null : deserialize<GetAnArtistsTopTracks200Res
     AudioAnalysisObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<AudioAnalysisObject, AudioAnalysisObject>(rawData, 'AudioAnalysisObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AudioAnalysisObject),
+      ) as AudioAnalysisObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -492,7 +512,7 @@ _responseData = rawData == null ? null : deserialize<AudioAnalysisObject, AudioA
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/audio-features/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/audio-features/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -521,8 +541,12 @@ _responseData = rawData == null ? null : deserialize<AudioAnalysisObject, AudioA
     AudioFeaturesObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<AudioFeaturesObject, AudioFeaturesObject>(rawData, 'AudioFeaturesObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AudioFeaturesObject),
+      ) as AudioFeaturesObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -578,7 +602,7 @@ _responseData = rawData == null ? null : deserialize<AudioFeaturesObject, AudioF
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -597,11 +621,11 @@ _responseData = rawData == null ? null : deserialize<AudioFeaturesObject, AudioF
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      if (fields != null) r'fields': fields,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
-      if (additionalTypes != null) r'additional_types': additionalTypes,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (fields != null) r'fields': encodeQueryParameter(_serializers, fields, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
+      if (additionalTypes != null) r'additional_types': encodeQueryParameter(_serializers, additionalTypes, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -616,8 +640,12 @@ _responseData = rawData == null ? null : deserialize<AudioFeaturesObject, AudioF
     PagingPlaylistTrackObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingPlaylistTrackObject, PagingPlaylistTrackObject>(rawData, 'PagingPlaylistTrackObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingPlaylistTrackObject),
+      ) as PagingPlaylistTrackObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -774,53 +802,53 @@ _responseData = rawData == null ? null : deserialize<PagingPlaylistTrackObject, 
     );
 
     final _queryParameters = <String, dynamic>{
-      if (limit != null) r'limit': limit,
-      if (market != null) r'market': market,
-      r'seed_artists': seedArtists,
-      r'seed_genres': seedGenres,
-      r'seed_tracks': seedTracks,
-      if (minAcousticness != null) r'min_acousticness': minAcousticness,
-      if (maxAcousticness != null) r'max_acousticness': maxAcousticness,
-      if (targetAcousticness != null) r'target_acousticness': targetAcousticness,
-      if (minDanceability != null) r'min_danceability': minDanceability,
-      if (maxDanceability != null) r'max_danceability': maxDanceability,
-      if (targetDanceability != null) r'target_danceability': targetDanceability,
-      if (minDurationMs != null) r'min_duration_ms': minDurationMs,
-      if (maxDurationMs != null) r'max_duration_ms': maxDurationMs,
-      if (targetDurationMs != null) r'target_duration_ms': targetDurationMs,
-      if (minEnergy != null) r'min_energy': minEnergy,
-      if (maxEnergy != null) r'max_energy': maxEnergy,
-      if (targetEnergy != null) r'target_energy': targetEnergy,
-      if (minInstrumentalness != null) r'min_instrumentalness': minInstrumentalness,
-      if (maxInstrumentalness != null) r'max_instrumentalness': maxInstrumentalness,
-      if (targetInstrumentalness != null) r'target_instrumentalness': targetInstrumentalness,
-      if (minKey != null) r'min_key': minKey,
-      if (maxKey != null) r'max_key': maxKey,
-      if (targetKey != null) r'target_key': targetKey,
-      if (minLiveness != null) r'min_liveness': minLiveness,
-      if (maxLiveness != null) r'max_liveness': maxLiveness,
-      if (targetLiveness != null) r'target_liveness': targetLiveness,
-      if (minLoudness != null) r'min_loudness': minLoudness,
-      if (maxLoudness != null) r'max_loudness': maxLoudness,
-      if (targetLoudness != null) r'target_loudness': targetLoudness,
-      if (minMode != null) r'min_mode': minMode,
-      if (maxMode != null) r'max_mode': maxMode,
-      if (targetMode != null) r'target_mode': targetMode,
-      if (minPopularity != null) r'min_popularity': minPopularity,
-      if (maxPopularity != null) r'max_popularity': maxPopularity,
-      if (targetPopularity != null) r'target_popularity': targetPopularity,
-      if (minSpeechiness != null) r'min_speechiness': minSpeechiness,
-      if (maxSpeechiness != null) r'max_speechiness': maxSpeechiness,
-      if (targetSpeechiness != null) r'target_speechiness': targetSpeechiness,
-      if (minTempo != null) r'min_tempo': minTempo,
-      if (maxTempo != null) r'max_tempo': maxTempo,
-      if (targetTempo != null) r'target_tempo': targetTempo,
-      if (minTimeSignature != null) r'min_time_signature': minTimeSignature,
-      if (maxTimeSignature != null) r'max_time_signature': maxTimeSignature,
-      if (targetTimeSignature != null) r'target_time_signature': targetTimeSignature,
-      if (minValence != null) r'min_valence': minValence,
-      if (maxValence != null) r'max_valence': maxValence,
-      if (targetValence != null) r'target_valence': targetValence,
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      r'seed_artists': encodeQueryParameter(_serializers, seedArtists, const FullType(String)),
+      r'seed_genres': encodeQueryParameter(_serializers, seedGenres, const FullType(String)),
+      r'seed_tracks': encodeQueryParameter(_serializers, seedTracks, const FullType(String)),
+      if (minAcousticness != null) r'min_acousticness': encodeQueryParameter(_serializers, minAcousticness, const FullType(num)),
+      if (maxAcousticness != null) r'max_acousticness': encodeQueryParameter(_serializers, maxAcousticness, const FullType(num)),
+      if (targetAcousticness != null) r'target_acousticness': encodeQueryParameter(_serializers, targetAcousticness, const FullType(num)),
+      if (minDanceability != null) r'min_danceability': encodeQueryParameter(_serializers, minDanceability, const FullType(num)),
+      if (maxDanceability != null) r'max_danceability': encodeQueryParameter(_serializers, maxDanceability, const FullType(num)),
+      if (targetDanceability != null) r'target_danceability': encodeQueryParameter(_serializers, targetDanceability, const FullType(num)),
+      if (minDurationMs != null) r'min_duration_ms': encodeQueryParameter(_serializers, minDurationMs, const FullType(int)),
+      if (maxDurationMs != null) r'max_duration_ms': encodeQueryParameter(_serializers, maxDurationMs, const FullType(int)),
+      if (targetDurationMs != null) r'target_duration_ms': encodeQueryParameter(_serializers, targetDurationMs, const FullType(int)),
+      if (minEnergy != null) r'min_energy': encodeQueryParameter(_serializers, minEnergy, const FullType(num)),
+      if (maxEnergy != null) r'max_energy': encodeQueryParameter(_serializers, maxEnergy, const FullType(num)),
+      if (targetEnergy != null) r'target_energy': encodeQueryParameter(_serializers, targetEnergy, const FullType(num)),
+      if (minInstrumentalness != null) r'min_instrumentalness': encodeQueryParameter(_serializers, minInstrumentalness, const FullType(num)),
+      if (maxInstrumentalness != null) r'max_instrumentalness': encodeQueryParameter(_serializers, maxInstrumentalness, const FullType(num)),
+      if (targetInstrumentalness != null) r'target_instrumentalness': encodeQueryParameter(_serializers, targetInstrumentalness, const FullType(num)),
+      if (minKey != null) r'min_key': encodeQueryParameter(_serializers, minKey, const FullType(int)),
+      if (maxKey != null) r'max_key': encodeQueryParameter(_serializers, maxKey, const FullType(int)),
+      if (targetKey != null) r'target_key': encodeQueryParameter(_serializers, targetKey, const FullType(int)),
+      if (minLiveness != null) r'min_liveness': encodeQueryParameter(_serializers, minLiveness, const FullType(num)),
+      if (maxLiveness != null) r'max_liveness': encodeQueryParameter(_serializers, maxLiveness, const FullType(num)),
+      if (targetLiveness != null) r'target_liveness': encodeQueryParameter(_serializers, targetLiveness, const FullType(num)),
+      if (minLoudness != null) r'min_loudness': encodeQueryParameter(_serializers, minLoudness, const FullType(num)),
+      if (maxLoudness != null) r'max_loudness': encodeQueryParameter(_serializers, maxLoudness, const FullType(num)),
+      if (targetLoudness != null) r'target_loudness': encodeQueryParameter(_serializers, targetLoudness, const FullType(num)),
+      if (minMode != null) r'min_mode': encodeQueryParameter(_serializers, minMode, const FullType(int)),
+      if (maxMode != null) r'max_mode': encodeQueryParameter(_serializers, maxMode, const FullType(int)),
+      if (targetMode != null) r'target_mode': encodeQueryParameter(_serializers, targetMode, const FullType(int)),
+      if (minPopularity != null) r'min_popularity': encodeQueryParameter(_serializers, minPopularity, const FullType(int)),
+      if (maxPopularity != null) r'max_popularity': encodeQueryParameter(_serializers, maxPopularity, const FullType(int)),
+      if (targetPopularity != null) r'target_popularity': encodeQueryParameter(_serializers, targetPopularity, const FullType(int)),
+      if (minSpeechiness != null) r'min_speechiness': encodeQueryParameter(_serializers, minSpeechiness, const FullType(num)),
+      if (maxSpeechiness != null) r'max_speechiness': encodeQueryParameter(_serializers, maxSpeechiness, const FullType(num)),
+      if (targetSpeechiness != null) r'target_speechiness': encodeQueryParameter(_serializers, targetSpeechiness, const FullType(num)),
+      if (minTempo != null) r'min_tempo': encodeQueryParameter(_serializers, minTempo, const FullType(num)),
+      if (maxTempo != null) r'max_tempo': encodeQueryParameter(_serializers, maxTempo, const FullType(num)),
+      if (targetTempo != null) r'target_tempo': encodeQueryParameter(_serializers, targetTempo, const FullType(num)),
+      if (minTimeSignature != null) r'min_time_signature': encodeQueryParameter(_serializers, minTimeSignature, const FullType(int)),
+      if (maxTimeSignature != null) r'max_time_signature': encodeQueryParameter(_serializers, maxTimeSignature, const FullType(int)),
+      if (targetTimeSignature != null) r'target_time_signature': encodeQueryParameter(_serializers, targetTimeSignature, const FullType(int)),
+      if (minValence != null) r'min_valence': encodeQueryParameter(_serializers, minValence, const FullType(num)),
+      if (maxValence != null) r'max_valence': encodeQueryParameter(_serializers, maxValence, const FullType(num)),
+      if (targetValence != null) r'target_valence': encodeQueryParameter(_serializers, targetValence, const FullType(num)),
     };
 
     final _response = await _dio.request<Object>(
@@ -835,8 +863,12 @@ _responseData = rawData == null ? null : deserialize<PagingPlaylistTrackObject, 
     RecommendationsObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<RecommendationsObject, RecommendationsObject>(rawData, 'RecommendationsObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RecommendationsObject),
+      ) as RecommendationsObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -901,7 +933,7 @@ _responseData = rawData == null ? null : deserialize<RecommendationsObject, Reco
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -916,8 +948,12 @@ _responseData = rawData == null ? null : deserialize<RecommendationsObject, Reco
     GetSeveralAudioFeatures200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetSeveralAudioFeatures200Response, GetSeveralAudioFeatures200Response>(rawData, 'GetSeveralAudioFeatures200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetSeveralAudioFeatures200Response),
+      ) as GetSeveralAudioFeatures200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -984,8 +1020,8 @@ _responseData = rawData == null ? null : deserialize<GetSeveralAudioFeatures200R
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      r'ids': ids,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1000,8 +1036,12 @@ _responseData = rawData == null ? null : deserialize<GetSeveralAudioFeatures200R
     GetAnArtistsTopTracks200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetAnArtistsTopTracks200Response, GetAnArtistsTopTracks200Response>(rawData, 'GetAnArtistsTopTracks200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetAnArtistsTopTracks200Response),
+      ) as GetAnArtistsTopTracks200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1049,7 +1089,7 @@ _responseData = rawData == null ? null : deserialize<GetAnArtistsTopTracks200Res
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/tracks/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/tracks/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -1068,7 +1108,7 @@ _responseData = rawData == null ? null : deserialize<GetAnArtistsTopTracks200Res
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1083,8 +1123,12 @@ _responseData = rawData == null ? null : deserialize<GetAnArtistsTopTracks200Res
     TrackObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<TrackObject, TrackObject>(rawData, 'TrackObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(TrackObject),
+      ) as TrackObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1153,9 +1197,9 @@ _responseData = rawData == null ? null : deserialize<TrackObject, TrackObject>(r
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1170,8 +1214,12 @@ _responseData = rawData == null ? null : deserialize<TrackObject, TrackObject>(r
     PagingSavedTrackObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingSavedTrackObject, PagingSavedTrackObject>(rawData, 'PagingSavedTrackObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingSavedTrackObject),
+      ) as PagingSavedTrackObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1223,7 +1271,7 @@ _responseData = rawData == null ? null : deserialize<PagingSavedTrackObject, Pag
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/me/top/{type}'.replaceAll('{' r'type' '}', type.toString());
+    final _path = r'/me/top/{type}'.replaceAll('{' r'type' '}', encodeQueryParameter(_serializers, type, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -1242,9 +1290,9 @@ _responseData = rawData == null ? null : deserialize<PagingSavedTrackObject, Pag
     );
 
     final _queryParameters = <String, dynamic>{
-      if (timeRange != null) r'time_range': timeRange,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (timeRange != null) r'time_range': encodeQueryParameter(_serializers, timeRange, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1259,8 +1307,12 @@ _responseData = rawData == null ? null : deserialize<PagingSavedTrackObject, Pag
     GetUsersTopArtistsAndTracks200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetUsersTopArtistsAndTracks200Response, GetUsersTopArtistsAndTracks200Response>(rawData, 'GetUsersTopArtistsAndTracks200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetUsersTopArtistsAndTracks200Response),
+      ) as GetUsersTopArtistsAndTracks200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1308,7 +1360,7 @@ _responseData = rawData == null ? null : deserialize<GetUsersTopArtistsAndTracks
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -1330,7 +1382,9 @@ _responseData = rawData == null ? null : deserialize<GetUsersTopArtistsAndTracks
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(removeTracksPlaylistRequest);
+      const _type = FullType(RemoveTracksPlaylistRequest);
+      _bodyData = removeTracksPlaylistRequest == null ? null : _serializers.serialize(removeTracksPlaylistRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1355,8 +1409,12 @@ _bodyData=jsonEncode(removeTracksPlaylistRequest);
     ReorderOrReplacePlaylistsTracks200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTracks200Response, ReorderOrReplacePlaylistsTracks200Response>(rawData, 'ReorderOrReplacePlaylistsTracks200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ReorderOrReplacePlaylistsTracks200Response),
+      ) as ReorderOrReplacePlaylistsTracks200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1396,7 +1454,7 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> removeTracksUser({ 
     required String ids,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1424,13 +1482,15 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1476,7 +1536,7 @@ _bodyData=jsonEncode(requestBody);
   Future<Response<ReorderOrReplacePlaylistsTracks200Response>> reorderOrReplacePlaylistsTracks({ 
     required String playlistId,
     String? uris,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1484,7 +1544,7 @@ _bodyData=jsonEncode(requestBody);
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -1504,13 +1564,15 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      if (uris != null) r'uris': uris,
+      if (uris != null) r'uris': encodeQueryParameter(_serializers, uris, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1537,8 +1599,12 @@ _bodyData=jsonEncode(requestBody);
     ReorderOrReplacePlaylistsTracks200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTracks200Response, ReorderOrReplacePlaylistsTracks200Response>(rawData, 'ReorderOrReplacePlaylistsTracks200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ReorderOrReplacePlaylistsTracks200Response),
+      ) as ReorderOrReplacePlaylistsTracks200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1578,7 +1644,7 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> saveTracksUser({ 
     required String ids,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1606,13 +1672,15 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(

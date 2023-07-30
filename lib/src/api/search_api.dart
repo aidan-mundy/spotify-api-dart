@@ -4,19 +4,20 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:spotify_openapi/src/deserialize.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:spotify_openapi/src/api_util.dart';
 import 'package:spotify_openapi/src/model/search200_response.dart';
 
 class SearchApi {
 
   final Dio _dio;
 
-  const SearchApi(this._dio);
+  final Serializers _serializers;
+
+  const SearchApi(this._dio, this._serializers);
 
   /// Search for Item 
   /// Get Spotify catalog information about albums, artists, playlists, tracks, shows, episodes or audiobooks that match a keyword string.&lt;br /&gt; **Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.** 
@@ -39,7 +40,7 @@ class SearchApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<Search200Response>> search({ 
     required String q,
-    required List<String> type,
+    required BuiltList<String> type,
     String? market,
     int? limit = 20,
     int? offset = 0,
@@ -70,12 +71,12 @@ class SearchApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'q': q,
-      r'type': type,
-      if (market != null) r'market': market,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
-      if (includeExternal != null) r'include_external': includeExternal,
+      r'q': encodeQueryParameter(_serializers, q, const FullType(String)),
+      r'type': encodeCollectionQueryParameter<String>(_serializers, type, const FullType(BuiltList, [FullType(String)]), format: ListFormat.csv,),
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
+      if (includeExternal != null) r'include_external': encodeQueryParameter(_serializers, includeExternal, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -90,8 +91,12 @@ class SearchApi {
     Search200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<Search200Response, Search200Response>(rawData, 'Search200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Search200Response),
+      ) as Search200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,

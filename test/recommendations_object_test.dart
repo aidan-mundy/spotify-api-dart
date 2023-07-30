@@ -3,18 +3,18 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for RecommendationsObject
 void main() {
-  final RecommendationsObject? instance = /* RecommendationsObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = RecommendationsObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(RecommendationsObject, () {
     // An array of recommendation seed objects. 
-    // List<RecommendationSeedObject> seeds
+    // BuiltList<RecommendationSeedObject> seeds
     test('to test the property `seeds`', () async {
       // TODO
     });
 
     // An array of track object (simplified) ordered according to the parameters supplied. 
-    // List<TrackObject> tracks
+    // BuiltList<TrackObject> tracks
     test('to test the property `tracks`', () async {
       // TODO
     });

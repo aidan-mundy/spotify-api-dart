@@ -3,11 +3,11 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for GetRecommendationGenres200Response
 void main() {
-  final GetRecommendationGenres200Response? instance = /* GetRecommendationGenres200Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = GetRecommendationGenres200ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(GetRecommendationGenres200Response, () {
-    // List<String> genres
+    // BuiltList<String> genres
     test('to test the property `genres`', () async {
       // TODO
     });

@@ -3,12 +3,12 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for DevicesObject
 void main() {
-  final DevicesObject? instance = /* DevicesObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = DevicesObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(DevicesObject, () {
     // A list of 0..n Device objects
-    // List<DeviceObject> devices
+    // BuiltList<DeviceObject> devices
     test('to test the property `devices`', () async {
       // TODO
     });

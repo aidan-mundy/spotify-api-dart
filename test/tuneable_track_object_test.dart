@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for TuneableTrackObject
 void main() {
-  final TuneableTrackObject? instance = /* TuneableTrackObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = TuneableTrackObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(TuneableTrackObject, () {
     // A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic. 

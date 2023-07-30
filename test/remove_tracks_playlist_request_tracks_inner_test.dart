@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for RemoveTracksPlaylistRequestTracksInner
 void main() {
-  final RemoveTracksPlaylistRequestTracksInner? instance = /* RemoveTracksPlaylistRequestTracksInner(...) */ null;
-  // TODO add properties to the entity
+  final instance = RemoveTracksPlaylistRequestTracksInnerBuilder();
+  // TODO add properties to the builder and call build()
 
   group(RemoveTracksPlaylistRequestTracksInner, () {
     // Spotify URI

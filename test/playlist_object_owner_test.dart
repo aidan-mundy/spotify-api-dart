@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PlaylistObjectOwner
 void main() {
-  final PlaylistObjectOwner? instance = /* PlaylistObjectOwner(...) */ null;
-  // TODO add properties to the entity
+  final instance = PlaylistObjectOwnerBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PlaylistObjectOwner, () {
     // PublicUserObjectExternalUrls externalUrls

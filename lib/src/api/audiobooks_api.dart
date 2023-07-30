@@ -4,13 +4,12 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:spotify_openapi/src/deserialize.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:built_collection/built_collection.dart';
+import 'package:spotify_openapi/src/api_util.dart';
 import 'package:spotify_openapi/src/model/audiobook_object.dart';
-import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
 import 'package:spotify_openapi/src/model/get_multiple_audiobooks200_response.dart';
 import 'package:spotify_openapi/src/model/paging_simplified_audiobook_object.dart';
 import 'package:spotify_openapi/src/model/paging_simplified_chapter_object.dart';
@@ -19,7 +18,9 @@ class AudiobooksApi {
 
   final Dio _dio;
 
-  const AudiobooksApi(this._dio);
+  final Serializers _serializers;
+
+  const AudiobooksApi(this._dio, this._serializers);
 
   /// Check User&#39;s Saved Audiobooks 
   /// Check if one or more audiobooks are already saved in the current Spotify user&#39;s library. 
@@ -33,9 +34,9 @@ class AudiobooksApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [List<bool>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<bool>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<List<bool>>> checkUsersSavedAudiobooks({ 
+  Future<Response<BuiltList<bool>>> checkUsersSavedAudiobooks({ 
     required String ids,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -63,7 +64,7 @@ class AudiobooksApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -75,11 +76,15 @@ class AudiobooksApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    List<bool>? _responseData;
+    BuiltList<bool>? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 'List<bool>', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(bool)]),
+      ) as BuiltList<bool>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -90,7 +95,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       );
     }
 
-    return Response<List<bool>>(
+    return Response<BuiltList<bool>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -127,7 +132,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/audiobooks/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/audiobooks/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -146,7 +151,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -161,8 +166,12 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     AudiobookObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<AudiobookObject, AudiobookObject>(rawData, 'AudiobookObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AudiobookObject),
+      ) as AudiobookObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -214,7 +223,7 @@ _responseData = rawData == null ? null : deserialize<AudiobookObject, AudiobookO
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/audiobooks/{id}/chapters'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/audiobooks/{id}/chapters'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -233,9 +242,9 @@ _responseData = rawData == null ? null : deserialize<AudiobookObject, AudiobookO
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -250,8 +259,12 @@ _responseData = rawData == null ? null : deserialize<AudiobookObject, AudiobookO
     PagingSimplifiedChapterObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingSimplifiedChapterObject, PagingSimplifiedChapterObject>(rawData, 'PagingSimplifiedChapterObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingSimplifiedChapterObject),
+      ) as PagingSimplifiedChapterObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -318,8 +331,8 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedChapterObje
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
-      if (market != null) r'market': market,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -334,8 +347,12 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedChapterObje
     GetMultipleAudiobooks200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetMultipleAudiobooks200Response, GetMultipleAudiobooks200Response>(rawData, 'GetMultipleAudiobooks200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetMultipleAudiobooks200Response),
+      ) as GetMultipleAudiobooks200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -402,8 +419,8 @@ _responseData = rawData == null ? null : deserialize<GetMultipleAudiobooks200Res
     );
 
     final _queryParameters = <String, dynamic>{
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -418,8 +435,12 @@ _responseData = rawData == null ? null : deserialize<GetMultipleAudiobooks200Res
     PagingSimplifiedAudiobookObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingSimplifiedAudiobookObject, PagingSimplifiedAudiobookObject>(rawData, 'PagingSimplifiedAudiobookObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingSimplifiedAudiobookObject),
+      ) as PagingSimplifiedAudiobookObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -484,7 +505,7 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedAudiobookOb
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -541,7 +562,7 @@ _responseData = rawData == null ? null : deserialize<PagingSimplifiedAudiobookOb
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

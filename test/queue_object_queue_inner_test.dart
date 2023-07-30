@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for QueueObjectQueueInner
 void main() {
-  final QueueObjectQueueInner? instance = /* QueueObjectQueueInner(...) */ null;
-  // TODO add properties to the entity
+  final instance = QueueObjectQueueInnerBuilder();
+  // TODO add properties to the builder and call build()
 
   group(QueueObjectQueueInner, () {
     // TrackObjectAlbum album
@@ -13,13 +13,13 @@ void main() {
     });
 
     // The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist. 
-    // List<ArtistObject> artists
+    // BuiltList<ArtistObject> artists
     test('to test the property `artists`', () async {
       // TODO
     });
 
     // A list of the countries in which the track can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code. 
-    // List<String> availableMarkets
+    // BuiltList<String> availableMarkets
     test('to test the property `availableMarkets`', () async {
       // TODO
     });
@@ -71,7 +71,7 @@ void main() {
     });
 
     // Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking) is applied, and the requested track has been replaced with different track. The track in the `linked_from` object contains information about the originally requested track. 
-    // Object linkedFrom
+    // JsonObject linkedFrom
     test('to test the property `linkedFrom`', () async {
       // TODO
     });
@@ -142,7 +142,7 @@ void main() {
     });
 
     // The cover art for the episode in various sizes, widest first. 
-    // List<ImageObject> images
+    // BuiltList<ImageObject> images
     test('to test the property `images`', () async {
       // TODO
     });
@@ -160,7 +160,7 @@ void main() {
     });
 
     // A list of the languages used in the episode, identified by their [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) code. 
-    // List<String> languages
+    // BuiltList<String> languages
     test('to test the property `languages`', () async {
       // TODO
     });

@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for NarratorObject
 void main() {
-  final NarratorObject? instance = /* NarratorObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = NarratorObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(NarratorObject, () {
     // The name of the Narrator. 

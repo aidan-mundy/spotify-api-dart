@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for TimeIntervalObject
 void main() {
-  final TimeIntervalObject? instance = /* TimeIntervalObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = TimeIntervalObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(TimeIntervalObject, () {
     // The starting point (in seconds) of the time interval.

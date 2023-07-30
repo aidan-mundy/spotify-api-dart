@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for CurrentlyPlayingContextObjectDevice
 void main() {
-  final CurrentlyPlayingContextObjectDevice? instance = /* CurrentlyPlayingContextObjectDevice(...) */ null;
-  // TODO add properties to the entity
+  final instance = CurrentlyPlayingContextObjectDeviceBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CurrentlyPlayingContextObjectDevice, () {
     // The device ID.

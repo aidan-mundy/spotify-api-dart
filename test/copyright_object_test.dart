@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for CopyrightObject
 void main() {
-  final CopyrightObject? instance = /* CopyrightObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = CopyrightObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CopyrightObject, () {
     // The copyright text for this content. 

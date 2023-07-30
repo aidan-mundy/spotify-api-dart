@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 
 # **checkUsersSavedAlbums**
-> List<bool> checkUsersSavedAlbums(ids)
+> BuiltList<bool> checkUsersSavedAlbums(ids)
 
 Check User's Saved Albums 
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**List&lt;bool&gt;**
+**BuiltList&lt;bool&gt;**
 
 ### Authorization
 
@@ -376,7 +376,7 @@ import 'package:spotify_openapi/api.dart';
 
 final api = SpotifyOpenapi().getAlbumsApi();
 final String ids = 382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     api.removeAlbumsUser(ids, requestBody);
@@ -390,7 +390,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | **String**|  | 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 
@@ -422,7 +422,7 @@ import 'package:spotify_openapi/api.dart';
 
 final api = SpotifyOpenapi().getAlbumsApi();
 final String ids = 382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     api.saveAlbumsUser(ids, requestBody);
@@ -436,7 +436,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | **String**|  | 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 

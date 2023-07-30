@@ -3,155 +3,221 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'audio_analysis_object_meta.g.dart';
 
+/// AudioAnalysisObjectMeta
+///
+/// Properties:
+/// * [analyzerVersion] - The version of the Analyzer used to analyze this track.
+/// * [platform] - The platform used to read the track's audio data.
+/// * [detailedStatus] - A detailed status code for this track. If analysis data is missing, this code may explain why.
+/// * [statusCode] - The return code of the analyzer process. 0 if successful, 1 if any errors occurred.
+/// * [timestamp] - The Unix timestamp (in seconds) at which this track was analyzed.
+/// * [analysisTime] - The amount of time taken to analyze this track.
+/// * [inputProcess] - The method used to read the track's audio data.
+@BuiltValue()
+abstract class AudioAnalysisObjectMeta implements Built<AudioAnalysisObjectMeta, AudioAnalysisObjectMetaBuilder> {
+  /// The version of the Analyzer used to analyze this track.
+  @BuiltValueField(wireName: r'analyzer_version')
+  String? get analyzerVersion;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class AudioAnalysisObjectMeta {
-  /// Returns a new [AudioAnalysisObjectMeta] instance.
-  AudioAnalysisObjectMeta({
+  /// The platform used to read the track's audio data.
+  @BuiltValueField(wireName: r'platform')
+  String? get platform;
 
-     this.analyzerVersion,
+  /// A detailed status code for this track. If analysis data is missing, this code may explain why.
+  @BuiltValueField(wireName: r'detailed_status')
+  String? get detailedStatus;
 
-     this.platform,
+  /// The return code of the analyzer process. 0 if successful, 1 if any errors occurred.
+  @BuiltValueField(wireName: r'status_code')
+  int? get statusCode;
 
-     this.detailedStatus,
+  /// The Unix timestamp (in seconds) at which this track was analyzed.
+  @BuiltValueField(wireName: r'timestamp')
+  int? get timestamp;
 
-     this.statusCode,
+  /// The amount of time taken to analyze this track.
+  @BuiltValueField(wireName: r'analysis_time')
+  num? get analysisTime;
 
-     this.timestamp,
+  /// The method used to read the track's audio data.
+  @BuiltValueField(wireName: r'input_process')
+  String? get inputProcess;
 
-     this.analysisTime,
+  AudioAnalysisObjectMeta._();
 
-     this.inputProcess,
-  });
+  factory AudioAnalysisObjectMeta([void updates(AudioAnalysisObjectMetaBuilder b)]) = _$AudioAnalysisObjectMeta;
 
-      /// The version of the Analyzer used to analyze this track.
-  @JsonKey(
-    
-    name: r'analyzer_version',
-    required: false,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(AudioAnalysisObjectMetaBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<AudioAnalysisObjectMeta> get serializer => _$AudioAnalysisObjectMetaSerializer();
+}
 
-  final String? analyzerVersion;
-
-
-
-      /// The platform used to read the track's audio data.
-  @JsonKey(
-    
-    name: r'platform',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? platform;
-
-
-
-      /// A detailed status code for this track. If analysis data is missing, this code may explain why.
-  @JsonKey(
-    
-    name: r'detailed_status',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? detailedStatus;
-
-
-
-      /// The return code of the analyzer process. 0 if successful, 1 if any errors occurred.
-  @JsonKey(
-    
-    name: r'status_code',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final int? statusCode;
-
-
-
-      /// The Unix timestamp (in seconds) at which this track was analyzed.
-  @JsonKey(
-    
-    name: r'timestamp',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final int? timestamp;
-
-
-
-      /// The amount of time taken to analyze this track.
-  @JsonKey(
-    
-    name: r'analysis_time',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final num? analysisTime;
-
-
-
-      /// The method used to read the track's audio data.
-  @JsonKey(
-    
-    name: r'input_process',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? inputProcess;
-
-
+class _$AudioAnalysisObjectMetaSerializer implements PrimitiveSerializer<AudioAnalysisObjectMeta> {
+  @override
+  final Iterable<Type> types = const [AudioAnalysisObjectMeta, _$AudioAnalysisObjectMeta];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is AudioAnalysisObjectMeta &&
-     other.analyzerVersion == analyzerVersion &&
-     other.platform == platform &&
-     other.detailedStatus == detailedStatus &&
-     other.statusCode == statusCode &&
-     other.timestamp == timestamp &&
-     other.analysisTime == analysisTime &&
-     other.inputProcess == inputProcess;
+  final String wireName = r'AudioAnalysisObjectMeta';
 
-  @override
-  int get hashCode =>
-    analyzerVersion.hashCode +
-    platform.hashCode +
-    detailedStatus.hashCode +
-    statusCode.hashCode +
-    timestamp.hashCode +
-    analysisTime.hashCode +
-    inputProcess.hashCode;
-
-  factory AudioAnalysisObjectMeta.fromJson(Map<String, dynamic> json) => _$AudioAnalysisObjectMetaFromJson(json);
-
-  Map<String, dynamic> toJson() => _$AudioAnalysisObjectMetaToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    AudioAnalysisObjectMeta object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.analyzerVersion != null) {
+      yield r'analyzer_version';
+      yield serializers.serialize(
+        object.analyzerVersion,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.platform != null) {
+      yield r'platform';
+      yield serializers.serialize(
+        object.platform,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.detailedStatus != null) {
+      yield r'detailed_status';
+      yield serializers.serialize(
+        object.detailedStatus,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.statusCode != null) {
+      yield r'status_code';
+      yield serializers.serialize(
+        object.statusCode,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.timestamp != null) {
+      yield r'timestamp';
+      yield serializers.serialize(
+        object.timestamp,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.analysisTime != null) {
+      yield r'analysis_time';
+      yield serializers.serialize(
+        object.analysisTime,
+        specifiedType: const FullType(num),
+      );
+    }
+    if (object.inputProcess != null) {
+      yield r'input_process';
+      yield serializers.serialize(
+        object.inputProcess,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    AudioAnalysisObjectMeta object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required AudioAnalysisObjectMetaBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'analyzer_version':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.analyzerVersion = valueDes;
+          break;
+        case r'platform':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.platform = valueDes;
+          break;
+        case r'detailed_status':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.detailedStatus = valueDes;
+          break;
+        case r'status_code':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.statusCode = valueDes;
+          break;
+        case r'timestamp':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.timestamp = valueDes;
+          break;
+        case r'analysis_time':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.analysisTime = valueDes;
+          break;
+        case r'input_process':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.inputProcess = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  AudioAnalysisObjectMeta deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = AudioAnalysisObjectMetaBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

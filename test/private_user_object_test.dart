@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PrivateUserObject
 void main() {
-  final PrivateUserObject? instance = /* PrivateUserObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = PrivateUserObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PrivateUserObject, () {
     // The country of the user, as set in the user's account profile. An [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). _This field is only available when the current user has granted access to the [user-read-private](/documentation/web-api/concepts/scopes/#list-of-scopes) scope._ 
@@ -53,7 +53,7 @@ void main() {
     });
 
     // The user's profile image.
-    // List<ImageObject> images
+    // BuiltList<ImageObject> images
     test('to test the property `images`', () async {
       // TODO
     });

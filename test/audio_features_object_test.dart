@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for AudioFeaturesObject
 void main() {
-  final AudioFeaturesObject? instance = /* AudioFeaturesObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = AudioFeaturesObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(AudioFeaturesObject, () {
     // A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic. 

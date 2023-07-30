@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for CursorPagingObject
 void main() {
-  final CursorPagingObject? instance = /* CursorPagingObject(...) */ null;
-  // TODO add properties to the entity
+  //final instance = CursorPagingObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CursorPagingObject, () {
     // A link to the Web API endpoint returning the full result of the request.

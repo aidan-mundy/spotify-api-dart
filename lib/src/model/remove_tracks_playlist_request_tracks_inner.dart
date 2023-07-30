@@ -3,53 +3,107 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'remove_tracks_playlist_request_tracks_inner.g.dart';
 
+/// RemoveTracksPlaylistRequestTracksInner
+///
+/// Properties:
+/// * [uri] - Spotify URI
+@BuiltValue()
+abstract class RemoveTracksPlaylistRequestTracksInner implements Built<RemoveTracksPlaylistRequestTracksInner, RemoveTracksPlaylistRequestTracksInnerBuilder> {
+  /// Spotify URI
+  @BuiltValueField(wireName: r'uri')
+  String? get uri;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class RemoveTracksPlaylistRequestTracksInner {
-  /// Returns a new [RemoveTracksPlaylistRequestTracksInner] instance.
-  RemoveTracksPlaylistRequestTracksInner({
+  RemoveTracksPlaylistRequestTracksInner._();
 
-     this.uri,
-  });
+  factory RemoveTracksPlaylistRequestTracksInner([void updates(RemoveTracksPlaylistRequestTracksInnerBuilder b)]) = _$RemoveTracksPlaylistRequestTracksInner;
 
-      /// Spotify URI
-  @JsonKey(
-    
-    name: r'uri',
-    required: false,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(RemoveTracksPlaylistRequestTracksInnerBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<RemoveTracksPlaylistRequestTracksInner> get serializer => _$RemoveTracksPlaylistRequestTracksInnerSerializer();
+}
 
-  final String? uri;
-
-
+class _$RemoveTracksPlaylistRequestTracksInnerSerializer implements PrimitiveSerializer<RemoveTracksPlaylistRequestTracksInner> {
+  @override
+  final Iterable<Type> types = const [RemoveTracksPlaylistRequestTracksInner, _$RemoveTracksPlaylistRequestTracksInner];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is RemoveTracksPlaylistRequestTracksInner &&
-     other.uri == uri;
+  final String wireName = r'RemoveTracksPlaylistRequestTracksInner';
 
-  @override
-  int get hashCode =>
-    uri.hashCode;
-
-  factory RemoveTracksPlaylistRequestTracksInner.fromJson(Map<String, dynamic> json) => _$RemoveTracksPlaylistRequestTracksInnerFromJson(json);
-
-  Map<String, dynamic> toJson() => _$RemoveTracksPlaylistRequestTracksInnerToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    RemoveTracksPlaylistRequestTracksInner object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.uri != null) {
+      yield r'uri';
+      yield serializers.serialize(
+        object.uri,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    RemoveTracksPlaylistRequestTracksInner object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required RemoveTracksPlaylistRequestTracksInnerBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'uri':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.uri = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  RemoveTracksPlaylistRequestTracksInner deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = RemoveTracksPlaylistRequestTracksInnerBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

@@ -3,45 +3,133 @@
 part of 'play_history_object.dart';
 
 // **************************************************************************
-// JsonSerializableGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-PlayHistoryObject _$PlayHistoryObjectFromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'PlayHistoryObject',
-      json,
-      ($checkedConvert) {
-        final val = PlayHistoryObject(
-          track: $checkedConvert(
-              'track',
-              (v) => v == null
-                  ? null
-                  : PlayHistoryObjectTrack.fromJson(v as Map<String, dynamic>)),
-          playedAt: $checkedConvert('played_at',
-              (v) => v == null ? null : DateTime.parse(v as String)),
-          context: $checkedConvert(
-              'context',
-              (v) => v == null
-                  ? null
-                  : PlayHistoryObjectContext.fromJson(
-                      v as Map<String, dynamic>)),
-        );
-        return val;
-      },
-      fieldKeyMap: const {'playedAt': 'played_at'},
-    );
+class _$PlayHistoryObject extends PlayHistoryObject {
+  @override
+  final PlayHistoryObjectTrack? track;
+  @override
+  final DateTime? playedAt;
+  @override
+  final PlayHistoryObjectContext? context;
 
-Map<String, dynamic> _$PlayHistoryObjectToJson(PlayHistoryObject instance) {
-  final val = <String, dynamic>{};
+  factory _$PlayHistoryObject(
+          [void Function(PlayHistoryObjectBuilder)? updates]) =>
+      (new PlayHistoryObjectBuilder()..update(updates))._build();
 
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
+  _$PlayHistoryObject._({this.track, this.playedAt, this.context}) : super._();
+
+  @override
+  PlayHistoryObject rebuild(void Function(PlayHistoryObjectBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  PlayHistoryObjectBuilder toBuilder() =>
+      new PlayHistoryObjectBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is PlayHistoryObject &&
+        track == other.track &&
+        playedAt == other.playedAt &&
+        context == other.context;
   }
 
-  writeNotNull('track', instance.track?.toJson());
-  writeNotNull('played_at', instance.playedAt?.toIso8601String());
-  writeNotNull('context', instance.context?.toJson());
-  return val;
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, track.hashCode);
+    _$hash = $jc(_$hash, playedAt.hashCode);
+    _$hash = $jc(_$hash, context.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'PlayHistoryObject')
+          ..add('track', track)
+          ..add('playedAt', playedAt)
+          ..add('context', context))
+        .toString();
+  }
 }
+
+class PlayHistoryObjectBuilder
+    implements Builder<PlayHistoryObject, PlayHistoryObjectBuilder> {
+  _$PlayHistoryObject? _$v;
+
+  PlayHistoryObjectTrackBuilder? _track;
+  PlayHistoryObjectTrackBuilder get track =>
+      _$this._track ??= new PlayHistoryObjectTrackBuilder();
+  set track(PlayHistoryObjectTrackBuilder? track) => _$this._track = track;
+
+  DateTime? _playedAt;
+  DateTime? get playedAt => _$this._playedAt;
+  set playedAt(DateTime? playedAt) => _$this._playedAt = playedAt;
+
+  PlayHistoryObjectContextBuilder? _context;
+  PlayHistoryObjectContextBuilder get context =>
+      _$this._context ??= new PlayHistoryObjectContextBuilder();
+  set context(PlayHistoryObjectContextBuilder? context) =>
+      _$this._context = context;
+
+  PlayHistoryObjectBuilder() {
+    PlayHistoryObject._defaults(this);
+  }
+
+  PlayHistoryObjectBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _track = $v.track?.toBuilder();
+      _playedAt = $v.playedAt;
+      _context = $v.context?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(PlayHistoryObject other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$PlayHistoryObject;
+  }
+
+  @override
+  void update(void Function(PlayHistoryObjectBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  PlayHistoryObject build() => _build();
+
+  _$PlayHistoryObject _build() {
+    _$PlayHistoryObject _$result;
+    try {
+      _$result = _$v ??
+          new _$PlayHistoryObject._(
+              track: _track?.build(),
+              playedAt: playedAt,
+              context: _context?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'track';
+        _track?.build();
+
+        _$failedField = 'context';
+        _context?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'PlayHistoryObject', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

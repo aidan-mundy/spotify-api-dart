@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for ExternalIdObject
 void main() {
-  final ExternalIdObject? instance = /* ExternalIdObject(...) */ null;
-  // TODO add properties to the entity
+  //final instance = ExternalIdObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ExternalIdObject, () {
     // [International Standard Recording Code](http://en.wikipedia.org/wiki/International_Standard_Recording_Code) 

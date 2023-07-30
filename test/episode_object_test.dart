@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for EpisodeObject
 void main() {
-  final EpisodeObject? instance = /* EpisodeObject(...) */ null;
-  // TODO add properties to the entity
+  //final instance = EpisodeObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(EpisodeObject, () {
     // A URL to a 30 second preview (MP3 format) of the episode. `null` if not available. 
@@ -55,7 +55,7 @@ void main() {
     });
 
     // The cover art for the episode in various sizes, widest first. 
-    // List<ImageObject> images
+    // BuiltList<ImageObject> images
     test('to test the property `images`', () async {
       // TODO
     });
@@ -79,7 +79,7 @@ void main() {
     });
 
     // A list of the languages used in the episode, identified by their [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) code. 
-    // List<String> languages
+    // BuiltList<String> languages
     test('to test the property `languages`', () async {
       // TODO
     });

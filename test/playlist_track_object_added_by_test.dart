@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PlaylistTrackObjectAddedBy
 void main() {
-  final PlaylistTrackObjectAddedBy? instance = /* PlaylistTrackObjectAddedBy(...) */ null;
-  // TODO add properties to the entity
+  final instance = PlaylistTrackObjectAddedByBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PlaylistTrackObjectAddedBy, () {
     // PublicUserObjectExternalUrls externalUrls

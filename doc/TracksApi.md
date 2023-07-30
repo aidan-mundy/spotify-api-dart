@@ -45,7 +45,7 @@ final api = SpotifyOpenapi().getTracksApi();
 final String playlistId = 3cEYpjA9oz9GiPac4AsH4n; // String | 
 final int position = 0; // int | 
 final String uris = spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     final response = api.addTracksToPlaylist(playlistId, position, uris, requestBody);
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
  **playlistId** | **String**|  | 
  **position** | **int**|  | [optional] 
  **uris** | **String**|  | [optional] 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **checkUsersSavedTracks**
-> List<bool> checkUsersSavedTracks(ids)
+> BuiltList<bool> checkUsersSavedTracks(ids)
 
 Check User's Saved Tracks 
 
@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**List&lt;bool&gt;**
+**BuiltList&lt;bool&gt;**
 
 ### Authorization
 
@@ -805,7 +805,7 @@ import 'package:spotify_openapi/api.dart';
 
 final api = SpotifyOpenapi().getTracksApi();
 final String ids = 7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     api.removeTracksUser(ids, requestBody);
@@ -819,7 +819,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | **String**|  | 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 
@@ -852,7 +852,7 @@ import 'package:spotify_openapi/api.dart';
 final api = SpotifyOpenapi().getTracksApi();
 final String playlistId = 3cEYpjA9oz9GiPac4AsH4n; // String | 
 final String uris = uris_example; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     final response = api.reorderOrReplacePlaylistsTracks(playlistId, uris, requestBody);
@@ -868,7 +868,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **playlistId** | **String**|  | 
  **uris** | **String**|  | [optional] 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 
@@ -900,7 +900,7 @@ import 'package:spotify_openapi/api.dart';
 
 final api = SpotifyOpenapi().getTracksApi();
 final String ids = 7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B; // String | 
-final Map<String, Object> requestBody = ; // Map<String, Object> | 
+final BuiltMap<String, JsonObject> requestBody = ; // BuiltMap<String, JsonObject> | 
 
 try {
     api.saveTracksUser(ids, requestBody);
@@ -914,7 +914,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | **String**|  | 
- **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] 
+ **requestBody** | [**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)|  | [optional] 
 
 ### Return type
 

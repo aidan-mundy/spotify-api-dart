@@ -3,11 +3,11 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for ReorderOrReplacePlaylistsTracksRequest
 void main() {
-  final ReorderOrReplacePlaylistsTracksRequest? instance = /* ReorderOrReplacePlaylistsTracksRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = ReorderOrReplacePlaylistsTracksRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ReorderOrReplacePlaylistsTracksRequest, () {
-    // List<String> uris
+    // BuiltList<String> uris
     test('to test the property `uris`', () async {
       // TODO
     });

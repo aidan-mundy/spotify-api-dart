@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PagingSavedEpisodeObject
 void main() {
-  final PagingSavedEpisodeObject? instance = /* PagingSavedEpisodeObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = PagingSavedEpisodeObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PagingSavedEpisodeObject, () {
     // A link to the Web API endpoint returning the full result of the request 
@@ -43,7 +43,7 @@ void main() {
       // TODO
     });
 
-    // List<SavedEpisodeObject> items
+    // BuiltList<SavedEpisodeObject> items
     test('to test the property `items`', () async {
       // TODO
     });

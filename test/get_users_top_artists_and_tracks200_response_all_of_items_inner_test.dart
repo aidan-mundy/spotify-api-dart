@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for GetUsersTopArtistsAndTracks200ResponseAllOfItemsInner
 void main() {
-  final GetUsersTopArtistsAndTracks200ResponseAllOfItemsInner? instance = /* GetUsersTopArtistsAndTracks200ResponseAllOfItemsInner(...) */ null;
-  // TODO add properties to the entity
+  final instance = GetUsersTopArtistsAndTracks200ResponseAllOfItemsInnerBuilder();
+  // TODO add properties to the builder and call build()
 
   group(GetUsersTopArtistsAndTracks200ResponseAllOfItemsInner, () {
     // LinkedTrackObjectExternalUrls externalUrls
@@ -18,7 +18,7 @@ void main() {
     });
 
     // A list of the genres the artist is associated with. If not yet classified, the array is empty. 
-    // List<String> genres
+    // BuiltList<String> genres
     test('to test the property `genres`', () async {
       // TODO
     });
@@ -36,7 +36,7 @@ void main() {
     });
 
     // Images of the artist in various sizes, widest first. 
-    // List<ImageObject> images
+    // BuiltList<ImageObject> images
     test('to test the property `images`', () async {
       // TODO
     });
@@ -71,13 +71,13 @@ void main() {
     });
 
     // The artists who performed the track. Each artist object includes a link in `href` to more detailed information about the artist. 
-    // List<ArtistObject> artists
+    // BuiltList<ArtistObject> artists
     test('to test the property `artists`', () async {
       // TODO
     });
 
     // A list of the countries in which the track can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code. 
-    // List<String> availableMarkets
+    // BuiltList<String> availableMarkets
     test('to test the property `availableMarkets`', () async {
       // TODO
     });
@@ -112,7 +112,7 @@ void main() {
     });
 
     // Part of the response when [Track Relinking](/documentation/web-api/concepts/track-relinking) is applied, and the requested track has been replaced with different track. The track in the `linked_from` object contains information about the originally requested track. 
-    // Object linkedFrom
+    // JsonObject linkedFrom
     test('to test the property `linkedFrom`', () async {
       // TODO
     });

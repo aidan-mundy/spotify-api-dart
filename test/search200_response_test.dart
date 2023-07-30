@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for Search200Response
 void main() {
-  final Search200Response? instance = /* Search200Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = Search200ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(Search200Response, () {
     // PagingTrackObject tracks

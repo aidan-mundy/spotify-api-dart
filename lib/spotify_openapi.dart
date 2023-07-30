@@ -6,7 +6,8 @@ export 'package:spotify_openapi/src/api.dart';
 export 'package:spotify_openapi/src/auth/api_key_auth.dart';
 export 'package:spotify_openapi/src/auth/basic_auth.dart';
 export 'package:spotify_openapi/src/auth/oauth.dart';
-
+export 'package:spotify_openapi/src/serializers.dart';
+export 'package:spotify_openapi/src/model/date.dart';
 
 export 'package:spotify_openapi/src/api/albums_api.dart';
 export 'package:spotify_openapi/src/api/artists_api.dart';

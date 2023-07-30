@@ -11,7 +11,7 @@ void main() {
     //
     // Add one or more items to a user's playlist. 
     //
-    //Future<ReorderOrReplacePlaylistsTracks200Response> addTracksToPlaylist(String playlistId, { int position, String uris, Map<String, Object> requestBody }) async
+    //Future<ReorderOrReplacePlaylistsTracks200Response> addTracksToPlaylist(String playlistId, { int position, String uris, BuiltMap<String, JsonObject> requestBody }) async
     test('test addTracksToPlaylist', () async {
       // TODO
     });
@@ -20,7 +20,7 @@ void main() {
     //
     // Change a playlist's name and public/private state. (The user must, of course, own the playlist.) 
     //
-    //Future changePlaylistDetails(String playlistId, { Map<String, Object> requestBody }) async
+    //Future changePlaylistDetails(String playlistId, { BuiltMap<String, JsonObject> requestBody }) async
     test('test changePlaylistDetails', () async {
       // TODO
     });
@@ -29,7 +29,7 @@ void main() {
     //
     // Check to see if one or more Spotify users are following a specified playlist. 
     //
-    //Future<List<bool>> checkIfUserFollowsPlaylist(String playlistId, String ids) async
+    //Future<BuiltList<bool>> checkIfUserFollowsPlaylist(String playlistId, String ids) async
     test('test checkIfUserFollowsPlaylist', () async {
       // TODO
     });
@@ -38,7 +38,7 @@ void main() {
     //
     // Create a playlist for a Spotify user. (The playlist will be empty until you [add tracks](/documentation/web-api/reference/add-tracks-to-playlist).) 
     //
-    //Future<PlaylistObject> createPlaylist(String userId, { Map<String, Object> requestBody }) async
+    //Future<PlaylistObject> createPlaylist(String userId, { BuiltMap<String, JsonObject> requestBody }) async
     test('test createPlaylist', () async {
       // TODO
     });
@@ -47,7 +47,7 @@ void main() {
     //
     // Add the current user as a follower of a playlist. 
     //
-    //Future followPlaylist(String playlistId, { Map<String, Object> requestBody }) async
+    //Future followPlaylist(String playlistId, { BuiltMap<String, JsonObject> requestBody }) async
     test('test followPlaylist', () async {
       // TODO
     });
@@ -101,7 +101,7 @@ void main() {
     //
     // Get the current image associated with a specific playlist. 
     //
-    //Future<List<ImageObject>> getPlaylistCover(String playlistId) async
+    //Future<BuiltList<ImageObject>> getPlaylistCover(String playlistId) async
     test('test getPlaylistCover', () async {
       // TODO
     });
@@ -128,7 +128,7 @@ void main() {
     //
     // Either reorder or replace items in a playlist depending on the request's parameters. To reorder items, include `range_start`, `insert_before`, `range_length` and `snapshot_id` in the request's body. To replace items, include `uris` as either a query parameter or in the request's body. Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist. <br/> **Note**: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters. These operations can't be applied together in a single request. 
     //
-    //Future<ReorderOrReplacePlaylistsTracks200Response> reorderOrReplacePlaylistsTracks(String playlistId, { String uris, Map<String, Object> requestBody }) async
+    //Future<ReorderOrReplacePlaylistsTracks200Response> reorderOrReplacePlaylistsTracks(String playlistId, { String uris, BuiltMap<String, JsonObject> requestBody }) async
     test('test reorderOrReplacePlaylistsTracks', () async {
       // TODO
     });

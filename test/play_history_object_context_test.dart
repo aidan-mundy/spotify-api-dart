@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PlayHistoryObjectContext
 void main() {
-  final PlayHistoryObjectContext? instance = /* PlayHistoryObjectContext(...) */ null;
-  // TODO add properties to the entity
+  final instance = PlayHistoryObjectContextBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PlayHistoryObjectContext, () {
     // The object type, e.g. \"artist\", \"playlist\", \"album\", \"show\". 

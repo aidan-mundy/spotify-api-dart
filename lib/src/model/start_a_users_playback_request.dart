@@ -3,104 +3,166 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'start_a_users_playback_request.g.dart';
 
+/// StartAUsersPlaybackRequest
+///
+/// Properties:
+/// * [contextUri] - Optional. Spotify URI of the context to play. Valid contexts are albums, artists & playlists. `{context_uri:\"spotify:album:1Je1IMUlBXcx1Fz0WE7oPT\"}` 
+/// * [uris] - Optional. A JSON array of the Spotify track URIs to play. For example: `{\"uris\": [\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\", \"spotify:track:1301WleyT98MSxVHPZCA6M\"]}` 
+/// * [offset] - Optional. Indicates from where in the context playback should start. Only available when context_uri corresponds to an album or playlist object \"position\" is zero based and can’t be negative. Example: `\"offset\": {\"position\": 5}` \"uri\" is a string representing the uri of the item to start at. Example: `\"offset\": {\"uri\": \"spotify:track:1301WleyT98MSxVHPZCA6M\"}` 
+/// * [positionMs] - integer
+@BuiltValue()
+abstract class StartAUsersPlaybackRequest implements Built<StartAUsersPlaybackRequest, StartAUsersPlaybackRequestBuilder> {
+  /// Optional. Spotify URI of the context to play. Valid contexts are albums, artists & playlists. `{context_uri:\"spotify:album:1Je1IMUlBXcx1Fz0WE7oPT\"}` 
+  @BuiltValueField(wireName: r'context_uri')
+  BuiltMap<String, JsonObject?>? get contextUri;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class StartAUsersPlaybackRequest {
-  /// Returns a new [StartAUsersPlaybackRequest] instance.
-  StartAUsersPlaybackRequest({
+  /// Optional. A JSON array of the Spotify track URIs to play. For example: `{\"uris\": [\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\", \"spotify:track:1301WleyT98MSxVHPZCA6M\"]}` 
+  @BuiltValueField(wireName: r'uris')
+  BuiltList<String>? get uris;
 
-     this.contextUri,
+  /// Optional. Indicates from where in the context playback should start. Only available when context_uri corresponds to an album or playlist object \"position\" is zero based and can’t be negative. Example: `\"offset\": {\"position\": 5}` \"uri\" is a string representing the uri of the item to start at. Example: `\"offset\": {\"uri\": \"spotify:track:1301WleyT98MSxVHPZCA6M\"}` 
+  @BuiltValueField(wireName: r'offset')
+  BuiltMap<String, JsonObject?>? get offset;
 
-     this.uris,
+  /// integer
+  @BuiltValueField(wireName: r'position_ms')
+  BuiltMap<String, JsonObject?>? get positionMs;
 
-     this.offset,
+  StartAUsersPlaybackRequest._();
 
-     this.positionMs,
-  });
+  factory StartAUsersPlaybackRequest([void updates(StartAUsersPlaybackRequestBuilder b)]) = _$StartAUsersPlaybackRequest;
 
-      /// Optional. Spotify URI of the context to play. Valid contexts are albums, artists & playlists. `{context_uri:\"spotify:album:1Je1IMUlBXcx1Fz0WE7oPT\"}` 
-  @JsonKey(
-    
-    name: r'context_uri',
-    required: false,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(StartAUsersPlaybackRequestBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<StartAUsersPlaybackRequest> get serializer => _$StartAUsersPlaybackRequestSerializer();
+}
 
-  final Map<String, Object>? contextUri;
-
-
-
-      /// Optional. A JSON array of the Spotify track URIs to play. For example: `{\"uris\": [\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\", \"spotify:track:1301WleyT98MSxVHPZCA6M\"]}` 
-  @JsonKey(
-    
-    name: r'uris',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final List<String>? uris;
-
-
-
-      /// Optional. Indicates from where in the context playback should start. Only available when context_uri corresponds to an album or playlist object \"position\" is zero based and can’t be negative. Example: `\"offset\": {\"position\": 5}` \"uri\" is a string representing the uri of the item to start at. Example: `\"offset\": {\"uri\": \"spotify:track:1301WleyT98MSxVHPZCA6M\"}` 
-  @JsonKey(
-    
-    name: r'offset',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final Map<String, Object>? offset;
-
-
-
-      /// integer
-  @JsonKey(
-    
-    name: r'position_ms',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final Map<String, Object>? positionMs;
-
-
+class _$StartAUsersPlaybackRequestSerializer implements PrimitiveSerializer<StartAUsersPlaybackRequest> {
+  @override
+  final Iterable<Type> types = const [StartAUsersPlaybackRequest, _$StartAUsersPlaybackRequest];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is StartAUsersPlaybackRequest &&
-     other.contextUri == contextUri &&
-     other.uris == uris &&
-     other.offset == offset &&
-     other.positionMs == positionMs;
+  final String wireName = r'StartAUsersPlaybackRequest';
 
-  @override
-  int get hashCode =>
-    contextUri.hashCode +
-    uris.hashCode +
-    offset.hashCode +
-    positionMs.hashCode;
-
-  factory StartAUsersPlaybackRequest.fromJson(Map<String, dynamic> json) => _$StartAUsersPlaybackRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$StartAUsersPlaybackRequestToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    StartAUsersPlaybackRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.contextUri != null) {
+      yield r'context_uri';
+      yield serializers.serialize(
+        object.contextUri,
+        specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+      );
+    }
+    if (object.uris != null) {
+      yield r'uris';
+      yield serializers.serialize(
+        object.uris,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.offset != null) {
+      yield r'offset';
+      yield serializers.serialize(
+        object.offset,
+        specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+      );
+    }
+    if (object.positionMs != null) {
+      yield r'position_ms';
+      yield serializers.serialize(
+        object.positionMs,
+        specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    StartAUsersPlaybackRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required StartAUsersPlaybackRequestBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'context_uri':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+          ) as BuiltMap<String, JsonObject?>;
+          result.contextUri.replace(valueDes);
+          break;
+        case r'uris':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.uris.replace(valueDes);
+          break;
+        case r'offset':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+          ) as BuiltMap<String, JsonObject?>;
+          result.offset.replace(valueDes);
+          break;
+        case r'position_ms':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+          ) as BuiltMap<String, JsonObject?>;
+          result.positionMs.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  StartAUsersPlaybackRequest deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = StartAUsersPlaybackRequestBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

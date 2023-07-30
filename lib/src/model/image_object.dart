@@ -3,87 +3,141 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'image_object.g.dart';
 
+/// ImageObject
+///
+/// Properties:
+/// * [url] - The source URL of the image. 
+/// * [height] - The image height in pixels. 
+/// * [width] - The image width in pixels. 
+@BuiltValue()
+abstract class ImageObject implements Built<ImageObject, ImageObjectBuilder> {
+  /// The source URL of the image. 
+  @BuiltValueField(wireName: r'url')
+  String get url;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class ImageObject {
-  /// Returns a new [ImageObject] instance.
-  ImageObject({
+  /// The image height in pixels. 
+  @BuiltValueField(wireName: r'height')
+  int? get height;
 
-    required  this.url,
+  /// The image width in pixels. 
+  @BuiltValueField(wireName: r'width')
+  int? get width;
 
-    required  this.height,
+  ImageObject._();
 
-    required  this.width,
-  });
+  factory ImageObject([void updates(ImageObjectBuilder b)]) = _$ImageObject;
 
-      /// The source URL of the image. 
-  @JsonKey(
-    
-    name: r'url',
-    required: true,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(ImageObjectBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<ImageObject> get serializer => _$ImageObjectSerializer();
+}
 
-  final String url;
-
-
-
-      /// The image height in pixels. 
-  @JsonKey(
-    
-    name: r'height',
-    required: true,
-    includeIfNull: truefalse
-  )
-
-
-  final int? height;
-
-
-
-      /// The image width in pixels. 
-  @JsonKey(
-    
-    name: r'width',
-    required: true,
-    includeIfNull: truefalse
-  )
-
-
-  final int? width;
-
-
+class _$ImageObjectSerializer implements PrimitiveSerializer<ImageObject> {
+  @override
+  final Iterable<Type> types = const [ImageObject, _$ImageObject];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ImageObject &&
-     other.url == url &&
-     other.height == height &&
-     other.width == width;
+  final String wireName = r'ImageObject';
 
-  @override
-  int get hashCode =>
-    url.hashCode +
-    (height == null ? 0 : height.hashCode) +
-    (width == null ? 0 : width.hashCode);
-
-  factory ImageObject.fromJson(Map<String, dynamic> json) => _$ImageObjectFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ImageObjectToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    ImageObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'url';
+    yield serializers.serialize(
+      object.url,
+      specifiedType: const FullType(String),
+    );
+    yield r'height';
+    yield object.height == null ? null : serializers.serialize(
+      object.height,
+      specifiedType: const FullType.nullable(int),
+    );
+    yield r'width';
+    yield object.width == null ? null : serializers.serialize(
+      object.width,
+      specifiedType: const FullType.nullable(int),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    ImageObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required ImageObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.url = valueDes;
+          break;
+        case r'height':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.height = valueDes;
+          break;
+        case r'width':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.width = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  ImageObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = ImageObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

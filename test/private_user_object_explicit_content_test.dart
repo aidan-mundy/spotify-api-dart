@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PrivateUserObjectExplicitContent
 void main() {
-  final PrivateUserObjectExplicitContent? instance = /* PrivateUserObjectExplicitContent(...) */ null;
-  // TODO add properties to the entity
+  final instance = PrivateUserObjectExplicitContentBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PrivateUserObjectExplicitContent, () {
     // When `true`, indicates that explicit content should not be played. 

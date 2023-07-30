@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **followers** | [**PublicUserObjectFollowers**](PublicUserObjectFollowers.md) |  | [optional] 
 **href** | **String** | A link to the Web API endpoint for this user.  | [optional] 
 **id** | **String** | The [Spotify user ID](/documentation/web-api/concepts/spotify-uris-ids) for this user.  | [optional] 
-**images** | [**List&lt;ImageObject&gt;**](ImageObject.md) | The user's profile image.  | [optional] 
+**images** | [**BuiltList&lt;ImageObject&gt;**](ImageObject.md) | The user's profile image.  | [optional] 
 **type** | **String** | The object type.  | [optional] 
 **uri** | **String** | The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for this user.  | [optional] 
 

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **offset** | **int** | The offset of the items returned (as set in the query or by default)  | 
 **previous** | **String** | URL to the previous page of items. ( `null` if none)  | 
 **total** | **int** | The total number of items available to return.  | 
-**items** | [**List&lt;SimplifiedTrackObject&gt;**](SimplifiedTrackObject.md) |  | 
+**items** | [**BuiltList&lt;SimplifiedTrackObject&gt;**](SimplifiedTrackObject.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

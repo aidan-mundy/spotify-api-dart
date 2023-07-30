@@ -3,30 +3,99 @@
 part of 'external_url_object.dart';
 
 // **************************************************************************
-// JsonSerializableGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-ExternalUrlObject _$ExternalUrlObjectFromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ExternalUrlObject',
-      json,
-      ($checkedConvert) {
-        final val = ExternalUrlObject(
-          spotify: $checkedConvert('spotify', (v) => v as String?),
-        );
-        return val;
-      },
-    );
+abstract mixin class ExternalUrlObjectBuilder {
+  void replace(ExternalUrlObject other);
+  void update(void Function(ExternalUrlObjectBuilder) updates);
+  String? get spotify;
+  set spotify(String? spotify);
+}
 
-Map<String, dynamic> _$ExternalUrlObjectToJson(ExternalUrlObject instance) {
-  final val = <String, dynamic>{};
+class _$$ExternalUrlObject extends $ExternalUrlObject {
+  @override
+  final String? spotify;
 
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
+  factory _$$ExternalUrlObject(
+          [void Function($ExternalUrlObjectBuilder)? updates]) =>
+      (new $ExternalUrlObjectBuilder()..update(updates))._build();
+
+  _$$ExternalUrlObject._({this.spotify}) : super._();
+
+  @override
+  $ExternalUrlObject rebuild(
+          void Function($ExternalUrlObjectBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  $ExternalUrlObjectBuilder toBuilder() =>
+      new $ExternalUrlObjectBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is $ExternalUrlObject && spotify == other.spotify;
   }
 
-  writeNotNull('spotify', instance.spotify);
-  return val;
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, spotify.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'$ExternalUrlObject')
+          ..add('spotify', spotify))
+        .toString();
+  }
 }
+
+class $ExternalUrlObjectBuilder
+    implements
+        Builder<$ExternalUrlObject, $ExternalUrlObjectBuilder>,
+        ExternalUrlObjectBuilder {
+  _$$ExternalUrlObject? _$v;
+
+  String? _spotify;
+  String? get spotify => _$this._spotify;
+  set spotify(covariant String? spotify) => _$this._spotify = spotify;
+
+  $ExternalUrlObjectBuilder() {
+    $ExternalUrlObject._defaults(this);
+  }
+
+  $ExternalUrlObjectBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _spotify = $v.spotify;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(covariant $ExternalUrlObject other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$$ExternalUrlObject;
+  }
+
+  @override
+  void update(void Function($ExternalUrlObjectBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  $ExternalUrlObject build() => _build();
+
+  _$$ExternalUrlObject _build() {
+    final _$result = _$v ?? new _$$ExternalUrlObject._(spotify: spotify);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

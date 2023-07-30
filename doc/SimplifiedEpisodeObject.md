@@ -16,11 +16,11 @@ Name | Type | Description | Notes
 **externalUrls** | [**EpisodeBaseExternalUrls**](EpisodeBaseExternalUrls.md) |  | 
 **href** | **String** | A link to the Web API endpoint providing full details of the episode.  | 
 **id** | **String** | The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the episode.  | 
-**images** | [**List&lt;ImageObject&gt;**](ImageObject.md) | The cover art for the episode in various sizes, widest first.  | 
+**images** | [**BuiltList&lt;ImageObject&gt;**](ImageObject.md) | The cover art for the episode in various sizes, widest first.  | 
 **isExternallyHosted** | **bool** | True if the episode is hosted outside of Spotify's CDN.  | 
 **isPlayable** | **bool** | True if the episode is playable in the given market. Otherwise false.  | 
 **language** | **String** | The language used in the episode, identified by a [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code. This field is deprecated and might be removed in the future. Please use the `languages` field instead.  | [optional] 
-**languages** | **List&lt;String&gt;** | A list of the languages used in the episode, identified by their [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) code.  | 
+**languages** | **BuiltList&lt;String&gt;** | A list of the languages used in the episode, identified by their [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) code.  | 
 **name** | **String** | The name of the episode.  | 
 **releaseDate** | **String** | The date the episode was first released, for example `\"1981-12-15\"`. Depending on the precision, it might be shown as `\"1981\"` or `\"1981-12\"`.  | 
 **releaseDatePrecision** | **String** | The precision with which `release_date` value is known.  | 

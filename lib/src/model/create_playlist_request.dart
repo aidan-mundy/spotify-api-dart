@@ -3,104 +3,162 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'create_playlist_request.g.dart';
 
+/// CreatePlaylistRequest
+///
+/// Properties:
+/// * [name] - The name for the new playlist, for example `\"Your Coolest Playlist\"`. This name does not need to be unique; a user may have several playlists with the same name. 
+/// * [public] - Defaults to `true`. If `true` the playlist will be public, if `false` it will be private. To be able to create private playlists, the user must have granted the `playlist-modify-private` [scope](/documentation/web-api/concepts/scopes/#list-of-scopes) 
+/// * [collaborative] - Defaults to `false`. If `true` the playlist will be collaborative. _**Note**: to create a collaborative playlist you must also set `public` to `false`. To create collaborative playlists you must have granted `playlist-modify-private` and `playlist-modify-public` [scopes](/documentation/web-api/concepts/scopes/#list-of-scopes)._ 
+/// * [description] - value for playlist description as displayed in Spotify Clients and in the Web API. 
+@BuiltValue()
+abstract class CreatePlaylistRequest implements Built<CreatePlaylistRequest, CreatePlaylistRequestBuilder> {
+  /// The name for the new playlist, for example `\"Your Coolest Playlist\"`. This name does not need to be unique; a user may have several playlists with the same name. 
+  @BuiltValueField(wireName: r'name')
+  String get name;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class CreatePlaylistRequest {
-  /// Returns a new [CreatePlaylistRequest] instance.
-  CreatePlaylistRequest({
+  /// Defaults to `true`. If `true` the playlist will be public, if `false` it will be private. To be able to create private playlists, the user must have granted the `playlist-modify-private` [scope](/documentation/web-api/concepts/scopes/#list-of-scopes) 
+  @BuiltValueField(wireName: r'public')
+  bool? get public;
 
-    required  this.name,
+  /// Defaults to `false`. If `true` the playlist will be collaborative. _**Note**: to create a collaborative playlist you must also set `public` to `false`. To create collaborative playlists you must have granted `playlist-modify-private` and `playlist-modify-public` [scopes](/documentation/web-api/concepts/scopes/#list-of-scopes)._ 
+  @BuiltValueField(wireName: r'collaborative')
+  bool? get collaborative;
 
-     this.public,
+  /// value for playlist description as displayed in Spotify Clients and in the Web API. 
+  @BuiltValueField(wireName: r'description')
+  String? get description;
 
-     this.collaborative,
+  CreatePlaylistRequest._();
 
-     this.description,
-  });
+  factory CreatePlaylistRequest([void updates(CreatePlaylistRequestBuilder b)]) = _$CreatePlaylistRequest;
 
-      /// The name for the new playlist, for example `\"Your Coolest Playlist\"`. This name does not need to be unique; a user may have several playlists with the same name. 
-  @JsonKey(
-    
-    name: r'name',
-    required: true,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(CreatePlaylistRequestBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<CreatePlaylistRequest> get serializer => _$CreatePlaylistRequestSerializer();
+}
 
-  final String name;
-
-
-
-      /// Defaults to `true`. If `true` the playlist will be public, if `false` it will be private. To be able to create private playlists, the user must have granted the `playlist-modify-private` [scope](/documentation/web-api/concepts/scopes/#list-of-scopes) 
-  @JsonKey(
-    
-    name: r'public',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final bool? public;
-
-
-
-      /// Defaults to `false`. If `true` the playlist will be collaborative. _**Note**: to create a collaborative playlist you must also set `public` to `false`. To create collaborative playlists you must have granted `playlist-modify-private` and `playlist-modify-public` [scopes](/documentation/web-api/concepts/scopes/#list-of-scopes)._ 
-  @JsonKey(
-    
-    name: r'collaborative',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final bool? collaborative;
-
-
-
-      /// value for playlist description as displayed in Spotify Clients and in the Web API. 
-  @JsonKey(
-    
-    name: r'description',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? description;
-
-
+class _$CreatePlaylistRequestSerializer implements PrimitiveSerializer<CreatePlaylistRequest> {
+  @override
+  final Iterable<Type> types = const [CreatePlaylistRequest, _$CreatePlaylistRequest];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is CreatePlaylistRequest &&
-     other.name == name &&
-     other.public == public &&
-     other.collaborative == collaborative &&
-     other.description == description;
+  final String wireName = r'CreatePlaylistRequest';
 
-  @override
-  int get hashCode =>
-    name.hashCode +
-    public.hashCode +
-    collaborative.hashCode +
-    description.hashCode;
-
-  factory CreatePlaylistRequest.fromJson(Map<String, dynamic> json) => _$CreatePlaylistRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CreatePlaylistRequestToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    CreatePlaylistRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
+    if (object.public != null) {
+      yield r'public';
+      yield serializers.serialize(
+        object.public,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.collaborative != null) {
+      yield r'collaborative';
+      yield serializers.serialize(
+        object.collaborative,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.description != null) {
+      yield r'description';
+      yield serializers.serialize(
+        object.description,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    CreatePlaylistRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required CreatePlaylistRequestBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        case r'public':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.public = valueDes;
+          break;
+        case r'collaborative':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.collaborative = valueDes;
+          break;
+        case r'description':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.description = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  CreatePlaylistRequest deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = CreatePlaylistRequestBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

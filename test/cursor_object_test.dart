@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for CursorObject
 void main() {
-  final CursorObject? instance = /* CursorObject(...) */ null;
-  // TODO add properties to the entity
+  //final instance = CursorObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CursorObject, () {
     // The cursor to use as key to find the next page of items.

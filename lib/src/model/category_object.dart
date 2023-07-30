@@ -4,104 +4,157 @@
 
 // ignore_for_file: unused_element
 import 'package:spotify_openapi/src/model/image_object.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'category_object.g.dart';
 
+/// CategoryObject
+///
+/// Properties:
+/// * [href] - A link to the Web API endpoint returning full details of the category. 
+/// * [icons] - The category icon, in various sizes. 
+/// * [id] - The [Spotify category ID](/documentation/web-api/concepts/spotify-uris-ids) of the category. 
+/// * [name] - The name of the category. 
+@BuiltValue()
+abstract class CategoryObject implements Built<CategoryObject, CategoryObjectBuilder> {
+  /// A link to the Web API endpoint returning full details of the category. 
+  @BuiltValueField(wireName: r'href')
+  String get href;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class CategoryObject {
-  /// Returns a new [CategoryObject] instance.
-  CategoryObject({
+  /// The category icon, in various sizes. 
+  @BuiltValueField(wireName: r'icons')
+  BuiltList<ImageObject> get icons;
 
-    required  this.href,
+  /// The [Spotify category ID](/documentation/web-api/concepts/spotify-uris-ids) of the category. 
+  @BuiltValueField(wireName: r'id')
+  String get id;
 
-    required  this.icons,
+  /// The name of the category. 
+  @BuiltValueField(wireName: r'name')
+  String get name;
 
-    required  this.id,
+  CategoryObject._();
 
-    required  this.name,
-  });
+  factory CategoryObject([void updates(CategoryObjectBuilder b)]) = _$CategoryObject;
 
-      /// A link to the Web API endpoint returning full details of the category. 
-  @JsonKey(
-    
-    name: r'href',
-    required: true,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(CategoryObjectBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<CategoryObject> get serializer => _$CategoryObjectSerializer();
+}
 
-  final String href;
-
-
-
-      /// The category icon, in various sizes. 
-  @JsonKey(
-    
-    name: r'icons',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final List<ImageObject> icons;
-
-
-
-      /// The [Spotify category ID](/documentation/web-api/concepts/spotify-uris-ids) of the category. 
-  @JsonKey(
-    
-    name: r'id',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String id;
-
-
-
-      /// The name of the category. 
-  @JsonKey(
-    
-    name: r'name',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String name;
-
-
+class _$CategoryObjectSerializer implements PrimitiveSerializer<CategoryObject> {
+  @override
+  final Iterable<Type> types = const [CategoryObject, _$CategoryObject];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is CategoryObject &&
-     other.href == href &&
-     other.icons == icons &&
-     other.id == id &&
-     other.name == name;
+  final String wireName = r'CategoryObject';
 
-  @override
-  int get hashCode =>
-    href.hashCode +
-    icons.hashCode +
-    id.hashCode +
-    name.hashCode;
-
-  factory CategoryObject.fromJson(Map<String, dynamic> json) => _$CategoryObjectFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CategoryObjectToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    CategoryObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'href';
+    yield serializers.serialize(
+      object.href,
+      specifiedType: const FullType(String),
+    );
+    yield r'icons';
+    yield serializers.serialize(
+      object.icons,
+      specifiedType: const FullType(BuiltList, [FullType(ImageObject)]),
+    );
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(String),
+    );
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    CategoryObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required CategoryObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'href':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.href = valueDes;
+          break;
+        case r'icons':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ImageObject)]),
+          ) as BuiltList<ImageObject>;
+          result.icons.replace(valueDes);
+          break;
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  CategoryObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = CategoryObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

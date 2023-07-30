@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for CreatePlaylistRequest
 void main() {
-  final CreatePlaylistRequest? instance = /* CreatePlaylistRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = CreatePlaylistRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CreatePlaylistRequest, () {
     // The name for the new playlist, for example `\"Your Coolest Playlist\"`. This name does not need to be unique; a user may have several playlists with the same name. 

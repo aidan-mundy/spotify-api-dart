@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PlaylistTrackObject
 void main() {
-  final PlaylistTrackObject? instance = /* PlaylistTrackObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = PlaylistTrackObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PlaylistTrackObject, () {
     // The date and time the track or episode was added. _**Note**: some very old playlists may return `null` in this field._ 

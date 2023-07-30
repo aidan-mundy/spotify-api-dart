@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for LinkedTrackObject
 void main() {
-  final LinkedTrackObject? instance = /* LinkedTrackObject(...) */ null;
-  // TODO add properties to the entity
+  //final instance = LinkedTrackObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(LinkedTrackObject, () {
     // LinkedTrackObjectExternalUrls externalUrls

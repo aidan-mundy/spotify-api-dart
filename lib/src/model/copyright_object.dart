@@ -3,70 +3,126 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'copyright_object.g.dart';
 
+/// CopyrightObject
+///
+/// Properties:
+/// * [text] - The copyright text for this content. 
+/// * [type] - The type of copyright: `C` = the copyright, `P` = the sound recording (performance) copyright. 
+@BuiltValue()
+abstract class CopyrightObject implements Built<CopyrightObject, CopyrightObjectBuilder> {
+  /// The copyright text for this content. 
+  @BuiltValueField(wireName: r'text')
+  String? get text;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class CopyrightObject {
-  /// Returns a new [CopyrightObject] instance.
-  CopyrightObject({
+  /// The type of copyright: `C` = the copyright, `P` = the sound recording (performance) copyright. 
+  @BuiltValueField(wireName: r'type')
+  String? get type;
 
-     this.text,
+  CopyrightObject._();
 
-     this.type,
-  });
+  factory CopyrightObject([void updates(CopyrightObjectBuilder b)]) = _$CopyrightObject;
 
-      /// The copyright text for this content. 
-  @JsonKey(
-    
-    name: r'text',
-    required: false,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(CopyrightObjectBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<CopyrightObject> get serializer => _$CopyrightObjectSerializer();
+}
 
-  final String? text;
-
-
-
-      /// The type of copyright: `C` = the copyright, `P` = the sound recording (performance) copyright. 
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false
-  )
-
-
-  final String? type;
-
-
+class _$CopyrightObjectSerializer implements PrimitiveSerializer<CopyrightObject> {
+  @override
+  final Iterable<Type> types = const [CopyrightObject, _$CopyrightObject];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is CopyrightObject &&
-     other.text == text &&
-     other.type == type;
+  final String wireName = r'CopyrightObject';
 
-  @override
-  int get hashCode =>
-    text.hashCode +
-    type.hashCode;
-
-  factory CopyrightObject.fromJson(Map<String, dynamic> json) => _$CopyrightObjectFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CopyrightObjectToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    CopyrightObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.text != null) {
+      yield r'text';
+      yield serializers.serialize(
+        object.text,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    CopyrightObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required CopyrightObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'text':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.text = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  CopyrightObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = CopyrightObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

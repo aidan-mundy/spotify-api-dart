@@ -4,16 +4,12 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:spotify_openapi/src/deserialize.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_openapi/src/model/add_tracks_to_playlist_request.dart';
-import 'package:spotify_openapi/src/model/change_playlist_details_request.dart';
-import 'package:spotify_openapi/src/model/create_playlist_request.dart';
-import 'package:spotify_openapi/src/model/follow_playlist_request.dart';
-import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
+import 'package:spotify_openapi/src/api_util.dart';
 import 'package:spotify_openapi/src/model/image_object.dart';
 import 'package:spotify_openapi/src/model/paging_featured_playlist_object.dart';
 import 'package:spotify_openapi/src/model/paging_playlist_object.dart';
@@ -21,13 +17,14 @@ import 'package:spotify_openapi/src/model/paging_playlist_track_object.dart';
 import 'package:spotify_openapi/src/model/playlist_object.dart';
 import 'package:spotify_openapi/src/model/remove_tracks_playlist_request.dart';
 import 'package:spotify_openapi/src/model/reorder_or_replace_playlists_tracks200_response.dart';
-import 'package:spotify_openapi/src/model/reorder_or_replace_playlists_tracks_request.dart';
 
 class PlaylistsApi {
 
   final Dio _dio;
 
-  const PlaylistsApi(this._dio);
+  final Serializers _serializers;
+
+  const PlaylistsApi(this._dio, this._serializers);
 
   /// Add Items to Playlist 
   /// Add one or more items to a user&#39;s playlist. 
@@ -50,7 +47,7 @@ class PlaylistsApi {
     required String playlistId,
     int? position,
     String? uris,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -58,7 +55,7 @@ class PlaylistsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -78,14 +75,16 @@ class PlaylistsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (position != null) r'position': position,
-      if (uris != null) r'uris': uris,
+      if (position != null) r'position': encodeQueryParameter(_serializers, position, const FullType(int)),
+      if (uris != null) r'uris': encodeQueryParameter(_serializers, uris, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -112,8 +111,12 @@ _bodyData=jsonEncode(requestBody);
     ReorderOrReplacePlaylistsTracks200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTracks200Response, ReorderOrReplacePlaylistsTracks200Response>(rawData, 'ReorderOrReplacePlaylistsTracks200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ReorderOrReplacePlaylistsTracks200Response),
+      ) as ReorderOrReplacePlaylistsTracks200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -153,7 +156,7 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> changePlaylistDetails({ 
     required String playlistId,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -161,7 +164,7 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -183,7 +186,9 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -221,9 +226,9 @@ _bodyData=jsonEncode(requestBody);
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [List<bool>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<bool>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<List<bool>>> checkIfUserFollowsPlaylist({ 
+  Future<Response<BuiltList<bool>>> checkIfUserFollowsPlaylist({ 
     required String playlistId,
     required String ids,
     CancelToken? cancelToken,
@@ -233,7 +238,7 @@ _bodyData=jsonEncode(requestBody);
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/followers/contains'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/followers/contains'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -252,7 +257,7 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      r'ids': ids,
+      r'ids': encodeQueryParameter(_serializers, ids, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -264,11 +269,15 @@ _bodyData=jsonEncode(requestBody);
       onReceiveProgress: onReceiveProgress,
     );
 
-    List<bool>? _responseData;
+    BuiltList<bool>? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 'List<bool>', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(bool)]),
+      ) as BuiltList<bool>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -279,7 +288,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
       );
     }
 
-    return Response<List<bool>>(
+    return Response<BuiltList<bool>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -308,7 +317,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
   /// Throws [DioException] if API call or serialization fails
   Future<Response<PlaylistObject>> createPlaylist({ 
     required String userId,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -316,7 +325,7 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/users/{user_id}/playlists'.replaceAll('{' r'user_id' '}', userId.toString());
+    final _path = r'/users/{user_id}/playlists'.replaceAll('{' r'user_id' '}', encodeQueryParameter(_serializers, userId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -338,7 +347,9 @@ _responseData = rawData == null ? null : deserialize<List<bool>, bool>(rawData, 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -363,8 +374,12 @@ _bodyData=jsonEncode(requestBody);
     PlaylistObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PlaylistObject, PlaylistObject>(rawData, 'PlaylistObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PlaylistObject),
+      ) as PlaylistObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -404,7 +419,7 @@ _responseData = rawData == null ? null : deserialize<PlaylistObject, PlaylistObj
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> followPlaylist({ 
     required String playlistId,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -412,7 +427,7 @@ _responseData = rawData == null ? null : deserialize<PlaylistObject, PlaylistObj
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/followers'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/followers'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -434,7 +449,9 @@ _responseData = rawData == null ? null : deserialize<PlaylistObject, PlaylistObj
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -488,7 +505,7 @@ _bodyData=jsonEncode(requestBody);
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/browse/categories/{category_id}/playlists'.replaceAll('{' r'category_id' '}', categoryId.toString());
+    final _path = r'/browse/categories/{category_id}/playlists'.replaceAll('{' r'category_id' '}', encodeQueryParameter(_serializers, categoryId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -507,9 +524,9 @@ _bodyData=jsonEncode(requestBody);
     );
 
     final _queryParameters = <String, dynamic>{
-      if (country != null) r'country': country,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (country != null) r'country': encodeQueryParameter(_serializers, country, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -524,8 +541,12 @@ _bodyData=jsonEncode(requestBody);
     PagingFeaturedPlaylistObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObject, PagingFeaturedPlaylistObject>(rawData, 'PagingFeaturedPlaylistObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingFeaturedPlaylistObject),
+      ) as PagingFeaturedPlaylistObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -592,8 +613,8 @@ _responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObjec
     );
 
     final _queryParameters = <String, dynamic>{
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -608,8 +629,12 @@ _responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObjec
     PagingPlaylistObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingPlaylistObject, PagingPlaylistObject>(rawData, 'PagingPlaylistObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingPlaylistObject),
+      ) as PagingPlaylistObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -682,11 +707,11 @@ _responseData = rawData == null ? null : deserialize<PagingPlaylistObject, Pagin
     );
 
     final _queryParameters = <String, dynamic>{
-      if (country != null) r'country': country,
-      if (locale != null) r'locale': locale,
-      if (timestamp != null) r'timestamp': timestamp,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (country != null) r'country': encodeQueryParameter(_serializers, country, const FullType(String)),
+      if (locale != null) r'locale': encodeQueryParameter(_serializers, locale, const FullType(String)),
+      if (timestamp != null) r'timestamp': encodeQueryParameter(_serializers, timestamp, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -701,8 +726,12 @@ _responseData = rawData == null ? null : deserialize<PagingPlaylistObject, Pagin
     PagingFeaturedPlaylistObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObject, PagingFeaturedPlaylistObject>(rawData, 'PagingFeaturedPlaylistObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingFeaturedPlaylistObject),
+      ) as PagingFeaturedPlaylistObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -752,7 +781,7 @@ _responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObjec
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/users/{user_id}/playlists'.replaceAll('{' r'user_id' '}', userId.toString());
+    final _path = r'/users/{user_id}/playlists'.replaceAll('{' r'user_id' '}', encodeQueryParameter(_serializers, userId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -771,8 +800,8 @@ _responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObjec
     );
 
     final _queryParameters = <String, dynamic>{
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -787,8 +816,12 @@ _responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObjec
     PagingPlaylistObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingPlaylistObject, PagingPlaylistObject>(rawData, 'PagingPlaylistObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingPlaylistObject),
+      ) as PagingPlaylistObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -840,7 +873,7 @@ _responseData = rawData == null ? null : deserialize<PagingPlaylistObject, Pagin
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -859,9 +892,9 @@ _responseData = rawData == null ? null : deserialize<PagingPlaylistObject, Pagin
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      if (fields != null) r'fields': fields,
-      if (additionalTypes != null) r'additional_types': additionalTypes,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (fields != null) r'fields': encodeQueryParameter(_serializers, fields, const FullType(String)),
+      if (additionalTypes != null) r'additional_types': encodeQueryParameter(_serializers, additionalTypes, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -876,8 +909,12 @@ _responseData = rawData == null ? null : deserialize<PagingPlaylistObject, Pagin
     PlaylistObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PlaylistObject, PlaylistObject>(rawData, 'PlaylistObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PlaylistObject),
+      ) as PlaylistObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -912,9 +949,9 @@ _responseData = rawData == null ? null : deserialize<PlaylistObject, PlaylistObj
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [List<ImageObject>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<ImageObject>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<List<ImageObject>>> getPlaylistCover({ 
+  Future<Response<BuiltList<ImageObject>>> getPlaylistCover({ 
     required String playlistId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -923,7 +960,7 @@ _responseData = rawData == null ? null : deserialize<PlaylistObject, PlaylistObj
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/images'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/images'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -949,11 +986,15 @@ _responseData = rawData == null ? null : deserialize<PlaylistObject, PlaylistObj
       onReceiveProgress: onReceiveProgress,
     );
 
-    List<ImageObject>? _responseData;
+    BuiltList<ImageObject>? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<List<ImageObject>, ImageObject>(rawData, 'List<ImageObject>', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(ImageObject)]),
+      ) as BuiltList<ImageObject>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -964,7 +1005,7 @@ _responseData = rawData == null ? null : deserialize<List<ImageObject>, ImageObj
       );
     }
 
-    return Response<List<ImageObject>>(
+    return Response<BuiltList<ImageObject>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1009,7 +1050,7 @@ _responseData = rawData == null ? null : deserialize<List<ImageObject>, ImageObj
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -1028,11 +1069,11 @@ _responseData = rawData == null ? null : deserialize<List<ImageObject>, ImageObj
     );
 
     final _queryParameters = <String, dynamic>{
-      if (market != null) r'market': market,
-      if (fields != null) r'fields': fields,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
-      if (additionalTypes != null) r'additional_types': additionalTypes,
+      if (market != null) r'market': encodeQueryParameter(_serializers, market, const FullType(String)),
+      if (fields != null) r'fields': encodeQueryParameter(_serializers, fields, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
+      if (additionalTypes != null) r'additional_types': encodeQueryParameter(_serializers, additionalTypes, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1047,8 +1088,12 @@ _responseData = rawData == null ? null : deserialize<List<ImageObject>, ImageObj
     PagingPlaylistTrackObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingPlaylistTrackObject, PagingPlaylistTrackObject>(rawData, 'PagingPlaylistTrackObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagingPlaylistTrackObject),
+      ) as PagingPlaylistTrackObject;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1096,7 +1141,7 @@ _responseData = rawData == null ? null : deserialize<PagingPlaylistTrackObject, 
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -1118,7 +1163,9 @@ _responseData = rawData == null ? null : deserialize<PagingPlaylistTrackObject, 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(removeTracksPlaylistRequest);
+      const _type = FullType(RemoveTracksPlaylistRequest);
+      _bodyData = removeTracksPlaylistRequest == null ? null : _serializers.serialize(removeTracksPlaylistRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1143,8 +1190,12 @@ _bodyData=jsonEncode(removeTracksPlaylistRequest);
     ReorderOrReplacePlaylistsTracks200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTracks200Response, ReorderOrReplacePlaylistsTracks200Response>(rawData, 'ReorderOrReplacePlaylistsTracks200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ReorderOrReplacePlaylistsTracks200Response),
+      ) as ReorderOrReplacePlaylistsTracks200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1186,7 +1237,7 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
   Future<Response<ReorderOrReplacePlaylistsTracks200Response>> reorderOrReplacePlaylistsTracks({ 
     required String playlistId,
     String? uris,
-    Map<String, Object>? requestBody,
+    BuiltMap<String, JsonObject>? requestBody,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1194,7 +1245,7 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/tracks'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -1214,13 +1265,15 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
     );
 
     final _queryParameters = <String, dynamic>{
-      if (uris != null) r'uris': uris,
+      if (uris != null) r'uris': encodeQueryParameter(_serializers, uris, const FullType(String)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(requestBody);
+      const _type = FullType(BuiltMap, [FullType(String), FullType(JsonObject)]);
+      _bodyData = requestBody == null ? null : _serializers.serialize(requestBody, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1247,8 +1300,12 @@ _bodyData=jsonEncode(requestBody);
     ReorderOrReplacePlaylistsTracks200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTracks200Response, ReorderOrReplacePlaylistsTracks200Response>(rawData, 'ReorderOrReplacePlaylistsTracks200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ReorderOrReplacePlaylistsTracks200Response),
+      ) as ReorderOrReplacePlaylistsTracks200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1294,7 +1351,7 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/followers'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/followers'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -1348,7 +1405,7 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/playlists/{playlist_id}/images'.replaceAll('{' r'playlist_id' '}', playlistId.toString());
+    final _path = r'/playlists/{playlist_id}/images'.replaceAll('{' r'playlist_id' '}', encodeQueryParameter(_serializers, playlistId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -1370,7 +1427,8 @@ _responseData = rawData == null ? null : deserialize<ReorderOrReplacePlaylistsTr
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(body);
+      _bodyData = body;
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(

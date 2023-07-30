@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for GetAnAlbum401Response
 void main() {
-  final GetAnAlbum401Response? instance = /* GetAnAlbum401Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = GetAnAlbum401ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(GetAnAlbum401Response, () {
     // ErrorObject error

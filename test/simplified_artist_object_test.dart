@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for SimplifiedArtistObject
 void main() {
-  final SimplifiedArtistObject? instance = /* SimplifiedArtistObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = SimplifiedArtistObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(SimplifiedArtistObject, () {
     // ArtistObjectExternalUrls externalUrls

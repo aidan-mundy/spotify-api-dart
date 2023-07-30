@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for CurrentlyPlayingContextObjectActions
 void main() {
-  final CurrentlyPlayingContextObjectActions? instance = /* CurrentlyPlayingContextObjectActions(...) */ null;
-  // TODO add properties to the entity
+  final instance = CurrentlyPlayingContextObjectActionsBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CurrentlyPlayingContextObjectActions, () {
     // Interrupting playback. Optional field.

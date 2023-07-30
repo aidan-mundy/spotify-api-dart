@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for GetCategories200Response
 void main() {
-  final GetCategories200Response? instance = /* GetCategories200Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = GetCategories200ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(GetCategories200Response, () {
     // PagingObject categories

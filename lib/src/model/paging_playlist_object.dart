@@ -3,155 +3,187 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:spotify_openapi/src/model/paging_object.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:spotify_openapi/src/model/simplified_playlist_object.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'paging_playlist_object.g.dart';
 
+/// PagingPlaylistObject
+///
+/// Properties:
+/// * [href] - A link to the Web API endpoint returning the full result of the request 
+/// * [limit] - The maximum number of items in the response (as set in the query or by default). 
+/// * [next] - URL to the next page of items. ( `null` if none) 
+/// * [offset] - The offset of the items returned (as set in the query or by default) 
+/// * [previous] - URL to the previous page of items. ( `null` if none) 
+/// * [total] - The total number of items available to return. 
+/// * [items] 
+@BuiltValue()
+abstract class PagingPlaylistObject implements PagingObject, Built<PagingPlaylistObject, PagingPlaylistObjectBuilder> {
+  @BuiltValueField(wireName: r'items')
+  BuiltList<SimplifiedPlaylistObject> get items;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class PagingPlaylistObject {
-  /// Returns a new [PagingPlaylistObject] instance.
-  PagingPlaylistObject({
+  PagingPlaylistObject._();
 
-    required  this.href,
+  factory PagingPlaylistObject([void updates(PagingPlaylistObjectBuilder b)]) = _$PagingPlaylistObject;
 
-    required  this.limit,
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(PagingPlaylistObjectBuilder b) => b;
 
-    required  this.next,
+  @BuiltValueSerializer(custom: true)
+  static Serializer<PagingPlaylistObject> get serializer => _$PagingPlaylistObjectSerializer();
+}
 
-    required  this.offset,
-
-    required  this.previous,
-
-    required  this.total,
-
-    required  this.items,
-  });
-
-      /// A link to the Web API endpoint returning the full result of the request 
-  @JsonKey(
-    
-    name: r'href',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final String href;
-
-
-
-      /// The maximum number of items in the response (as set in the query or by default). 
-  @JsonKey(
-    
-    name: r'limit',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final int limit;
-
-
-
-      /// URL to the next page of items. ( `null` if none) 
-  @JsonKey(
-    
-    name: r'next',
-    required: true,
-    includeIfNull: truefalse
-  )
-
-
-  final String? next;
-
-
-
-      /// The offset of the items returned (as set in the query or by default) 
-  @JsonKey(
-    
-    name: r'offset',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final int offset;
-
-
-
-      /// URL to the previous page of items. ( `null` if none) 
-  @JsonKey(
-    
-    name: r'previous',
-    required: true,
-    includeIfNull: truefalse
-  )
-
-
-  final String? previous;
-
-
-
-      /// The total number of items available to return. 
-  @JsonKey(
-    
-    name: r'total',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final int total;
-
-
-
-  @JsonKey(
-    
-    name: r'items',
-    required: true,
-    includeIfNull: false
-  )
-
-
-  final List<SimplifiedPlaylistObject> items;
-
-
+class _$PagingPlaylistObjectSerializer implements PrimitiveSerializer<PagingPlaylistObject> {
+  @override
+  final Iterable<Type> types = const [PagingPlaylistObject, _$PagingPlaylistObject];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is PagingPlaylistObject &&
-     other.href == href &&
-     other.limit == limit &&
-     other.next == next &&
-     other.offset == offset &&
-     other.previous == previous &&
-     other.total == total &&
-     other.items == items;
+  final String wireName = r'PagingPlaylistObject';
 
-  @override
-  int get hashCode =>
-    href.hashCode +
-    limit.hashCode +
-    (next == null ? 0 : next.hashCode) +
-    offset.hashCode +
-    (previous == null ? 0 : previous.hashCode) +
-    total.hashCode +
-    items.hashCode;
-
-  factory PagingPlaylistObject.fromJson(Map<String, dynamic> json) => _$PagingPlaylistObjectFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PagingPlaylistObjectToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    PagingPlaylistObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'next';
+    yield object.next == null ? null : serializers.serialize(
+      object.next,
+      specifiedType: const FullType.nullable(String),
+    );
+    yield r'total';
+    yield serializers.serialize(
+      object.total,
+      specifiedType: const FullType(int),
+    );
+    yield r'offset';
+    yield serializers.serialize(
+      object.offset,
+      specifiedType: const FullType(int),
+    );
+    yield r'previous';
+    yield object.previous == null ? null : serializers.serialize(
+      object.previous,
+      specifiedType: const FullType.nullable(String),
+    );
+    yield r'limit';
+    yield serializers.serialize(
+      object.limit,
+      specifiedType: const FullType(int),
+    );
+    yield r'href';
+    yield serializers.serialize(
+      object.href,
+      specifiedType: const FullType(String),
+    );
+    yield r'items';
+    yield serializers.serialize(
+      object.items,
+      specifiedType: const FullType(BuiltList, [FullType(SimplifiedPlaylistObject)]),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    PagingPlaylistObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required PagingPlaylistObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'next':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.next = valueDes;
+          break;
+        case r'total':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.total = valueDes;
+          break;
+        case r'offset':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.offset = valueDes;
+          break;
+        case r'previous':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.previous = valueDes;
+          break;
+        case r'limit':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.limit = valueDes;
+          break;
+        case r'href':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.href = valueDes;
+          break;
+        case r'items':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(SimplifiedPlaylistObject)]),
+          ) as BuiltList<SimplifiedPlaylistObject>;
+          result.items.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  PagingPlaylistObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = PagingPlaylistObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

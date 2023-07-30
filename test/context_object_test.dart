@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for ContextObject
 void main() {
-  final ContextObject? instance = /* ContextObject(...) */ null;
-  // TODO add properties to the entity
+  //final instance = ContextObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ContextObject, () {
     // The object type, e.g. \"artist\", \"playlist\", \"album\", \"show\". 

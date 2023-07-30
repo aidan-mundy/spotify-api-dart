@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **checkUsersSavedShows**
-> List<bool> checkUsersSavedShows(ids)
+> BuiltList<bool> checkUsersSavedShows(ids)
 
 Check User's Saved Shows 
 
@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**List&lt;bool&gt;**
+**BuiltList&lt;bool&gt;**
 
 ### Authorization
 

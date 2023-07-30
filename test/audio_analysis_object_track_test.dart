@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for AudioAnalysisObjectTrack
 void main() {
-  final AudioAnalysisObjectTrack? instance = /* AudioAnalysisObjectTrack(...) */ null;
-  // TODO add properties to the entity
+  final instance = AudioAnalysisObjectTrackBuilder();
+  // TODO add properties to the builder and call build()
 
   group(AudioAnalysisObjectTrack, () {
     // The exact number of audio samples analyzed from this track. See also `analysis_sample_rate`.

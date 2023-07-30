@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for ShowBaseExternalUrls
 void main() {
-  final ShowBaseExternalUrls? instance = /* ShowBaseExternalUrls(...) */ null;
-  // TODO add properties to the entity
+  final instance = ShowBaseExternalUrlsBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ShowBaseExternalUrls, () {
     // The [Spotify URL](/documentation/web-api/concepts/spotify-uris-ids) for the object. 

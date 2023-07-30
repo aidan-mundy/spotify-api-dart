@@ -3,53 +3,106 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:spotify_openapi/src/model/audiobook_object.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'get_multiple_audiobooks200_response.g.dart';
 
+/// GetMultipleAudiobooks200Response
+///
+/// Properties:
+/// * [audiobooks] 
+@BuiltValue()
+abstract class GetMultipleAudiobooks200Response implements Built<GetMultipleAudiobooks200Response, GetMultipleAudiobooks200ResponseBuilder> {
+  @BuiltValueField(wireName: r'audiobooks')
+  BuiltList<AudiobookObject> get audiobooks;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class GetMultipleAudiobooks200Response {
-  /// Returns a new [GetMultipleAudiobooks200Response] instance.
-  GetMultipleAudiobooks200Response({
+  GetMultipleAudiobooks200Response._();
 
-    required  this.audiobooks,
-  });
+  factory GetMultipleAudiobooks200Response([void updates(GetMultipleAudiobooks200ResponseBuilder b)]) = _$GetMultipleAudiobooks200Response;
 
-  @JsonKey(
-    
-    name: r'audiobooks',
-    required: true,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(GetMultipleAudiobooks200ResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<GetMultipleAudiobooks200Response> get serializer => _$GetMultipleAudiobooks200ResponseSerializer();
+}
 
-  final List<AudiobookObject> audiobooks;
-
-
+class _$GetMultipleAudiobooks200ResponseSerializer implements PrimitiveSerializer<GetMultipleAudiobooks200Response> {
+  @override
+  final Iterable<Type> types = const [GetMultipleAudiobooks200Response, _$GetMultipleAudiobooks200Response];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is GetMultipleAudiobooks200Response &&
-     other.audiobooks == audiobooks;
+  final String wireName = r'GetMultipleAudiobooks200Response';
 
-  @override
-  int get hashCode =>
-    audiobooks.hashCode;
-
-  factory GetMultipleAudiobooks200Response.fromJson(Map<String, dynamic> json) => _$GetMultipleAudiobooks200ResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$GetMultipleAudiobooks200ResponseToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    GetMultipleAudiobooks200Response object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'audiobooks';
+    yield serializers.serialize(
+      object.audiobooks,
+      specifiedType: const FullType(BuiltList, [FullType(AudiobookObject)]),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    GetMultipleAudiobooks200Response object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required GetMultipleAudiobooks200ResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'audiobooks':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(AudiobookObject)]),
+          ) as BuiltList<AudiobookObject>;
+          result.audiobooks.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  GetMultipleAudiobooks200Response deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GetMultipleAudiobooks200ResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

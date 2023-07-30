@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for AlbumBaseExternalIds
 void main() {
-  final AlbumBaseExternalIds? instance = /* AlbumBaseExternalIds(...) */ null;
-  // TODO add properties to the entity
+  final instance = AlbumBaseExternalIdsBuilder();
+  // TODO add properties to the builder and call build()
 
   group(AlbumBaseExternalIds, () {
     // [International Standard Recording Code](http://en.wikipedia.org/wiki/International_Standard_Recording_Code) 

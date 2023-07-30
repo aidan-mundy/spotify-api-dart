@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for AlbumBase
 void main() {
-  final AlbumBase? instance = /* AlbumBase(...) */ null;
-  // TODO add properties to the entity
+  //final instance = AlbumBaseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(AlbumBase, () {
     // The type of the album. 
@@ -20,7 +20,7 @@ void main() {
     });
 
     // The markets in which the album is available: [ISO 3166-1 alpha-2 country codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). _**NOTE**: an album is considered available in a market when at least 1 of its tracks is available in that market._ 
-    // List<String> availableMarkets
+    // BuiltList<String> availableMarkets
     test('to test the property `availableMarkets`', () async {
       // TODO
     });
@@ -43,7 +43,7 @@ void main() {
     });
 
     // The cover art for the album in various sizes, widest first. 
-    // List<ImageObject> images
+    // BuiltList<ImageObject> images
     test('to test the property `images`', () async {
       // TODO
     });
@@ -84,7 +84,7 @@ void main() {
     });
 
     // The copyright statements of the album. 
-    // List<CopyrightObject> copyrights
+    // BuiltList<CopyrightObject> copyrights
     test('to test the property `copyrights`', () async {
       // TODO
     });
@@ -95,7 +95,7 @@ void main() {
     });
 
     // A list of the genres the album is associated with. If not yet classified, the array is empty. 
-    // List<String> genres
+    // BuiltList<String> genres
     test('to test the property `genres`', () async {
       // TODO
     });

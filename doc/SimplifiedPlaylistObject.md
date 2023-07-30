@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **externalUrls** | [**PlaylistObjectExternalUrls**](PlaylistObjectExternalUrls.md) |  | [optional] 
 **href** | **String** | A link to the Web API endpoint providing full details of the playlist.  | [optional] 
 **id** | **String** | The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the playlist.  | [optional] 
-**images** | [**List&lt;ImageObject&gt;**](ImageObject.md) | Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/web-api/concepts/playlists). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._  | [optional] 
+**images** | [**BuiltList&lt;ImageObject&gt;**](ImageObject.md) | Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See [Working with Playlists](/documentation/web-api/concepts/playlists). _**Note**: If returned, the source URL for the image (`url`) is temporary and will expire in less than a day._  | [optional] 
 **name** | **String** | The name of the playlist.  | [optional] 
 **owner** | [**PlaylistObjectOwner**](PlaylistObjectOwner.md) |  | [optional] 
 **public** | **bool** | The playlist's public/private status: `true` the playlist is public, `false` the playlist is private, `null` the playlist status is not relevant. For more about public/private status, see [Working with Playlists](/documentation/web-api/concepts/playlists)  | [optional] 

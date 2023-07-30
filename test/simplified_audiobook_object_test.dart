@@ -3,24 +3,24 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for SimplifiedAudiobookObject
 void main() {
-  final SimplifiedAudiobookObject? instance = /* SimplifiedAudiobookObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = SimplifiedAudiobookObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(SimplifiedAudiobookObject, () {
     // The author(s) for the audiobook. 
-    // List<AuthorObject> authors
+    // BuiltList<AuthorObject> authors
     test('to test the property `authors`', () async {
       // TODO
     });
 
     // A list of the countries in which the audiobook can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code. 
-    // List<String> availableMarkets
+    // BuiltList<String> availableMarkets
     test('to test the property `availableMarkets`', () async {
       // TODO
     });
 
     // The copyright statements of the audiobook. 
-    // List<CopyrightObject> copyrights
+    // BuiltList<CopyrightObject> copyrights
     test('to test the property `copyrights`', () async {
       // TODO
     });
@@ -67,13 +67,13 @@ void main() {
     });
 
     // The cover art for the audiobook in various sizes, widest first. 
-    // List<ImageObject> images
+    // BuiltList<ImageObject> images
     test('to test the property `images`', () async {
       // TODO
     });
 
     // A list of the languages used in the audiobook, identified by their [ISO 639](https://en.wikipedia.org/wiki/ISO_639) code. 
-    // List<String> languages
+    // BuiltList<String> languages
     test('to test the property `languages`', () async {
       // TODO
     });
@@ -91,7 +91,7 @@ void main() {
     });
 
     // The narrator(s) for the audiobook. 
-    // List<NarratorObject> narrators
+    // BuiltList<NarratorObject> narrators
     test('to test the property `narrators`', () async {
       // TODO
     });

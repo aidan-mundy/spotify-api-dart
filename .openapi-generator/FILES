@@ -1,7 +1,6 @@
 .gitignore
 README.md
 analysis_options.yaml
-build.yaml
 doc/AddTracksToPlaylistRequest.md
 doc/AlbumBase.md
 doc/AlbumBaseExternalIds.md
@@ -200,12 +199,13 @@ lib/src/api/search_api.dart
 lib/src/api/shows_api.dart
 lib/src/api/tracks_api.dart
 lib/src/api/users_api.dart
+lib/src/api_util.dart
 lib/src/auth/api_key_auth.dart
 lib/src/auth/auth.dart
 lib/src/auth/basic_auth.dart
 lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
-lib/src/deserialize.dart
+lib/src/date_serializer.dart
 lib/src/model/add_tracks_to_playlist_request.dart
 lib/src/model/album_base.dart
 lib/src/model/album_base_external_ids.dart
@@ -246,6 +246,7 @@ lib/src/model/cursor_paging_object.dart
 lib/src/model/cursor_paging_object_cursors.dart
 lib/src/model/cursor_paging_play_history_object.dart
 lib/src/model/cursor_paging_simplified_artist_object.dart
+lib/src/model/date.dart
 lib/src/model/device_object.dart
 lib/src/model/devices_object.dart
 lib/src/model/disallows_object.dart
@@ -372,4 +373,5 @@ lib/src/model/track_restriction_object.dart
 lib/src/model/transfer_a_users_playback_request.dart
 lib/src/model/tuneable_track_object.dart
 lib/src/model/unfollow_artists_users_request.dart
+lib/src/serializers.dart
 pubspec.yaml

@@ -4,19 +4,18 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:spotify_openapi/src/deserialize.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
 import 'package:spotify_openapi/src/model/get_recommendation_genres200_response.dart';
 
 class GenresApi {
 
   final Dio _dio;
 
-  const GenresApi(this._dio);
+  final Serializers _serializers;
+
+  const GenresApi(this._dio, this._serializers);
 
   /// Get Available Genre Seeds 
   /// Retrieve a list of available genres seed parameter values for [recommendations](/documentation/web-api/reference/get-recommendations). 
@@ -68,8 +67,12 @@ class GenresApi {
     GetRecommendationGenres200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetRecommendationGenres200Response, GetRecommendationGenres200Response>(rawData, 'GetRecommendationGenres200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetRecommendationGenres200Response),
+      ) as GetRecommendationGenres200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,

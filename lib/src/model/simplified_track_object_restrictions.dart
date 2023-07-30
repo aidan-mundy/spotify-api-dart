@@ -3,53 +3,104 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:spotify_openapi/src/model/track_restriction_object.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'simplified_track_object_restrictions.g.dart';
 
+/// Included in the response when a content restriction is applied. 
+///
+/// Properties:
+/// * [reason] - The reason for the restriction. Supported values: - `market` - The content item is not available in the given market. - `product` - The content item is not available for the user's subscription type. - `explicit` - The content item is explicit and the user's account is set to not play explicit content.  Additional reasons may be added in the future. **Note**: If you use this field, make sure that your application safely handles unknown values. 
+@BuiltValue()
+abstract class SimplifiedTrackObjectRestrictions implements TrackRestrictionObject, Built<SimplifiedTrackObjectRestrictions, SimplifiedTrackObjectRestrictionsBuilder> {
+  SimplifiedTrackObjectRestrictions._();
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class SimplifiedTrackObjectRestrictions {
-  /// Returns a new [SimplifiedTrackObjectRestrictions] instance.
-  SimplifiedTrackObjectRestrictions({
+  factory SimplifiedTrackObjectRestrictions([void updates(SimplifiedTrackObjectRestrictionsBuilder b)]) = _$SimplifiedTrackObjectRestrictions;
 
-     this.reason,
-  });
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(SimplifiedTrackObjectRestrictionsBuilder b) => b;
 
-      /// The reason for the restriction. Supported values: - `market` - The content item is not available in the given market. - `product` - The content item is not available for the user's subscription type. - `explicit` - The content item is explicit and the user's account is set to not play explicit content.  Additional reasons may be added in the future. **Note**: If you use this field, make sure that your application safely handles unknown values. 
-  @JsonKey(
-    
-    name: r'reason',
-    required: false,
-    includeIfNull: false
-  )
+  @BuiltValueSerializer(custom: true)
+  static Serializer<SimplifiedTrackObjectRestrictions> get serializer => _$SimplifiedTrackObjectRestrictionsSerializer();
+}
 
-
-  final String? reason;
-
-
+class _$SimplifiedTrackObjectRestrictionsSerializer implements PrimitiveSerializer<SimplifiedTrackObjectRestrictions> {
+  @override
+  final Iterable<Type> types = const [SimplifiedTrackObjectRestrictions, _$SimplifiedTrackObjectRestrictions];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SimplifiedTrackObjectRestrictions &&
-     other.reason == reason;
+  final String wireName = r'SimplifiedTrackObjectRestrictions';
 
-  @override
-  int get hashCode =>
-    reason.hashCode;
-
-  factory SimplifiedTrackObjectRestrictions.fromJson(Map<String, dynamic> json) => _$SimplifiedTrackObjectRestrictionsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$SimplifiedTrackObjectRestrictionsToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    SimplifiedTrackObjectRestrictions object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.reason != null) {
+      yield r'reason';
+      yield serializers.serialize(
+        object.reason,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    SimplifiedTrackObjectRestrictions object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required SimplifiedTrackObjectRestrictionsBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'reason':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.reason = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  SimplifiedTrackObjectRestrictions deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = SimplifiedTrackObjectRestrictionsBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

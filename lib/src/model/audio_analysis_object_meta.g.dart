@@ -3,53 +3,170 @@
 part of 'audio_analysis_object_meta.dart';
 
 // **************************************************************************
-// JsonSerializableGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-AudioAnalysisObjectMeta _$AudioAnalysisObjectMetaFromJson(
-        Map<String, dynamic> json) =>
-    $checkedCreate(
-      'AudioAnalysisObjectMeta',
-      json,
-      ($checkedConvert) {
-        final val = AudioAnalysisObjectMeta(
-          analyzerVersion:
-              $checkedConvert('analyzer_version', (v) => v as String?),
-          platform: $checkedConvert('platform', (v) => v as String?),
-          detailedStatus:
-              $checkedConvert('detailed_status', (v) => v as String?),
-          statusCode: $checkedConvert('status_code', (v) => v as int?),
-          timestamp: $checkedConvert('timestamp', (v) => v as int?),
-          analysisTime: $checkedConvert('analysis_time', (v) => v as num?),
-          inputProcess: $checkedConvert('input_process', (v) => v as String?),
-        );
-        return val;
-      },
-      fieldKeyMap: const {
-        'analyzerVersion': 'analyzer_version',
-        'detailedStatus': 'detailed_status',
-        'statusCode': 'status_code',
-        'analysisTime': 'analysis_time',
-        'inputProcess': 'input_process'
-      },
-    );
+class _$AudioAnalysisObjectMeta extends AudioAnalysisObjectMeta {
+  @override
+  final String? analyzerVersion;
+  @override
+  final String? platform;
+  @override
+  final String? detailedStatus;
+  @override
+  final int? statusCode;
+  @override
+  final int? timestamp;
+  @override
+  final num? analysisTime;
+  @override
+  final String? inputProcess;
 
-Map<String, dynamic> _$AudioAnalysisObjectMetaToJson(
-    AudioAnalysisObjectMeta instance) {
-  final val = <String, dynamic>{};
+  factory _$AudioAnalysisObjectMeta(
+          [void Function(AudioAnalysisObjectMetaBuilder)? updates]) =>
+      (new AudioAnalysisObjectMetaBuilder()..update(updates))._build();
 
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
+  _$AudioAnalysisObjectMeta._(
+      {this.analyzerVersion,
+      this.platform,
+      this.detailedStatus,
+      this.statusCode,
+      this.timestamp,
+      this.analysisTime,
+      this.inputProcess})
+      : super._();
+
+  @override
+  AudioAnalysisObjectMeta rebuild(
+          void Function(AudioAnalysisObjectMetaBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  AudioAnalysisObjectMetaBuilder toBuilder() =>
+      new AudioAnalysisObjectMetaBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is AudioAnalysisObjectMeta &&
+        analyzerVersion == other.analyzerVersion &&
+        platform == other.platform &&
+        detailedStatus == other.detailedStatus &&
+        statusCode == other.statusCode &&
+        timestamp == other.timestamp &&
+        analysisTime == other.analysisTime &&
+        inputProcess == other.inputProcess;
   }
 
-  writeNotNull('analyzer_version', instance.analyzerVersion);
-  writeNotNull('platform', instance.platform);
-  writeNotNull('detailed_status', instance.detailedStatus);
-  writeNotNull('status_code', instance.statusCode);
-  writeNotNull('timestamp', instance.timestamp);
-  writeNotNull('analysis_time', instance.analysisTime);
-  writeNotNull('input_process', instance.inputProcess);
-  return val;
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, analyzerVersion.hashCode);
+    _$hash = $jc(_$hash, platform.hashCode);
+    _$hash = $jc(_$hash, detailedStatus.hashCode);
+    _$hash = $jc(_$hash, statusCode.hashCode);
+    _$hash = $jc(_$hash, timestamp.hashCode);
+    _$hash = $jc(_$hash, analysisTime.hashCode);
+    _$hash = $jc(_$hash, inputProcess.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'AudioAnalysisObjectMeta')
+          ..add('analyzerVersion', analyzerVersion)
+          ..add('platform', platform)
+          ..add('detailedStatus', detailedStatus)
+          ..add('statusCode', statusCode)
+          ..add('timestamp', timestamp)
+          ..add('analysisTime', analysisTime)
+          ..add('inputProcess', inputProcess))
+        .toString();
+  }
 }
+
+class AudioAnalysisObjectMetaBuilder
+    implements
+        Builder<AudioAnalysisObjectMeta, AudioAnalysisObjectMetaBuilder> {
+  _$AudioAnalysisObjectMeta? _$v;
+
+  String? _analyzerVersion;
+  String? get analyzerVersion => _$this._analyzerVersion;
+  set analyzerVersion(String? analyzerVersion) =>
+      _$this._analyzerVersion = analyzerVersion;
+
+  String? _platform;
+  String? get platform => _$this._platform;
+  set platform(String? platform) => _$this._platform = platform;
+
+  String? _detailedStatus;
+  String? get detailedStatus => _$this._detailedStatus;
+  set detailedStatus(String? detailedStatus) =>
+      _$this._detailedStatus = detailedStatus;
+
+  int? _statusCode;
+  int? get statusCode => _$this._statusCode;
+  set statusCode(int? statusCode) => _$this._statusCode = statusCode;
+
+  int? _timestamp;
+  int? get timestamp => _$this._timestamp;
+  set timestamp(int? timestamp) => _$this._timestamp = timestamp;
+
+  num? _analysisTime;
+  num? get analysisTime => _$this._analysisTime;
+  set analysisTime(num? analysisTime) => _$this._analysisTime = analysisTime;
+
+  String? _inputProcess;
+  String? get inputProcess => _$this._inputProcess;
+  set inputProcess(String? inputProcess) => _$this._inputProcess = inputProcess;
+
+  AudioAnalysisObjectMetaBuilder() {
+    AudioAnalysisObjectMeta._defaults(this);
+  }
+
+  AudioAnalysisObjectMetaBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _analyzerVersion = $v.analyzerVersion;
+      _platform = $v.platform;
+      _detailedStatus = $v.detailedStatus;
+      _statusCode = $v.statusCode;
+      _timestamp = $v.timestamp;
+      _analysisTime = $v.analysisTime;
+      _inputProcess = $v.inputProcess;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(AudioAnalysisObjectMeta other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$AudioAnalysisObjectMeta;
+  }
+
+  @override
+  void update(void Function(AudioAnalysisObjectMetaBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  AudioAnalysisObjectMeta build() => _build();
+
+  _$AudioAnalysisObjectMeta _build() {
+    final _$result = _$v ??
+        new _$AudioAnalysisObjectMeta._(
+            analyzerVersion: analyzerVersion,
+            platform: platform,
+            detailedStatus: detailedStatus,
+            statusCode: statusCode,
+            timestamp: timestamp,
+            analysisTime: analysisTime,
+            inputProcess: inputProcess);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

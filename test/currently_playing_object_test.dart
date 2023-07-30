@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for CurrentlyPlayingObject
 void main() {
-  final CurrentlyPlayingObject? instance = /* CurrentlyPlayingObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = CurrentlyPlayingObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CurrentlyPlayingObject, () {
     // CurrentlyPlayingObjectContext context

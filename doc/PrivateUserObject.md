@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **followers** | [**PrivateUserObjectFollowers**](PrivateUserObjectFollowers.md) |  | [optional] 
 **href** | **String** | A link to the Web API endpoint for this user.  | [optional] 
 **id** | **String** | The [Spotify user ID](/documentation/web-api/concepts/spotify-uris-ids) for the user.  | [optional] 
-**images** | [**List&lt;ImageObject&gt;**](ImageObject.md) | The user's profile image. | [optional] 
+**images** | [**BuiltList&lt;ImageObject&gt;**](ImageObject.md) | The user's profile image. | [optional] 
 **product** | **String** | The user's Spotify subscription level: \"premium\", \"free\", etc. (The subscription level \"open\" can be considered the same as \"free\".) _This field is only available when the current user has granted access to the [user-read-private](/documentation/web-api/concepts/scopes/#list-of-scopes) scope._  | [optional] 
 **type** | **String** | The object type: \"user\"  | [optional] 
 **uri** | **String** | The [Spotify URI](/documentation/web-api/concepts/spotify-uris-ids) for the user.  | [optional] 

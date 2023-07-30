@@ -27,7 +27,7 @@ import 'package:spotify_openapi/api.dart';
 
 final api = SpotifyOpenapi().getSearchApi();
 final String q = remaster%20track:Doxy%20artist:Miles%20Davis; // String | 
-final List<String> type = ; // List<String> | 
+final BuiltList<String> type = ; // BuiltList<String> | 
 final String market = ES; // String | 
 final int limit = 10; // int | 
 final int offset = 5; // int | 
@@ -46,7 +46,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **q** | **String**|  | 
- **type** | [**List&lt;String&gt;**](String.md)|  | 
+ **type** | [**BuiltList&lt;String&gt;**](String.md)|  | 
  **market** | **String**|  | [optional] 
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]

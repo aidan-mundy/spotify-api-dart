@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PlaylistTracksRefObject
 void main() {
-  final PlaylistTracksRefObject? instance = /* PlaylistTracksRefObject(...) */ null;
-  // TODO add properties to the entity
+  //final instance = PlaylistTracksRefObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PlaylistTracksRefObject, () {
     // A link to the Web API endpoint where full details of the playlist's tracks can be retrieved. 

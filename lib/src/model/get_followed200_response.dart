@@ -4,52 +4,104 @@
 
 // ignore_for_file: unused_element
 import 'package:spotify_openapi/src/model/cursor_paging_simplified_artist_object.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'get_followed200_response.g.dart';
 
+/// GetFollowed200Response
+///
+/// Properties:
+/// * [artists] 
+@BuiltValue()
+abstract class GetFollowed200Response implements Built<GetFollowed200Response, GetFollowed200ResponseBuilder> {
+  @BuiltValueField(wireName: r'artists')
+  CursorPagingSimplifiedArtistObject get artists;
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class GetFollowed200Response {
-  /// Returns a new [GetFollowed200Response] instance.
-  GetFollowed200Response({
+  GetFollowed200Response._();
 
-    required  this.artists,
-  });
+  factory GetFollowed200Response([void updates(GetFollowed200ResponseBuilder b)]) = _$GetFollowed200Response;
 
-  @JsonKey(
-    
-    name: r'artists',
-    required: true,
-    includeIfNull: false
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(GetFollowed200ResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<GetFollowed200Response> get serializer => _$GetFollowed200ResponseSerializer();
+}
 
-  final CursorPagingSimplifiedArtistObject artists;
-
-
+class _$GetFollowed200ResponseSerializer implements PrimitiveSerializer<GetFollowed200Response> {
+  @override
+  final Iterable<Type> types = const [GetFollowed200Response, _$GetFollowed200Response];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is GetFollowed200Response &&
-     other.artists == artists;
+  final String wireName = r'GetFollowed200Response';
 
-  @override
-  int get hashCode =>
-    artists.hashCode;
-
-  factory GetFollowed200Response.fromJson(Map<String, dynamic> json) => _$GetFollowed200ResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$GetFollowed200ResponseToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    GetFollowed200Response object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'artists';
+    yield serializers.serialize(
+      object.artists,
+      specifiedType: const FullType(CursorPagingSimplifiedArtistObject),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    GetFollowed200Response object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required GetFollowed200ResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'artists':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CursorPagingSimplifiedArtistObject),
+          ) as CursorPagingSimplifiedArtistObject;
+          result.artists.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  GetFollowed200Response deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GetFollowed200ResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

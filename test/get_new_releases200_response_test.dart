@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for GetNewReleases200Response
 void main() {
-  final GetNewReleases200Response? instance = /* GetNewReleases200Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = GetNewReleases200ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(GetNewReleases200Response, () {
     // PagingSimplifiedAlbumObject albums

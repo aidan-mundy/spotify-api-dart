@@ -3,12 +3,12 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for RemoveTracksPlaylistRequest
 void main() {
-  final RemoveTracksPlaylistRequest? instance = /* RemoveTracksPlaylistRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = RemoveTracksPlaylistRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(RemoveTracksPlaylistRequest, () {
     // An array of objects containing [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) of the tracks or episodes to remove. For example: `{ \"tracks\": [{ \"uri\": \"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\" },{ \"uri\": \"spotify:track:1301WleyT98MSxVHPZCA6M\" }] }`. A maximum of 100 objects can be sent at once. 
-    // List<RemoveTracksPlaylistRequestTracksInner> tracks
+    // BuiltList<RemoveTracksPlaylistRequestTracksInner> tracks
     test('to test the property `tracks`', () async {
       // TODO
     });

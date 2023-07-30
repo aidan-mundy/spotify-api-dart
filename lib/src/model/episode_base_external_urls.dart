@@ -3,53 +3,104 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:spotify_openapi/src/model/external_url_object.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'episode_base_external_urls.g.dart';
 
+/// External URLs for this episode. 
+///
+/// Properties:
+/// * [spotify] - The [Spotify URL](/documentation/web-api/concepts/spotify-uris-ids) for the object. 
+@BuiltValue()
+abstract class EpisodeBaseExternalUrls implements ExternalUrlObject, Built<EpisodeBaseExternalUrls, EpisodeBaseExternalUrlsBuilder> {
+  EpisodeBaseExternalUrls._();
 
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class EpisodeBaseExternalUrls {
-  /// Returns a new [EpisodeBaseExternalUrls] instance.
-  EpisodeBaseExternalUrls({
+  factory EpisodeBaseExternalUrls([void updates(EpisodeBaseExternalUrlsBuilder b)]) = _$EpisodeBaseExternalUrls;
 
-     this.spotify,
-  });
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(EpisodeBaseExternalUrlsBuilder b) => b;
 
-      /// The [Spotify URL](/documentation/web-api/concepts/spotify-uris-ids) for the object. 
-  @JsonKey(
-    
-    name: r'spotify',
-    required: false,
-    includeIfNull: false
-  )
+  @BuiltValueSerializer(custom: true)
+  static Serializer<EpisodeBaseExternalUrls> get serializer => _$EpisodeBaseExternalUrlsSerializer();
+}
 
-
-  final String? spotify;
-
-
+class _$EpisodeBaseExternalUrlsSerializer implements PrimitiveSerializer<EpisodeBaseExternalUrls> {
+  @override
+  final Iterable<Type> types = const [EpisodeBaseExternalUrls, _$EpisodeBaseExternalUrls];
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EpisodeBaseExternalUrls &&
-     other.spotify == spotify;
+  final String wireName = r'EpisodeBaseExternalUrls';
 
-  @override
-  int get hashCode =>
-    spotify.hashCode;
-
-  factory EpisodeBaseExternalUrls.fromJson(Map<String, dynamic> json) => _$EpisodeBaseExternalUrlsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$EpisodeBaseExternalUrlsToJson(this);
-
-  @override
-  String toString() {
-    return toJson().toString();
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    EpisodeBaseExternalUrls object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.spotify != null) {
+      yield r'spotify';
+      yield serializers.serialize(
+        object.spotify,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    EpisodeBaseExternalUrls object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required EpisodeBaseExternalUrlsBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'spotify':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.spotify = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  EpisodeBaseExternalUrls deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = EpisodeBaseExternalUrlsBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

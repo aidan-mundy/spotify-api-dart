@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PagingSimplifiedTrackObject
 void main() {
-  final PagingSimplifiedTrackObject? instance = /* PagingSimplifiedTrackObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = PagingSimplifiedTrackObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PagingSimplifiedTrackObject, () {
     // A link to the Web API endpoint returning the full result of the request 
@@ -43,7 +43,7 @@ void main() {
       // TODO
     });
 
-    // List<SimplifiedTrackObject> items
+    // BuiltList<SimplifiedTrackObject> items
     test('to test the property `items`', () async {
       // TODO
     });

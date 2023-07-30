@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for LinkedTrackObjectExternalUrls
 void main() {
-  final LinkedTrackObjectExternalUrls? instance = /* LinkedTrackObjectExternalUrls(...) */ null;
-  // TODO add properties to the entity
+  final instance = LinkedTrackObjectExternalUrlsBuilder();
+  // TODO add properties to the builder and call build()
 
   group(LinkedTrackObjectExternalUrls, () {
     // The [Spotify URL](/documentation/web-api/concepts/spotify-uris-ids) for the object. 

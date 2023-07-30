@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PublicUserObject
 void main() {
-  final PublicUserObject? instance = /* PublicUserObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = PublicUserObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PublicUserObject, () {
     // The name displayed on the user's profile. `null` if not available. 
@@ -36,7 +36,7 @@ void main() {
     });
 
     // The user's profile image. 
-    // List<ImageObject> images
+    // BuiltList<ImageObject> images
     test('to test the property `images`', () async {
       // TODO
     });

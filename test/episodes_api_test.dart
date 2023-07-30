@@ -11,7 +11,7 @@ void main() {
     //
     // Check if one or more episodes is already saved in the current Spotify user's 'Your Episodes' library.<br/> This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).. 
     //
-    //Future<List<bool>> checkUsersSavedEpisodes(String ids) async
+    //Future<BuiltList<bool>> checkUsersSavedEpisodes(String ids) async
     test('test checkUsersSavedEpisodes', () async {
       // TODO
     });
@@ -56,7 +56,7 @@ void main() {
     //
     // Remove one or more episodes from the current user's library.<br/> This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer). 
     //
-    //Future removeEpisodesUser(String ids, { Map<String, Object> requestBody }) async
+    //Future removeEpisodesUser(String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test removeEpisodesUser', () async {
       // TODO
     });
@@ -65,7 +65,7 @@ void main() {
     //
     // Save one or more episodes to the current user's library.<br/> This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer). 
     //
-    //Future saveEpisodesUser(String ids, { Map<String, Object> requestBody }) async
+    //Future saveEpisodesUser(String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test saveEpisodesUser', () async {
       // TODO
     });

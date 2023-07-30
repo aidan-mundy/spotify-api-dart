@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for CategoryObject
 void main() {
-  final CategoryObject? instance = /* CategoryObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = CategoryObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CategoryObject, () {
     // A link to the Web API endpoint returning full details of the category. 
@@ -14,7 +14,7 @@ void main() {
     });
 
     // The category icon, in various sizes. 
-    // List<ImageObject> icons
+    // BuiltList<ImageObject> icons
     test('to test the property `icons`', () async {
       // TODO
     });

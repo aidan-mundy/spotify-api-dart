@@ -3,32 +3,99 @@
 part of 'chapter_restriction_object.dart';
 
 // **************************************************************************
-// JsonSerializableGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-ChapterRestrictionObject _$ChapterRestrictionObjectFromJson(
-        Map<String, dynamic> json) =>
-    $checkedCreate(
-      'ChapterRestrictionObject',
-      json,
-      ($checkedConvert) {
-        final val = ChapterRestrictionObject(
-          reason: $checkedConvert('reason', (v) => v as String?),
-        );
-        return val;
-      },
-    );
+abstract mixin class ChapterRestrictionObjectBuilder {
+  void replace(ChapterRestrictionObject other);
+  void update(void Function(ChapterRestrictionObjectBuilder) updates);
+  String? get reason;
+  set reason(String? reason);
+}
 
-Map<String, dynamic> _$ChapterRestrictionObjectToJson(
-    ChapterRestrictionObject instance) {
-  final val = <String, dynamic>{};
+class _$$ChapterRestrictionObject extends $ChapterRestrictionObject {
+  @override
+  final String? reason;
 
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
+  factory _$$ChapterRestrictionObject(
+          [void Function($ChapterRestrictionObjectBuilder)? updates]) =>
+      (new $ChapterRestrictionObjectBuilder()..update(updates))._build();
+
+  _$$ChapterRestrictionObject._({this.reason}) : super._();
+
+  @override
+  $ChapterRestrictionObject rebuild(
+          void Function($ChapterRestrictionObjectBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  $ChapterRestrictionObjectBuilder toBuilder() =>
+      new $ChapterRestrictionObjectBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is $ChapterRestrictionObject && reason == other.reason;
   }
 
-  writeNotNull('reason', instance.reason);
-  return val;
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, reason.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'$ChapterRestrictionObject')
+          ..add('reason', reason))
+        .toString();
+  }
 }
+
+class $ChapterRestrictionObjectBuilder
+    implements
+        Builder<$ChapterRestrictionObject, $ChapterRestrictionObjectBuilder>,
+        ChapterRestrictionObjectBuilder {
+  _$$ChapterRestrictionObject? _$v;
+
+  String? _reason;
+  String? get reason => _$this._reason;
+  set reason(covariant String? reason) => _$this._reason = reason;
+
+  $ChapterRestrictionObjectBuilder() {
+    $ChapterRestrictionObject._defaults(this);
+  }
+
+  $ChapterRestrictionObjectBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _reason = $v.reason;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(covariant $ChapterRestrictionObject other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$$ChapterRestrictionObject;
+  }
+
+  @override
+  void update(void Function($ChapterRestrictionObjectBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  $ChapterRestrictionObject build() => _build();
+
+  _$$ChapterRestrictionObject _build() {
+    final _$result = _$v ?? new _$$ChapterRestrictionObject._(reason: reason);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

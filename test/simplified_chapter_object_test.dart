@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for SimplifiedChapterObject
 void main() {
-  final SimplifiedChapterObject? instance = /* SimplifiedChapterObject(...) */ null;
-  // TODO add properties to the entity
+  final instance = SimplifiedChapterObjectBuilder();
+  // TODO add properties to the builder and call build()
 
   group(SimplifiedChapterObject, () {
     // A URL to a 30 second preview (MP3 format) of the episode. `null` if not available. 
@@ -14,7 +14,7 @@ void main() {
     });
 
     // A list of the countries in which the chapter can be played, identified by their [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code. 
-    // List<String> availableMarkets
+    // BuiltList<String> availableMarkets
     test('to test the property `availableMarkets`', () async {
       // TODO
     });
@@ -67,7 +67,7 @@ void main() {
     });
 
     // The cover art for the episode in various sizes, widest first. 
-    // List<ImageObject> images
+    // BuiltList<ImageObject> images
     test('to test the property `images`', () async {
       // TODO
     });
@@ -79,7 +79,7 @@ void main() {
     });
 
     // A list of the languages used in the episode, identified by their [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) code. 
-    // List<String> languages
+    // BuiltList<String> languages
     test('to test the property `languages`', () async {
       // TODO
     });

@@ -4,30 +4,29 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:spotify_openapi/src/deserialize.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:spotify_openapi/src/api_util.dart';
 import 'package:spotify_openapi/src/model/category_object.dart';
-import 'package:spotify_openapi/src/model/get_an_album401_response.dart';
 import 'package:spotify_openapi/src/model/get_categories200_response.dart';
 import 'package:spotify_openapi/src/model/paging_featured_playlist_object.dart';
 
 class CategoriesApi {
-
   final Dio _dio;
 
-  const CategoriesApi(this._dio);
+  final Serializers _serializers;
 
-  /// Get Category&#39;s Playlists 
-  /// Get a list of Spotify playlists tagged with a particular category. 
+  const CategoriesApi(this._dio, this._serializers);
+
+  /// Get Category&#39;s Playlists
+  /// Get a list of Spotify playlists tagged with a particular category.
   ///
   /// Parameters:
-  /// * [categoryId] 
-  /// * [country] 
-  /// * [limit] 
-  /// * [offset] 
+  /// * [categoryId]
+  /// * [country]
+  /// * [limit]
+  /// * [offset]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -37,7 +36,7 @@ class CategoriesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [PagingFeaturedPlaylistObject] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PagingFeaturedPlaylistObject>> getACategoriesPlaylists({ 
+  Future<Response<PagingFeaturedPlaylistObject>> getACategoriesPlaylists({
     required String categoryId,
     String? country,
     int? limit = 20,
@@ -49,7 +48,8 @@ class CategoriesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/browse/categories/{category_id}/playlists'.replaceAll('{' r'category_id' '}', categoryId.toString());
+    final _path = r'/browse/categories/{category_id}/playlists'.replaceAll(
+        '{' r'category_id' '}', encodeQueryParameter(_serializers, categoryId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -68,9 +68,9 @@ class CategoriesApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (country != null) r'country': country,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (country != null) r'country': encodeQueryParameter(_serializers, country, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -85,8 +85,13 @@ class CategoriesApi {
     PagingFeaturedPlaylistObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObject, PagingFeaturedPlaylistObject>(rawData, 'PagingFeaturedPlaylistObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PagingFeaturedPlaylistObject),
+            ) as PagingFeaturedPlaylistObject;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -109,13 +114,13 @@ _responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObjec
     );
   }
 
-  /// Get Single Browse Category 
-  /// Get a single category used to tag items in Spotify (on, for example, the Spotify player’s “Browse” tab). 
+  /// Get Single Browse Category
+  /// Get a single category used to tag items in Spotify (on, for example, the Spotify player’s “Browse” tab).
   ///
   /// Parameters:
-  /// * [categoryId] 
-  /// * [country] 
-  /// * [locale] 
+  /// * [categoryId]
+  /// * [country]
+  /// * [locale]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -125,7 +130,7 @@ _responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObjec
   ///
   /// Returns a [Future] containing a [Response] with a [CategoryObject] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<CategoryObject>> getACategory({ 
+  Future<Response<CategoryObject>> getACategory({
     required String categoryId,
     String? country,
     String? locale,
@@ -136,7 +141,8 @@ _responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObjec
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/browse/categories/{category_id}'.replaceAll('{' r'category_id' '}', categoryId.toString());
+    final _path = r'/browse/categories/{category_id}'.replaceAll(
+        '{' r'category_id' '}', encodeQueryParameter(_serializers, categoryId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -155,8 +161,8 @@ _responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObjec
     );
 
     final _queryParameters = <String, dynamic>{
-      if (country != null) r'country': country,
-      if (locale != null) r'locale': locale,
+      if (country != null) r'country': encodeQueryParameter(_serializers, country, const FullType(String)),
+      if (locale != null) r'locale': encodeQueryParameter(_serializers, locale, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -171,8 +177,13 @@ _responseData = rawData == null ? null : deserialize<PagingFeaturedPlaylistObjec
     CategoryObject? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<CategoryObject, CategoryObject>(rawData, 'CategoryObject', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(CategoryObject),
+            ) as CategoryObject;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -195,14 +206,14 @@ _responseData = rawData == null ? null : deserialize<CategoryObject, CategoryObj
     );
   }
 
-  /// Get Several Browse Categories 
-  /// Get a list of categories used to tag items in Spotify (on, for example, the Spotify player’s “Browse” tab). 
+  /// Get Several Browse Categories
+  /// Get a list of categories used to tag items in Spotify (on, for example, the Spotify player’s “Browse” tab).
   ///
   /// Parameters:
-  /// * [country] 
-  /// * [locale] 
-  /// * [limit] 
-  /// * [offset] 
+  /// * [country]
+  /// * [locale]
+  /// * [limit]
+  /// * [offset]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -212,7 +223,7 @@ _responseData = rawData == null ? null : deserialize<CategoryObject, CategoryObj
   ///
   /// Returns a [Future] containing a [Response] with a [GetCategories200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<GetCategories200Response>> getCategories({ 
+  Future<Response<GetCategories200Response>> getCategories({
     String? country,
     String? locale,
     int? limit = 20,
@@ -243,10 +254,10 @@ _responseData = rawData == null ? null : deserialize<CategoryObject, CategoryObj
     );
 
     final _queryParameters = <String, dynamic>{
-      if (country != null) r'country': country,
-      if (locale != null) r'locale': locale,
-      if (limit != null) r'limit': limit,
-      if (offset != null) r'offset': offset,
+      if (country != null) r'country': encodeQueryParameter(_serializers, country, const FullType(String)),
+      if (locale != null) r'locale': encodeQueryParameter(_serializers, locale, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -261,8 +272,13 @@ _responseData = rawData == null ? null : deserialize<CategoryObject, CategoryObj
     GetCategories200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<GetCategories200Response, GetCategories200Response>(rawData, 'GetCategories200Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(GetCategories200Response),
+            ) as GetCategories200Response;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -284,5 +300,4 @@ _responseData = rawData == null ? null : deserialize<GetCategories200Response, G
       extra: _response.extra,
     );
   }
-
 }

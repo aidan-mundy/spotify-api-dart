@@ -11,7 +11,7 @@ void main() {
     //
     // Change a playlist's name and public/private state. (The user must, of course, own the playlist.) 
     //
-    //Future changePlaylistDetails(String playlistId, { Map<String, Object> requestBody }) async
+    //Future changePlaylistDetails(String playlistId, { BuiltMap<String, JsonObject> requestBody }) async
     test('test changePlaylistDetails', () async {
       // TODO
     });
@@ -20,7 +20,7 @@ void main() {
     //
     // Check to see if the current user is following one or more artists or other Spotify users. 
     //
-    //Future<List<bool>> checkCurrentUserFollows(String type, String ids) async
+    //Future<BuiltList<bool>> checkCurrentUserFollows(String type, String ids) async
     test('test checkCurrentUserFollows', () async {
       // TODO
     });
@@ -29,7 +29,7 @@ void main() {
     //
     // Check if one or more albums is already saved in the current Spotify user's 'Your Music' library. 
     //
-    //Future<List<bool>> checkUsersSavedAlbums(String ids) async
+    //Future<BuiltList<bool>> checkUsersSavedAlbums(String ids) async
     test('test checkUsersSavedAlbums', () async {
       // TODO
     });
@@ -38,7 +38,7 @@ void main() {
     //
     // Check if one or more audiobooks are already saved in the current Spotify user's library. 
     //
-    //Future<List<bool>> checkUsersSavedAudiobooks(String ids) async
+    //Future<BuiltList<bool>> checkUsersSavedAudiobooks(String ids) async
     test('test checkUsersSavedAudiobooks', () async {
       // TODO
     });
@@ -47,7 +47,7 @@ void main() {
     //
     // Check if one or more episodes is already saved in the current Spotify user's 'Your Episodes' library.<br/> This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).. 
     //
-    //Future<List<bool>> checkUsersSavedEpisodes(String ids) async
+    //Future<BuiltList<bool>> checkUsersSavedEpisodes(String ids) async
     test('test checkUsersSavedEpisodes', () async {
       // TODO
     });
@@ -56,7 +56,7 @@ void main() {
     //
     // Check if one or more shows is already saved in the current Spotify user's library. 
     //
-    //Future<List<bool>> checkUsersSavedShows(String ids) async
+    //Future<BuiltList<bool>> checkUsersSavedShows(String ids) async
     test('test checkUsersSavedShows', () async {
       // TODO
     });
@@ -65,7 +65,7 @@ void main() {
     //
     // Check if one or more tracks is already saved in the current Spotify user's 'Your Music' library. 
     //
-    //Future<List<bool>> checkUsersSavedTracks(String ids) async
+    //Future<BuiltList<bool>> checkUsersSavedTracks(String ids) async
     test('test checkUsersSavedTracks', () async {
       // TODO
     });
@@ -74,7 +74,7 @@ void main() {
     //
     // Create a playlist for a Spotify user. (The playlist will be empty until you [add tracks](/documentation/web-api/reference/add-tracks-to-playlist).) 
     //
-    //Future<PlaylistObject> createPlaylist(String userId, { Map<String, Object> requestBody }) async
+    //Future<PlaylistObject> createPlaylist(String userId, { BuiltMap<String, JsonObject> requestBody }) async
     test('test createPlaylist', () async {
       // TODO
     });
@@ -83,7 +83,7 @@ void main() {
     //
     // Add the current user as a follower of one or more artists or other Spotify users. 
     //
-    //Future followArtistsUsers(String type, String ids, { Map<String, Object> requestBody }) async
+    //Future followArtistsUsers(String type, String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test followArtistsUsers', () async {
       // TODO
     });
@@ -164,7 +164,7 @@ void main() {
     //
     // Remove one or more albums from the current user's 'Your Music' library. 
     //
-    //Future removeAlbumsUser(String ids, { Map<String, Object> requestBody }) async
+    //Future removeAlbumsUser(String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test removeAlbumsUser', () async {
       // TODO
     });
@@ -182,7 +182,7 @@ void main() {
     //
     // Remove one or more episodes from the current user's library.<br/> This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer). 
     //
-    //Future removeEpisodesUser(String ids, { Map<String, Object> requestBody }) async
+    //Future removeEpisodesUser(String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test removeEpisodesUser', () async {
       // TODO
     });
@@ -200,7 +200,7 @@ void main() {
     //
     // Remove one or more tracks from the current user's 'Your Music' library. 
     //
-    //Future removeTracksUser(String ids, { Map<String, Object> requestBody }) async
+    //Future removeTracksUser(String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test removeTracksUser', () async {
       // TODO
     });
@@ -209,7 +209,7 @@ void main() {
     //
     // Save one or more albums to the current user's 'Your Music' library. 
     //
-    //Future saveAlbumsUser(String ids, { Map<String, Object> requestBody }) async
+    //Future saveAlbumsUser(String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test saveAlbumsUser', () async {
       // TODO
     });
@@ -227,7 +227,7 @@ void main() {
     //
     // Save one or more episodes to the current user's library.<br/> This API endpoint is in __beta__ and could change without warning. Please share any feedback that you have, or issues that you discover, in our [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer). 
     //
-    //Future saveEpisodesUser(String ids, { Map<String, Object> requestBody }) async
+    //Future saveEpisodesUser(String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test saveEpisodesUser', () async {
       // TODO
     });
@@ -245,7 +245,7 @@ void main() {
     //
     // Save one or more tracks to the current user's 'Your Music' library. 
     //
-    //Future saveTracksUser(String ids, { Map<String, Object> requestBody }) async
+    //Future saveTracksUser(String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test saveTracksUser', () async {
       // TODO
     });
@@ -254,7 +254,7 @@ void main() {
     //
     // Remove the current user as a follower of one or more artists or other Spotify users. 
     //
-    //Future unfollowArtistsUsers(String type, String ids, { Map<String, Object> requestBody }) async
+    //Future unfollowArtistsUsers(String type, String ids, { BuiltMap<String, JsonObject> requestBody }) async
     test('test unfollowArtistsUsers', () async {
       // TODO
     });

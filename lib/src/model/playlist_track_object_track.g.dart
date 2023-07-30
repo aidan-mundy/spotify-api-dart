@@ -3,190 +3,244 @@
 part of 'playlist_track_object_track.dart';
 
 // **************************************************************************
-// JsonSerializableGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-PlaylistTrackObjectTrack _$PlaylistTrackObjectTrackFromJson(
-        Map<String, dynamic> json) =>
-    $checkedCreate(
-      'PlaylistTrackObjectTrack',
-      json,
-      ($checkedConvert) {
-        $checkKeys(
-          json,
-          requiredKeys: const [
-            'duration_ms',
-            'explicit',
-            'external_urls',
-            'href',
-            'id',
-            'is_playable',
-            'name',
-            'type',
-            'uri',
-            'audio_preview_url',
-            'description',
-            'html_description',
-            'images',
-            'is_externally_hosted',
-            'languages',
-            'release_date',
-            'release_date_precision',
-            'resume_point',
-            'show'
-          ],
-        );
-        final val = PlaylistTrackObjectTrack(
-          album: $checkedConvert(
-              'album',
-              (v) => v == null
-                  ? null
-                  : TrackObjectAlbum.fromJson(v as Map<String, dynamic>)),
-          artists: $checkedConvert(
-              'artists',
-              (v) => (v as List<dynamic>?)
-                  ?.map((e) => ArtistObject.fromJson(e as Map<String, dynamic>))
-                  .toList()),
-          availableMarkets: $checkedConvert('available_markets',
-              (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
-          discNumber: $checkedConvert('disc_number', (v) => v as int?),
-          durationMs: $checkedConvert('duration_ms', (v) => v as int),
-          explicit: $checkedConvert('explicit', (v) => v as bool),
-          externalIds: $checkedConvert(
-              'external_ids',
-              (v) => v == null
-                  ? null
-                  : TrackObjectExternalIds.fromJson(v as Map<String, dynamic>)),
-          externalUrls: $checkedConvert(
-              'external_urls',
-              (v) =>
-                  EpisodeBaseExternalUrls.fromJson(v as Map<String, dynamic>)),
-          href: $checkedConvert('href', (v) => v as String),
-          id: $checkedConvert('id', (v) => v as String),
-          isPlayable: $checkedConvert('is_playable', (v) => v as bool),
-          linkedFrom: $checkedConvert('linked_from', (v) => v),
-          restrictions: $checkedConvert(
-              'restrictions',
-              (v) => v == null
-                  ? null
-                  : EpisodeBaseRestrictions.fromJson(
-                      v as Map<String, dynamic>)),
-          name: $checkedConvert('name', (v) => v as String),
-          popularity: $checkedConvert('popularity', (v) => v as int?),
-          previewUrl: $checkedConvert('preview_url', (v) => v as String?),
-          trackNumber: $checkedConvert('track_number', (v) => v as int?),
-          type: $checkedConvert('type',
-              (v) => $enumDecode(_$PlaylistTrackObjectTrackTypeEnumEnumMap, v)),
-          uri: $checkedConvert('uri', (v) => v as String),
-          isLocal: $checkedConvert('is_local', (v) => v as bool?),
-          audioPreviewUrl:
-              $checkedConvert('audio_preview_url', (v) => v as String),
-          description: $checkedConvert('description', (v) => v as String),
-          htmlDescription:
-              $checkedConvert('html_description', (v) => v as String),
-          images: $checkedConvert(
-              'images',
-              (v) => (v as List<dynamic>)
-                  .map((e) => ImageObject.fromJson(e as Map<String, dynamic>))
-                  .toList()),
-          isExternallyHosted:
-              $checkedConvert('is_externally_hosted', (v) => v as bool),
-          language: $checkedConvert('language', (v) => v as String?),
-          languages: $checkedConvert('languages',
-              (v) => (v as List<dynamic>).map((e) => e as String).toList()),
-          releaseDate: $checkedConvert('release_date', (v) => v as String),
-          releaseDatePrecision: $checkedConvert(
-              'release_date_precision',
-              (v) => $enumDecode(
-                  _$PlaylistTrackObjectTrackReleaseDatePrecisionEnumEnumMap,
-                  v)),
-          resumePoint: $checkedConvert(
-              'resume_point',
-              (v) =>
-                  EpisodeBaseResumePoint.fromJson(v as Map<String, dynamic>)),
-          show_: $checkedConvert('show',
-              (v) => SimplifiedShowObject.fromJson(v as Map<String, dynamic>)),
-        );
-        return val;
-      },
-      fieldKeyMap: const {
-        'availableMarkets': 'available_markets',
-        'discNumber': 'disc_number',
-        'durationMs': 'duration_ms',
-        'externalIds': 'external_ids',
-        'externalUrls': 'external_urls',
-        'isPlayable': 'is_playable',
-        'linkedFrom': 'linked_from',
-        'previewUrl': 'preview_url',
-        'trackNumber': 'track_number',
-        'isLocal': 'is_local',
-        'audioPreviewUrl': 'audio_preview_url',
-        'htmlDescription': 'html_description',
-        'isExternallyHosted': 'is_externally_hosted',
-        'releaseDate': 'release_date',
-        'releaseDatePrecision': 'release_date_precision',
-        'resumePoint': 'resume_point',
-        'show_': 'show'
-      },
-    );
+const PlaylistTrackObjectTrackTypeEnum
+    _$playlistTrackObjectTrackTypeEnum_track =
+    const PlaylistTrackObjectTrackTypeEnum._('track');
+const PlaylistTrackObjectTrackTypeEnum
+    _$playlistTrackObjectTrackTypeEnum_episode =
+    const PlaylistTrackObjectTrackTypeEnum._('episode');
+const PlaylistTrackObjectTrackTypeEnum
+    _$playlistTrackObjectTrackTypeEnum_unknownDefaultOpenApi =
+    const PlaylistTrackObjectTrackTypeEnum._('unknownDefaultOpenApi');
 
-Map<String, dynamic> _$PlaylistTrackObjectTrackToJson(
-    PlaylistTrackObjectTrack instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
+PlaylistTrackObjectTrackTypeEnum _$playlistTrackObjectTrackTypeEnumValueOf(
+    String name) {
+  switch (name) {
+    case 'track':
+      return _$playlistTrackObjectTrackTypeEnum_track;
+    case 'episode':
+      return _$playlistTrackObjectTrackTypeEnum_episode;
+    case 'unknownDefaultOpenApi':
+      return _$playlistTrackObjectTrackTypeEnum_unknownDefaultOpenApi;
+    default:
+      return _$playlistTrackObjectTrackTypeEnum_unknownDefaultOpenApi;
   }
-
-  writeNotNull('album', instance.album?.toJson());
-  writeNotNull('artists', instance.artists?.map((e) => e.toJson()).toList());
-  writeNotNull('available_markets', instance.availableMarkets);
-  writeNotNull('disc_number', instance.discNumber);
-  val['duration_ms'] = instance.durationMs;
-  val['explicit'] = instance.explicit;
-  writeNotNull('external_ids', instance.externalIds?.toJson());
-  val['external_urls'] = instance.externalUrls.toJson();
-  val['href'] = instance.href;
-  val['id'] = instance.id;
-  val['is_playable'] = instance.isPlayable;
-  writeNotNull('linked_from', instance.linkedFrom);
-  writeNotNull('restrictions', instance.restrictions?.toJson());
-  val['name'] = instance.name;
-  writeNotNull('popularity', instance.popularity);
-  writeNotNull('preview_url', instance.previewUrl);
-  writeNotNull('track_number', instance.trackNumber);
-  val['type'] = _$PlaylistTrackObjectTrackTypeEnumEnumMap[instance.type]!;
-  val['uri'] = instance.uri;
-  writeNotNull('is_local', instance.isLocal);
-  val['audio_preview_url'] = instance.audioPreviewUrl;
-  val['description'] = instance.description;
-  val['html_description'] = instance.htmlDescription;
-  val['images'] = instance.images.map((e) => e.toJson()).toList();
-  val['is_externally_hosted'] = instance.isExternallyHosted;
-  writeNotNull('language', instance.language);
-  val['languages'] = instance.languages;
-  val['release_date'] = instance.releaseDate;
-  val['release_date_precision'] =
-      _$PlaylistTrackObjectTrackReleaseDatePrecisionEnumEnumMap[
-          instance.releaseDatePrecision]!;
-  val['resume_point'] = instance.resumePoint.toJson();
-  val['show'] = instance.show_.toJson();
-  return val;
 }
 
-const _$PlaylistTrackObjectTrackTypeEnumEnumMap = {
-  PlaylistTrackObjectTrackTypeEnum.track: 'track',
-  PlaylistTrackObjectTrackTypeEnum.episode: 'episode',
-  PlaylistTrackObjectTrackTypeEnum.unknownDefaultOpenApi:
-      'unknown_default_open_api',
-};
+final BuiltSet<PlaylistTrackObjectTrackTypeEnum>
+    _$playlistTrackObjectTrackTypeEnumValues = new BuiltSet<
+        PlaylistTrackObjectTrackTypeEnum>(const <PlaylistTrackObjectTrackTypeEnum>[
+  _$playlistTrackObjectTrackTypeEnum_track,
+  _$playlistTrackObjectTrackTypeEnum_episode,
+  _$playlistTrackObjectTrackTypeEnum_unknownDefaultOpenApi,
+]);
 
-const _$PlaylistTrackObjectTrackReleaseDatePrecisionEnumEnumMap = {
-  PlaylistTrackObjectTrackReleaseDatePrecisionEnum.year: 'year',
-  PlaylistTrackObjectTrackReleaseDatePrecisionEnum.month: 'month',
-  PlaylistTrackObjectTrackReleaseDatePrecisionEnum.day: 'day',
-  PlaylistTrackObjectTrackReleaseDatePrecisionEnum.unknownDefaultOpenApi:
-      'unknown_default_open_api',
-};
+const PlaylistTrackObjectTrackReleaseDatePrecisionEnum
+    _$playlistTrackObjectTrackReleaseDatePrecisionEnum_year =
+    const PlaylistTrackObjectTrackReleaseDatePrecisionEnum._('year');
+const PlaylistTrackObjectTrackReleaseDatePrecisionEnum
+    _$playlistTrackObjectTrackReleaseDatePrecisionEnum_month =
+    const PlaylistTrackObjectTrackReleaseDatePrecisionEnum._('month');
+const PlaylistTrackObjectTrackReleaseDatePrecisionEnum
+    _$playlistTrackObjectTrackReleaseDatePrecisionEnum_day =
+    const PlaylistTrackObjectTrackReleaseDatePrecisionEnum._('day');
+const PlaylistTrackObjectTrackReleaseDatePrecisionEnum
+    _$playlistTrackObjectTrackReleaseDatePrecisionEnum_unknownDefaultOpenApi =
+    const PlaylistTrackObjectTrackReleaseDatePrecisionEnum._(
+        'unknownDefaultOpenApi');
+
+PlaylistTrackObjectTrackReleaseDatePrecisionEnum
+    _$playlistTrackObjectTrackReleaseDatePrecisionEnumValueOf(String name) {
+  switch (name) {
+    case 'year':
+      return _$playlistTrackObjectTrackReleaseDatePrecisionEnum_year;
+    case 'month':
+      return _$playlistTrackObjectTrackReleaseDatePrecisionEnum_month;
+    case 'day':
+      return _$playlistTrackObjectTrackReleaseDatePrecisionEnum_day;
+    case 'unknownDefaultOpenApi':
+      return _$playlistTrackObjectTrackReleaseDatePrecisionEnum_unknownDefaultOpenApi;
+    default:
+      return _$playlistTrackObjectTrackReleaseDatePrecisionEnum_unknownDefaultOpenApi;
+  }
+}
+
+final BuiltSet<PlaylistTrackObjectTrackReleaseDatePrecisionEnum>
+    _$playlistTrackObjectTrackReleaseDatePrecisionEnumValues = new BuiltSet<
+        PlaylistTrackObjectTrackReleaseDatePrecisionEnum>(const <PlaylistTrackObjectTrackReleaseDatePrecisionEnum>[
+  _$playlistTrackObjectTrackReleaseDatePrecisionEnum_year,
+  _$playlistTrackObjectTrackReleaseDatePrecisionEnum_month,
+  _$playlistTrackObjectTrackReleaseDatePrecisionEnum_day,
+  _$playlistTrackObjectTrackReleaseDatePrecisionEnum_unknownDefaultOpenApi,
+]);
+
+Serializer<PlaylistTrackObjectTrackTypeEnum>
+    _$playlistTrackObjectTrackTypeEnumSerializer =
+    new _$PlaylistTrackObjectTrackTypeEnumSerializer();
+Serializer<PlaylistTrackObjectTrackReleaseDatePrecisionEnum>
+    _$playlistTrackObjectTrackReleaseDatePrecisionEnumSerializer =
+    new _$PlaylistTrackObjectTrackReleaseDatePrecisionEnumSerializer();
+
+class _$PlaylistTrackObjectTrackTypeEnumSerializer
+    implements PrimitiveSerializer<PlaylistTrackObjectTrackTypeEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'track': 'track',
+    'episode': 'episode',
+    'unknownDefaultOpenApi': 'unknown_default_open_api',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'track': 'track',
+    'episode': 'episode',
+    'unknown_default_open_api': 'unknownDefaultOpenApi',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[PlaylistTrackObjectTrackTypeEnum];
+  @override
+  final String wireName = 'PlaylistTrackObjectTrackTypeEnum';
+
+  @override
+  Object serialize(
+          Serializers serializers, PlaylistTrackObjectTrackTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  PlaylistTrackObjectTrackTypeEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      PlaylistTrackObjectTrackTypeEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
+class _$PlaylistTrackObjectTrackReleaseDatePrecisionEnumSerializer
+    implements
+        PrimitiveSerializer<PlaylistTrackObjectTrackReleaseDatePrecisionEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'year': 'year',
+    'month': 'month',
+    'day': 'day',
+    'unknownDefaultOpenApi': 'unknown_default_open_api',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'year': 'year',
+    'month': 'month',
+    'day': 'day',
+    'unknown_default_open_api': 'unknownDefaultOpenApi',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    PlaylistTrackObjectTrackReleaseDatePrecisionEnum
+  ];
+  @override
+  final String wireName = 'PlaylistTrackObjectTrackReleaseDatePrecisionEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          PlaylistTrackObjectTrackReleaseDatePrecisionEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  PlaylistTrackObjectTrackReleaseDatePrecisionEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      PlaylistTrackObjectTrackReleaseDatePrecisionEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
+class _$PlaylistTrackObjectTrack extends PlaylistTrackObjectTrack {
+  @override
+  final OneOf oneOf;
+
+  factory _$PlaylistTrackObjectTrack(
+          [void Function(PlaylistTrackObjectTrackBuilder)? updates]) =>
+      (new PlaylistTrackObjectTrackBuilder()..update(updates))._build();
+
+  _$PlaylistTrackObjectTrack._({required this.oneOf}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        oneOf, r'PlaylistTrackObjectTrack', 'oneOf');
+  }
+
+  @override
+  PlaylistTrackObjectTrack rebuild(
+          void Function(PlaylistTrackObjectTrackBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  PlaylistTrackObjectTrackBuilder toBuilder() =>
+      new PlaylistTrackObjectTrackBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is PlaylistTrackObjectTrack && oneOf == other.oneOf;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, oneOf.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'PlaylistTrackObjectTrack')
+          ..add('oneOf', oneOf))
+        .toString();
+  }
+}
+
+class PlaylistTrackObjectTrackBuilder
+    implements
+        Builder<PlaylistTrackObjectTrack, PlaylistTrackObjectTrackBuilder> {
+  _$PlaylistTrackObjectTrack? _$v;
+
+  OneOf? _oneOf;
+  OneOf? get oneOf => _$this._oneOf;
+  set oneOf(OneOf? oneOf) => _$this._oneOf = oneOf;
+
+  PlaylistTrackObjectTrackBuilder() {
+    PlaylistTrackObjectTrack._defaults(this);
+  }
+
+  PlaylistTrackObjectTrackBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _oneOf = $v.oneOf;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(PlaylistTrackObjectTrack other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$PlaylistTrackObjectTrack;
+  }
+
+  @override
+  void update(void Function(PlaylistTrackObjectTrackBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  PlaylistTrackObjectTrack build() => _build();
+
+  _$PlaylistTrackObjectTrack _build() {
+    final _$result = _$v ??
+        new _$PlaylistTrackObjectTrack._(
+            oneOf: BuiltValueNullFieldError.checkNotNull(
+                oneOf, r'PlaylistTrackObjectTrack', 'oneOf'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

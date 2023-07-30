@@ -3,12 +3,12 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for AddTracksToPlaylistRequest
 void main() {
-  final AddTracksToPlaylistRequest? instance = /* AddTracksToPlaylistRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = AddTracksToPlaylistRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(AddTracksToPlaylistRequest, () {
     // A JSON array of the [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to add. For example: `{\"uris\": [\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\",\"spotify:track:1301WleyT98MSxVHPZCA6M\", \"spotify:episode:512ojhOuo1ktJprKbVcKyQ\"]}`<br/>A maximum of 100 items can be added in one request. _**Note**: if the `uris` parameter is present in the query string, any URIs listed here in the body will be ignored._ 
-    // List<String> uris
+    // BuiltList<String> uris
     test('to test the property `uris`', () async {
       // TODO
     });

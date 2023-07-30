@@ -3,8 +3,8 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for PlaylistObjectExternalUrls
 void main() {
-  final PlaylistObjectExternalUrls? instance = /* PlaylistObjectExternalUrls(...) */ null;
-  // TODO add properties to the entity
+  final instance = PlaylistObjectExternalUrlsBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PlaylistObjectExternalUrls, () {
     // The [Spotify URL](/documentation/web-api/concepts/spotify-uris-ids) for the object. 

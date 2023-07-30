@@ -3,11 +3,11 @@ import 'package:spotify_openapi/spotify_openapi.dart';
 
 // tests for GetAUsersAvailableDevices200Response
 void main() {
-  final GetAUsersAvailableDevices200Response? instance = /* GetAUsersAvailableDevices200Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = GetAUsersAvailableDevices200ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(GetAUsersAvailableDevices200Response, () {
-    // List<DeviceObject> devices
+    // BuiltList<DeviceObject> devices
     test('to test the property `devices`', () async {
       // TODO
     });
